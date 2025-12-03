@@ -48,7 +48,7 @@ public class UserManagement extends javax.swing.JFrame {
         driver = new javax.swing.JButton();
         admin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        routeTable = new javax.swing.JTable();
+        usersTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,7 +122,7 @@ public class UserManagement extends javax.swing.JFrame {
         vehicles.setBackground(new java.awt.Color(244, 244, 244));
         vehicles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicles.setForeground(new java.awt.Color(102, 102, 102));
-        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/vehicleIcon.png"))); // NOI18N
+        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/VehicleIcon.png"))); // NOI18N
         vehicles.setText("Vehicles");
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
@@ -133,7 +133,7 @@ public class UserManagement extends javax.swing.JFrame {
         routes.setBackground(new java.awt.Color(244, 244, 244));
         routes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         routes.setForeground(new java.awt.Color(102, 102, 102));
-        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/routeIcon.png"))); // NOI18N
+        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/RouteIcon.png"))); // NOI18N
         routes.setText("Routes");
         routes.setBorder(null);
         routes.setBorderPainted(false);
@@ -144,7 +144,7 @@ public class UserManagement extends javax.swing.JFrame {
         trips.setBackground(new java.awt.Color(244, 244, 244));
         trips.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         trips.setForeground(new java.awt.Color(102, 102, 102));
-        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tripIcon.png"))); // NOI18N
+        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TripIcon.png"))); // NOI18N
         trips.setText("Trips");
         trips.setBorder(null);
         trips.setBorderPainted(false);
@@ -155,7 +155,7 @@ public class UserManagement extends javax.swing.JFrame {
         users.setBackground(new java.awt.Color(244, 244, 244));
         users.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         users.setForeground(new java.awt.Color(0, 0, 204));
-        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedUser.png"))); // NOI18N
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SelectedUser.png"))); // NOI18N
         users.setText("Users");
         users.setBorder(null);
         users.setBorderPainted(false);
@@ -166,7 +166,7 @@ public class UserManagement extends javax.swing.JFrame {
         notifications.setBackground(new java.awt.Color(244, 244, 244));
         notifications.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         notifications.setForeground(new java.awt.Color(102, 102, 102));
-        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/notifIcon.png"))); // NOI18N
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/NotifIcon.png"))); // NOI18N
         notifications.setText("Notifications");
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
@@ -210,9 +210,9 @@ public class UserManagement extends javax.swing.JFrame {
         admin.setText("Admin");
         admin.addActionListener(this::adminActionPerformed);
 
-        routeTable.setBackground(new java.awt.Color(255, 255, 255));
-        routeTable.setForeground(new java.awt.Color(51, 51, 51));
-        routeTable.setModel(new javax.swing.table.DefaultTableModel(
+        usersTable.setBackground(new java.awt.Color(255, 255, 255));
+        usersTable.setForeground(new java.awt.Color(51, 51, 51));
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -220,7 +220,7 @@ public class UserManagement extends javax.swing.JFrame {
                 "Name", "Email", "Phone", "Role", "Joined"
             }
         ));
-        jScrollPane1.setViewportView(routeTable);
+        jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
@@ -334,11 +334,11 @@ public class UserManagement extends javax.swing.JFrame {
     private javax.swing.JButton notifications;
     private javax.swing.JButton passsenger;
     private javax.swing.JButton profile;
-    private javax.swing.JTable routeTable;
     private javax.swing.JButton routes;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
+    private javax.swing.JTable usersTable;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
 }

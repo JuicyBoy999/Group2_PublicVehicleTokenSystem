@@ -56,7 +56,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        vehicleTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,7 +131,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         vehicles.setBackground(new java.awt.Color(244, 244, 244));
         vehicles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicles.setForeground(new java.awt.Color(0, 0, 204));
-        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedVehicle.png"))); // NOI18N
+        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SelectedVehicle.png"))); // NOI18N
         vehicles.setText("Vehicles");
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
@@ -142,7 +142,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         routes.setBackground(new java.awt.Color(244, 244, 244));
         routes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         routes.setForeground(new java.awt.Color(102, 102, 102));
-        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/routeIcon.png"))); // NOI18N
+        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/RouteIcon.png"))); // NOI18N
         routes.setText("Routes");
         routes.setBorder(null);
         routes.setBorderPainted(false);
@@ -153,7 +153,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         trips.setBackground(new java.awt.Color(244, 244, 244));
         trips.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         trips.setForeground(new java.awt.Color(102, 102, 102));
-        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tripIcon.png"))); // NOI18N
+        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TripIcon.png"))); // NOI18N
         trips.setText("Trips");
         trips.setBorder(null);
         trips.setBorderPainted(false);
@@ -164,7 +164,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         users.setBackground(new java.awt.Color(244, 244, 244));
         users.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         users.setForeground(new java.awt.Color(102, 102, 102));
-        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/userIcon.png"))); // NOI18N
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/UserIcon.png"))); // NOI18N
         users.setText("Users");
         users.setBorder(null);
         users.setBorderPainted(false);
@@ -175,7 +175,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         notifications.setBackground(new java.awt.Color(244, 244, 244));
         notifications.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         notifications.setForeground(new java.awt.Color(102, 102, 102));
-        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/notifIcon.png"))); // NOI18N
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/NotifIcon.png"))); // NOI18N
         notifications.setText("Notifications");
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
@@ -320,9 +320,9 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        vehicleTable.setBackground(new java.awt.Color(255, 255, 255));
+        vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
+        vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -330,7 +330,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                 "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(vehicleTable);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 620, 1150, 90);
@@ -398,7 +398,6 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField number;
@@ -412,6 +411,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> type;
     private javax.swing.JButton users;
     private javax.swing.JLabel vehicleNumber;
+    private javax.swing.JTable vehicleTable;
     private javax.swing.JLabel vehicleType;
     private javax.swing.JButton vehicles;
     private javax.swing.JLabel whoDriver;
