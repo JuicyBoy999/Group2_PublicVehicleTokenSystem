@@ -8,14 +8,14 @@ package View;
  *
  * @author hp
  */
-public class VehicleManagement extends javax.swing.JFrame {
+public class UserManagement extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VehicleManagement.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserManagement.class.getName());
 
     /**
      * Creates new form VehicleManagement
      */
-    public VehicleManagement() {
+    public UserManagement() {
         initComponents();
         setSize(1280, 740);
     }
@@ -41,26 +41,17 @@ public class VehicleManagement extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
-        VehicleManagement = new javax.swing.JLabel();
-        add = new javax.swing.JButton();
         form = new javax.swing.JPanel();
-        AddNewVehicle = new javax.swing.JLabel();
-        vehicleNumber = new javax.swing.JLabel();
-        number = new javax.swing.JTextField();
-        seatsNumber = new javax.swing.JLabel();
-        seat = new javax.swing.JTextField();
-        vehicleType = new javax.swing.JLabel();
-        type = new javax.swing.JComboBox<>();
-        whoDriver = new javax.swing.JLabel();
-        driver = new javax.swing.JComboBox<>();
-        submit = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
+        UsersManagement = new javax.swing.JLabel();
+        all = new javax.swing.JButton();
+        passsenger = new javax.swing.JButton();
+        driver = new javax.swing.JButton();
+        admin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        routeTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 740));
         getContentPane().setLayout(null);
 
         header.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,8 +121,8 @@ public class VehicleManagement extends javax.swing.JFrame {
 
         vehicles.setBackground(new java.awt.Color(244, 244, 244));
         vehicles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        vehicles.setForeground(new java.awt.Color(0, 0, 204));
-        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedVehicle.png"))); // NOI18N
+        vehicles.setForeground(new java.awt.Color(102, 102, 102));
+        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/vehicleIcon.png"))); // NOI18N
         vehicles.setText("Vehicles");
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
@@ -163,8 +154,8 @@ public class VehicleManagement extends javax.swing.JFrame {
 
         users.setBackground(new java.awt.Color(244, 244, 244));
         users.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        users.setForeground(new java.awt.Color(102, 102, 102));
-        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/userIcon.png"))); // NOI18N
+        users.setForeground(new java.awt.Color(0, 0, 204));
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedUser.png"))); // NOI18N
         users.setText("Users");
         users.setBorder(null);
         users.setBorderPainted(false);
@@ -187,153 +178,91 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(separator);
         separator.setBounds(30, 230, 1205, 20);
 
-        VehicleManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        VehicleManagement.setForeground(new java.awt.Color(0, 0, 0));
-        VehicleManagement.setText("Vehicle Management");
-        getContentPane().add(VehicleManagement);
-        VehicleManagement.setBounds(50, 240, 240, 54);
-
-        add.setBackground(new java.awt.Color(0, 0, 204));
-        add.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        add.setForeground(new java.awt.Color(255, 255, 255));
-        add.setText("+ Add Vehicle");
-        getContentPane().add(add);
-        add.setBounds(1070, 240, 150, 40);
-
         form.setBackground(new java.awt.Color(255, 255, 255));
         form.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         form.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        AddNewVehicle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        AddNewVehicle.setForeground(new java.awt.Color(0, 0, 0));
-        AddNewVehicle.setText("Add New Vehicle");
+        UsersManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        UsersManagement.setForeground(new java.awt.Color(0, 0, 0));
+        UsersManagement.setText("Users Management");
 
-        vehicleNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        vehicleNumber.setForeground(new java.awt.Color(0, 0, 0));
-        vehicleNumber.setText("Vehicle Number");
+        all.setBackground(new java.awt.Color(0, 0, 204));
+        all.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        all.setForeground(new java.awt.Color(255, 255, 255));
+        all.setText("All");
+        all.addActionListener(this::allActionPerformed);
 
-        number.setBackground(new java.awt.Color(255, 255, 255));
-        number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        number.setText("######");
-        number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        number.setCaretColor(new java.awt.Color(0, 0, 0));
-        number.addActionListener(this::numberActionPerformed);
+        passsenger.setBackground(new java.awt.Color(153, 153, 153));
+        passsenger.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        passsenger.setForeground(new java.awt.Color(255, 255, 255));
+        passsenger.setText("Passenger");
+        passsenger.addActionListener(this::passsengerActionPerformed);
 
-        seatsNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        seatsNumber.setForeground(new java.awt.Color(0, 0, 0));
-        seatsNumber.setText("Number of Seats");
-
-        seat.setBackground(new java.awt.Color(255, 255, 255));
-        seat.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        seat.setText("0");
-        seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        seat.setCaretColor(new java.awt.Color(0, 0, 0));
-
-        vehicleType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        vehicleType.setForeground(new java.awt.Color(0, 0, 0));
-        vehicleType.setText("Vehicle Type");
-
-        type.setBackground(new java.awt.Color(255, 255, 255));
-        type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        type.setForeground(new java.awt.Color(51, 51, 51));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        type.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        type.addActionListener(this::typeActionPerformed);
-
-        whoDriver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        whoDriver.setForeground(new java.awt.Color(0, 0, 0));
-        whoDriver.setText("Driver");
-
-        driver.setBackground(new java.awt.Color(255, 255, 255));
+        driver.setBackground(new java.awt.Color(153, 153, 153));
         driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        driver.setForeground(new java.awt.Color(51, 51, 51));
-        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        driver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        driver.setForeground(new java.awt.Color(255, 255, 255));
+        driver.setText("Driver");
+        driver.addActionListener(this::driverActionPerformed);
 
-        submit.setBackground(new java.awt.Color(0, 0, 204));
-        submit.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        submit.setForeground(new java.awt.Color(255, 255, 255));
-        submit.setText("Add Vehicle");
+        admin.setBackground(new java.awt.Color(153, 153, 153));
+        admin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        admin.setForeground(new java.awt.Color(255, 255, 255));
+        admin.setText("Admin");
+        admin.addActionListener(this::adminActionPerformed);
 
-        cancel.setBackground(new java.awt.Color(153, 153, 153));
-        cancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cancel.setForeground(new java.awt.Color(255, 255, 255));
-        cancel.setText("Cancel");
-        cancel.addActionListener(this::cancelActionPerformed);
+        routeTable.setBackground(new java.awt.Color(255, 255, 255));
+        routeTable.setForeground(new java.awt.Color(51, 51, 51));
+        routeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Email", "Phone", "Role", "Joined"
+            }
+        ));
+        jScrollPane1.setViewportView(routeTable);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vehicleNumber)
-                    .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(seat)
-                        .addComponent(AddNewVehicle, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
-                            .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(seatsNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)))
-                .addGap(44, 44, 44)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vehicleType)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whoDriver)
-                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(formLayout.createSequentialGroup()
+                                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(driver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(admin)))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(AddNewVehicle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(vehicleNumber)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(vehicleType)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(type)))
-                .addGap(18, 19, Short.MAX_VALUE)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seatsNumber)
-                    .addComponent(whoDriver))
+                .addGap(9, 9, 9)
+                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driver))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         getContentPane().add(form);
-        form.setBounds(60, 310, 1150, 260);
-
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Vehicle", "Type", "Seats", "Driver", "Actions"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 620, 1150, 90);
+        form.setBounds(60, 270, 1150, 300);
 
         background.setBackground(new java.awt.Color(0, 0, 0));
         background.setForeground(new java.awt.Color(255, 255, 255));
@@ -348,17 +277,21 @@ public class VehicleManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberActionPerformed
+    private void passsengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passsengerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numberActionPerformed
+    }//GEN-LAST:event_passsengerActionPerformed
 
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+    private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_typeActionPerformed
+    }//GEN-LAST:event_allActionPerformed
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+    private void driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancelActionPerformed
+    }//GEN-LAST:event_driverActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,38 +315,30 @@ public class VehicleManagement extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VehicleManagement().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new UserManagement().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AddNewVehicle;
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
-    private javax.swing.JLabel VehicleManagement;
-    private javax.swing.JButton add;
+    private javax.swing.JLabel UsersManagement;
+    private javax.swing.JButton admin;
+    private javax.swing.JButton all;
     private javax.swing.JLabel background;
-    private javax.swing.JButton cancel;
-    private javax.swing.JComboBox<String> driver;
+    private javax.swing.JButton driver;
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private javax.swing.JTextField number;
+    private javax.swing.JButton passsenger;
     private javax.swing.JButton profile;
+    private javax.swing.JTable routeTable;
     private javax.swing.JButton routes;
-    private javax.swing.JTextField seat;
-    private javax.swing.JLabel seatsNumber;
     private javax.swing.JSeparator separator;
-    private javax.swing.JButton submit;
     private javax.swing.JButton trips;
-    private javax.swing.JComboBox<String> type;
     private javax.swing.JButton users;
-    private javax.swing.JLabel vehicleNumber;
-    private javax.swing.JLabel vehicleType;
     private javax.swing.JButton vehicles;
-    private javax.swing.JLabel whoDriver;
     // End of variables declaration//GEN-END:variables
 }
