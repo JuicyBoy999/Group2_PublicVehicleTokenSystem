@@ -8,14 +8,14 @@ package View;
  *
  * @author user
  */
-public class Login extends javax.swing.JFrame {
+public class EmailOTP extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EmailOTP.class.getName());
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public EmailOTP() {
         initComponents();
         setSize(1000,564);
     }
@@ -29,65 +29,61 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Email = new javax.swing.JTextField();
+        ResetPasswordBTN = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        OTP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 40, 30));
 
-        jTextField7.setText("Enter Your Email");
-        jTextField7.addActionListener(this::jTextField7ActionPerformed);
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 230, -1));
+        Email.setText("Enter Your Email");
+        Email.addActionListener(this::EmailActionPerformed);
+        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 230, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Sign In");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, -1, -1));
+        ResetPasswordBTN.setText("Reset Password");
+        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 120, -1));
 
-        jLabel2.setText("Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
-
-        jButton1.setText("SIGN IN");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 80, -1));
-
-        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel7.setText("Forget Password");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
-
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 230, -1));
-
-        jLabel6.setText("Email");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Enter Email");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+
+        OTP.setText("Enter OTP");
+        getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 230, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("OTP");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Account Recovery");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg")); // NOI18N
         jLabel3.setText("jLabel3");
         jLabel3.setMaximumSize(new java.awt.Dimension(259, 259));
         jLabel3.setMinimumSize(new java.awt.Dimension(259, 259));
         jLabel3.setPreferredSize(new java.awt.Dimension(259, 259));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
-<<<<<<< HEAD
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg"))); // NOI18N
-=======
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg"))); // NOI18N
->>>>>>> 34bc68ed126ce40db20e89f0cc39d29abb682291
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_EmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,19 +107,18 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new EmailOTP().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField Email;
+    private javax.swing.JTextField OTP;
+    private javax.swing.JButton ResetPasswordBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

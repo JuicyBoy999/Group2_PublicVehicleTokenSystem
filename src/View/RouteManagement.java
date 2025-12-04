@@ -8,14 +8,14 @@ package View;
  *
  * @author hp
  */
-public class UserManagement extends javax.swing.JFrame {
+public class RouteManagement extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserManagement.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RouteManagement.class.getName());
 
     /**
      * Creates new form VehicleManagement
      */
-    public UserManagement() {
+    public RouteManagement() {
         initComponents();
         setSize(1280, 740);
     }
@@ -41,14 +41,24 @@ public class UserManagement extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
+        RouteManagement = new javax.swing.JLabel();
+        AddRoute = new javax.swing.JButton();
         form = new javax.swing.JPanel();
-        UsersManagement = new javax.swing.JLabel();
-        all = new javax.swing.JButton();
-        passsenger = new javax.swing.JButton();
-        driver = new javax.swing.JButton();
-        admin = new javax.swing.JButton();
+        AddNewRoute = new javax.swing.JLabel();
+        RouteName = new javax.swing.JLabel();
+        number = new javax.swing.JTextField();
+        Destination = new javax.swing.JLabel();
+        DestinationText = new javax.swing.JTextField();
+        Origin = new javax.swing.JLabel();
+        Driver = new javax.swing.JLabel();
+        SubmitRoute = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
+        DriverText = new javax.swing.JTextField();
+        OriginText = new javax.swing.JTextField();
+        Duration = new javax.swing.JLabel();
+        DurationText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usersTable = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +69,6 @@ public class UserManagement extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
 
         Bato.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Bato.setForeground(new java.awt.Color(0, 0, 0));
         Bato.setText("Bato+");
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
@@ -105,7 +114,6 @@ public class UserManagement extends javax.swing.JFrame {
 
         AdminDashboard.setBackground(new java.awt.Color(255, 255, 255));
         AdminDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 1, 30)); // NOI18N
-        AdminDashboard.setForeground(new java.awt.Color(0, 0, 0));
         AdminDashboard.setText("Admin Dashboard");
         AdminDashboard.setMaximumSize(new java.awt.Dimension(356, 47));
         AdminDashboard.setMinimumSize(new java.awt.Dimension(356, 47));
@@ -132,12 +140,13 @@ public class UserManagement extends javax.swing.JFrame {
 
         routes.setBackground(new java.awt.Color(244, 244, 244));
         routes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        routes.setForeground(new java.awt.Color(102, 102, 102));
-        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/routeIcon.png"))); // NOI18N
+        routes.setForeground(new java.awt.Color(0, 0, 204));
+        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedRoute.png"))); // NOI18N
         routes.setText("Routes");
         routes.setBorder(null);
         routes.setBorderPainted(false);
         routes.setContentAreaFilled(false);
+        routes.addActionListener(this::routesActionPerformed);
         getContentPane().add(routes);
         routes.setBounds(140, 193, 110, 40);
 
@@ -154,8 +163,8 @@ public class UserManagement extends javax.swing.JFrame {
 
         users.setBackground(new java.awt.Color(244, 244, 244));
         users.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        users.setForeground(new java.awt.Color(0, 0, 204));
-        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedUser.png"))); // NOI18N
+        users.setForeground(new java.awt.Color(102, 102, 102));
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/userIcon.png"))); // NOI18N
         users.setText("Users");
         users.setBorder(null);
         users.setBorderPainted(false);
@@ -178,91 +187,159 @@ public class UserManagement extends javax.swing.JFrame {
         getContentPane().add(separator);
         separator.setBounds(30, 230, 1205, 20);
 
+        RouteManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        RouteManagement.setText("Route Management");
+        getContentPane().add(RouteManagement);
+        RouteManagement.setBounds(50, 240, 240, 54);
+
+        AddRoute.setBackground(new java.awt.Color(0, 0, 204));
+        AddRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        AddRoute.setForeground(new java.awt.Color(255, 255, 255));
+        AddRoute.setText("+ Add Route");
+        getContentPane().add(AddRoute);
+        AddRoute.setBounds(1070, 240, 150, 40);
+
         form.setBackground(new java.awt.Color(255, 255, 255));
         form.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         form.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        UsersManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        UsersManagement.setForeground(new java.awt.Color(0, 0, 0));
-        UsersManagement.setText("Users Management");
+        AddNewRoute.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        AddNewRoute.setText("Add New Route");
 
-        all.setBackground(new java.awt.Color(0, 0, 204));
-        all.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        all.setForeground(new java.awt.Color(255, 255, 255));
-        all.setText("All");
-        all.addActionListener(this::allActionPerformed);
+        RouteName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        RouteName.setText("Route Name");
 
-        passsenger.setBackground(new java.awt.Color(153, 153, 153));
-        passsenger.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        passsenger.setForeground(new java.awt.Color(255, 255, 255));
-        passsenger.setText("Passenger");
-        passsenger.addActionListener(this::passsengerActionPerformed);
+        number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        number.setToolTipText("");
+        number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        number.addActionListener(this::numberActionPerformed);
 
-        driver.setBackground(new java.awt.Color(153, 153, 153));
-        driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        driver.setForeground(new java.awt.Color(255, 255, 255));
-        driver.setText("Driver");
-        driver.addActionListener(this::driverActionPerformed);
+        Destination.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Destination.setText("Destination");
 
-        admin.setBackground(new java.awt.Color(153, 153, 153));
-        admin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        admin.setForeground(new java.awt.Color(255, 255, 255));
-        admin.setText("Admin");
-        admin.addActionListener(this::adminActionPerformed);
+        DestinationText.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        DestinationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        usersTable.setBackground(new java.awt.Color(255, 255, 255));
-        usersTable.setForeground(new java.awt.Color(51, 51, 51));
-        usersTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        Origin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Origin.setText("Origin");
 
-            },
-            new String [] {
-                "Name", "Email", "Phone", "Role", "Joined"
-            }
-        ));
-        jScrollPane1.setViewportView(usersTable);
+        Driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Driver.setText("Driver");
+
+        SubmitRoute.setBackground(new java.awt.Color(0, 0, 204));
+        SubmitRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        SubmitRoute.setForeground(new java.awt.Color(255, 255, 255));
+        SubmitRoute.setText("Add Route");
+
+        cancel.setBackground(new java.awt.Color(153, 153, 153));
+        cancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cancel.setForeground(new java.awt.Color(255, 255, 255));
+        cancel.setText("Cancel");
+        cancel.addActionListener(this::cancelActionPerformed);
+
+        DriverText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DriverText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DriverText.addActionListener(this::DriverTextActionPerformed);
+
+        OriginText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        OriginText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        OriginText.addActionListener(this::OriginTextActionPerformed);
+
+        Duration.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Duration.setText("Duration");
+
+        DurationText.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        DurationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DurationText.addActionListener(this::DurationTextActionPerformed);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Duration)
                     .addGroup(formLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formLayout.createSequentialGroup()
-                                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(driver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(admin)))))
-                .addGap(0, 12, Short.MAX_VALUE))
+                            .addComponent(RouteName)
+                            .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(DestinationText)
+                                .addComponent(AddNewRoute, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Destination, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
+                                    .addComponent(SubmitRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(DurationText, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(44, 44, 44)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Origin)
+                            .addComponent(Driver)
+                            .addComponent(DriverText, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OriginText, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 34, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(AddNewRoute)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RouteName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OriginText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Driver)
+                            .addComponent(Destination)))
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(Origin)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DriverText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DestinationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(Duration)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DurationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                    .addComponent(SubmitRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         getContentPane().add(form);
-        form.setBounds(60, 270, 1150, 300);
+        form.setBounds(60, 310, 1150, 310);
+
+        jTable1.setForeground(new java.awt.Color(51, 51, 51));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Origin", "Destination", "Fare", "Duration", "Actions"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(60, 640, 1150, 70);
 
         background.setBackground(new java.awt.Color(0, 0, 0));
         background.setForeground(new java.awt.Color(255, 255, 255));
@@ -277,21 +354,29 @@ public class UserManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passsengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passsengerActionPerformed
+    private void numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passsengerActionPerformed
+    }//GEN-LAST:event_numberActionPerformed
 
-    private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_allActionPerformed
+    }//GEN-LAST:event_cancelActionPerformed
 
-    private void driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverActionPerformed
+    private void routesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_driverActionPerformed
+    }//GEN-LAST:event_routesActionPerformed
 
-    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+    private void DriverTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DriverTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminActionPerformed
+    }//GEN-LAST:event_DriverTextActionPerformed
+
+    private void OriginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OriginTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OriginTextActionPerformed
+
+    private void DurationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DurationTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DurationTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,30 +400,40 @@ public class UserManagement extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new UserManagement().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new RouteManagement().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AddNewRoute;
+    private javax.swing.JButton AddRoute;
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
-    private javax.swing.JLabel UsersManagement;
-    private javax.swing.JButton admin;
-    private javax.swing.JButton all;
+    private javax.swing.JLabel Destination;
+    private javax.swing.JTextField DestinationText;
+    private javax.swing.JLabel Driver;
+    private javax.swing.JTextField DriverText;
+    private javax.swing.JLabel Duration;
+    private javax.swing.JTextField DurationText;
+    private javax.swing.JLabel Origin;
+    private javax.swing.JTextField OriginText;
+    private javax.swing.JLabel RouteManagement;
+    private javax.swing.JLabel RouteName;
+    private javax.swing.JButton SubmitRoute;
     private javax.swing.JLabel background;
-    private javax.swing.JButton driver;
+    private javax.swing.JButton cancel;
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private javax.swing.JButton passsenger;
+    private javax.swing.JTextField number;
     private javax.swing.JButton profile;
     private javax.swing.JButton routes;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
-    private javax.swing.JTable usersTable;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
 }
