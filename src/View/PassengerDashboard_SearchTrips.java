@@ -46,8 +46,9 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         busicon = new javax.swing.JButton();
         tempoicon = new javax.swing.JButton();
         destination = new javax.swing.JLabel();
-        enterdestination = new javax.swing.JButton();
         microicon = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -110,7 +111,7 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         searchtrips2.setText("Search Trips");
         searchtrips2.addActionListener(this::searchtrips2ActionPerformed);
         getContentPane().add(searchtrips2);
-        searchtrips2.setBounds(20, 230, 140, 32);
+        searchtrips2.setBounds(20, 230, 140, 36);
 
         mybookings2.setBackground(new java.awt.Color(204, 204, 204));
         mybookings2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -133,6 +134,8 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         allicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/All.png"))); // NOI18N
         allicon.setText("All");
         allicon.setBorder(null);
+        allicon.setBorderPainted(false);
+        allicon.setContentAreaFilled(false);
         allicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         allicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -140,6 +143,8 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         busicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Bus3 (2).png"))); // NOI18N
         busicon.setText("Bus");
         busicon.setBorder(null);
+        busicon.setBorderPainted(false);
+        busicon.setContentAreaFilled(false);
         busicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         busicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -147,25 +152,31 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         tempoicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Tempo (2).png"))); // NOI18N
         tempoicon.setText("Tempo");
         tempoicon.setBorder(null);
+        tempoicon.setBorderPainted(false);
+        tempoicon.setContentAreaFilled(false);
         tempoicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tempoicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         destination.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         destination.setText("Destination");
 
-        enterdestination.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        enterdestination.setForeground(new java.awt.Color(204, 204, 204));
-        enterdestination.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Destination.png"))); // NOI18N
-        enterdestination.setText(" Enter Destination");
-        enterdestination.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        enterdestination.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
         microicon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         microicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Shuttlebus.png"))); // NOI18N
         microicon.setText("Micro");
         microicon.setBorder(null);
+        microicon.setBorderPainted(false);
+        microicon.setContentAreaFilled(false);
         microicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         microicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField1.setText("Enter Destination");
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Location.png"))); // NOI18N
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,11 +194,14 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
                         .addComponent(microicon)
                         .addGap(34, 34, 34)
                         .addComponent(tempoicon)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(destination, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enterdestination, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(99, 99, 99))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addGap(127, 127, 127))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +215,10 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
                     .addComponent(allicon)
                     .addComponent(busicon)
                     .addComponent(tempoicon)
-                    .addComponent(enterdestination)
-                    .addComponent(microicon))
+                    .addComponent(microicon)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -212,8 +228,7 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Minibus.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
         jLabel7.setText("No trips available matching your criteria");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -232,7 +247,7 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel7)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
@@ -244,6 +259,14 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
     private void searchtrips2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtrips2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchtrips2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,15 +297,16 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
     private javax.swing.JButton allicon;
     private javax.swing.JButton busicon;
     private javax.swing.JLabel destination;
-    private javax.swing.JButton enterdestination;
     private javax.swing.JLabel findyourridebtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel managetrips2;
     private javax.swing.JButton microicon;
     private javax.swing.JButton mybookings2;

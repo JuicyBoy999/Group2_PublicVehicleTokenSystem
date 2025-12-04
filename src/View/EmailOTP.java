@@ -42,40 +42,45 @@ public class EmailOTP extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Email.setBackground(new java.awt.Color(255, 255, 255));
+        Email.setForeground(new java.awt.Color(102, 102, 102));
         Email.setText("Enter Your Email");
         Email.addActionListener(this::EmailActionPerformed);
         getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 230, -1));
 
+        ResetPasswordBTN.setBackground(new java.awt.Color(0, 0, 204));
+        ResetPasswordBTN.setForeground(new java.awt.Color(255, 255, 255));
         ResetPasswordBTN.setText("Reset Password");
-        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 120, -1));
+        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Enter Email");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
+        OTP.setBackground(new java.awt.Color(255, 255, 255));
+        OTP.setForeground(new java.awt.Color(102, 102, 102));
         OTP.setText("Enter OTP");
         getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 230, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("OTP");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Account Recovery");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg")); // NOI18N
-        jLabel3.setText("jLabel3");
-        jLabel3.setMaximumSize(new java.awt.Dimension(259, 259));
-        jLabel3.setMinimumSize(new java.awt.Dimension(259, 259));
-        jLabel3.setPreferredSize(new java.awt.Dimension(259, 259));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 
         pack();

@@ -42,30 +42,40 @@ public class ResetPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        ResetPasswordBTN.setBackground(new java.awt.Color(0, 0, 204));
+        ResetPasswordBTN.setForeground(new java.awt.Color(255, 255, 255));
         ResetPasswordBTN.setText("Reset Password");
-        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 120, -1));
+        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 120, -1));
 
+        password2.setBackground(new java.awt.Color(255, 255, 255));
         password2.setText("Enter Password");
         password2.addActionListener(this::password2ActionPerformed);
-        getContentPane().add(password2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, -1));
+        getContentPane().add(password2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 190, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Enter Password");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, -1, -1));
 
+        password1.setBackground(new java.awt.Color(255, 255, 255));
+        password1.setForeground(new java.awt.Color(102, 102, 102));
         password1.setText("Enter Password");
-        getContentPane().add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, -1));
+        password1.addActionListener(this::password1ActionPerformed);
+        getContentPane().add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 190, -1));
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Retype Password");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Account Recovery");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignupBackground.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -84,6 +94,10 @@ public class ResetPassword extends javax.swing.JFrame {
     private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_password2ActionPerformed
+
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password1ActionPerformed
 
     /**
      * @param args the command line arguments

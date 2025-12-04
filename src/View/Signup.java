@@ -176,7 +176,6 @@ public class Signup extends javax.swing.JFrame {
         formBackground.setBounds(370, 40, 260, 460);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignBackground.jpg"))); // NOI18N
-        background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(1000, 564));
         background.setMinimumSize(new java.awt.Dimension(1000, 564));
         background.setPreferredSize(new java.awt.Dimension(1000, 564));
