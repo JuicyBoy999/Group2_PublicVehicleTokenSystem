@@ -40,7 +40,6 @@ public class Notification extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
-        separator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         VehicleManagement = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -169,10 +168,7 @@ public class Notification extends javax.swing.JFrame {
         getContentPane().add(notifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
         separator.setForeground(new java.awt.Color(102, 102, 102));
-        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-
-        separator1.setForeground(new java.awt.Color(102, 102, 102));
-        getContentPane().add(separator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1210, 10));
+        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1210, 10));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -322,7 +318,6 @@ public class Notification extends javax.swing.JFrame {
     private javax.swing.JButton profile;
     private javax.swing.JButton routes;
     private javax.swing.JSeparator separator;
-    private javax.swing.JSeparator separator1;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
     private javax.swing.JButton vehicles;
