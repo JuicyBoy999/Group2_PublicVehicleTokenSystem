@@ -4,8 +4,6 @@
  */
 package group2_publicvehicletokensystem;
 
-import View.BookingPassenger;
-
 /**
  *
  * @author Nitro V 16
@@ -17,8 +15,6 @@ public class Group2_PublicVehicleTokenSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        BookingPassenger pm = new BookingPassenger();
-        pm.setVisible(true);
     }
     
 }
