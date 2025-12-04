@@ -32,19 +32,19 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        passdash2 = new javax.swing.JLabel();
+        managetrips2 = new javax.swing.JLabel();
+        searchtrips2 = new javax.swing.JButton();
+        mybookings2 = new javax.swing.JButton();
+        findyourridebtn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        vechiclebtn = new javax.swing.JLabel();
+        allicon = new javax.swing.JButton();
+        busicon = new javax.swing.JButton();
+        tempoicon = new javax.swing.JButton();
+        destination = new javax.swing.JLabel();
+        enterdestination = new javax.swing.JButton();
+        microicon = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -90,79 +90,79 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 100);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel3.setText("Passenger Dashboard");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 130, 320, 50);
+        passdash2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        passdash2.setText("Passenger Dashboard");
+        getContentPane().add(passdash2);
+        passdash2.setBounds(20, 130, 320, 50);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel4.setText("Manage Trips");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 180, 110, 21);
+        managetrips2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        managetrips2.setForeground(new java.awt.Color(153, 153, 153));
+        managetrips2.setText("Manage Trips");
+        getContentPane().add(managetrips2);
+        managetrips2.setBounds(20, 180, 110, 21);
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Search Trips");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2);
-        jButton2.setBounds(20, 230, 140, 32);
+        searchtrips2.setBackground(new java.awt.Color(0, 51, 255));
+        searchtrips2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchtrips2.setForeground(new java.awt.Color(255, 255, 255));
+        searchtrips2.setText("Search Trips");
+        searchtrips2.addActionListener(this::searchtrips2ActionPerformed);
+        getContentPane().add(searchtrips2);
+        searchtrips2.setBounds(20, 230, 140, 32);
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(102, 102, 102));
-        jButton3.setText("My Bookings");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(180, 230, 150, 30);
+        mybookings2.setBackground(new java.awt.Color(204, 204, 204));
+        mybookings2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mybookings2.setForeground(new java.awt.Color(102, 102, 102));
+        mybookings2.setText("My Bookings");
+        getContentPane().add(mybookings2);
+        mybookings2.setBounds(180, 230, 150, 30);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Find Your Ride");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 310, 170, 32);
+        findyourridebtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        findyourridebtn.setText("Find Your Ride");
+        getContentPane().add(findyourridebtn);
+        findyourridebtn.setBounds(20, 310, 170, 32);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("Vehicle Type");
+        vechiclebtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        vechiclebtn.setText("Vehicle Type");
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/All.png"))); // NOI18N
-        jButton5.setText("All");
-        jButton5.setBorder(null);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        allicon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        allicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/All.png"))); // NOI18N
+        allicon.setText("All");
+        allicon.setBorder(null);
+        allicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        allicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Bus3 (2).png"))); // NOI18N
-        jButton4.setText("Bus");
-        jButton4.setBorder(null);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        busicon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        busicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Bus3 (2).png"))); // NOI18N
+        busicon.setText("Bus");
+        busicon.setBorder(null);
+        busicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        busicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Tempo (2).png"))); // NOI18N
-        jButton6.setText("Tempo");
-        jButton6.setBorder(null);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tempoicon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tempoicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Tempo (2).png"))); // NOI18N
+        tempoicon.setText("Tempo");
+        tempoicon.setBorder(null);
+        tempoicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tempoicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("Destination");
+        destination.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        destination.setText("Destination");
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 204, 204));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Destination.png"))); // NOI18N
-        jButton7.setText(" Enter Destination");
-        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        enterdestination.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        enterdestination.setForeground(new java.awt.Color(204, 204, 204));
+        enterdestination.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Destination.png"))); // NOI18N
+        enterdestination.setText(" Enter Destination");
+        enterdestination.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        enterdestination.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Shuttlebus.png"))); // NOI18N
-        jButton8.setText("Micro");
-        jButton8.setBorder(null);
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        microicon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        microicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Shuttlebus.png"))); // NOI18N
+        microicon.setText("Micro");
+        microicon.setBorder(null);
+        microicon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        microicon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,19 +171,19 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vechiclebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(allicon)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton4)
+                        .addComponent(busicon)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton8)
+                        .addComponent(microicon)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton6)))
+                        .addComponent(tempoicon)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(destination, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterdestination, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(99, 99, 99))
         );
         jPanel2Layout.setVerticalGroup(
@@ -191,15 +191,15 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8))
+                    .addComponent(vechiclebtn)
+                    .addComponent(destination))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(allicon)
+                    .addComponent(busicon)
+                    .addComponent(tempoicon)
+                    .addComponent(enterdestination)
+                    .addComponent(microicon))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -220,9 +220,9 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(458, 458, 458)
+                .addGap(452, 452, 452)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(491, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +238,9 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
         setBounds(1280, 740, 1294, 748);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void searchtrips2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtrips2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_searchtrips2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,24 +268,24 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allicon;
+    private javax.swing.JButton busicon;
+    private javax.swing.JLabel destination;
+    private javax.swing.JButton enterdestination;
+    private javax.swing.JLabel findyourridebtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel managetrips2;
+    private javax.swing.JButton microicon;
+    private javax.swing.JButton mybookings2;
+    private javax.swing.JLabel passdash2;
+    private javax.swing.JButton searchtrips2;
+    private javax.swing.JButton tempoicon;
+    private javax.swing.JLabel vechiclebtn;
     // End of variables declaration//GEN-END:variables
 }
