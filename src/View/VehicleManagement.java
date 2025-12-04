@@ -129,7 +129,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         vehicles.setBackground(new java.awt.Color(244, 244, 244));
         vehicles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicles.setForeground(new java.awt.Color(0, 0, 204));
-        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SelectedVehicle.png"))); // NOI18N
+        vehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/selectedVehicle.png"))); // NOI18N
         vehicles.setText("Vehicles");
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
@@ -140,7 +140,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         routes.setBackground(new java.awt.Color(244, 244, 244));
         routes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         routes.setForeground(new java.awt.Color(102, 102, 102));
-        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/RouteIcon.png"))); // NOI18N
+        routes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/routeIcon.png"))); // NOI18N
         routes.setText("Routes");
         routes.setBorder(null);
         routes.setBorderPainted(false);
@@ -151,7 +151,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         trips.setBackground(new java.awt.Color(244, 244, 244));
         trips.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         trips.setForeground(new java.awt.Color(102, 102, 102));
-        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TripIcon.png"))); // NOI18N
+        trips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tripIcon.png"))); // NOI18N
         trips.setText("Trips");
         trips.setBorder(null);
         trips.setBorderPainted(false);
@@ -162,7 +162,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         users.setBackground(new java.awt.Color(244, 244, 244));
         users.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         users.setForeground(new java.awt.Color(102, 102, 102));
-        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/UserIcon.png"))); // NOI18N
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/userIcon.png"))); // NOI18N
         users.setText("Users");
         users.setBorder(null);
         users.setBorderPainted(false);
@@ -173,7 +173,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         notifications.setBackground(new java.awt.Color(244, 244, 244));
         notifications.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         notifications.setForeground(new java.awt.Color(102, 102, 102));
-        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/NotifIcon.png"))); // NOI18N
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/notifIcon.png"))); // NOI18N
         notifications.setText("Notifications");
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
@@ -306,14 +306,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
 
-<<<<<<< Updated upstream
-        vehicleTable.setBackground(new java.awt.Color(255, 255, 255));
         vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
         vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
-=======
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> Stashed changes
             new Object [][] {
 
             },

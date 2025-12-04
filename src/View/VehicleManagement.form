@@ -173,7 +173,7 @@
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/SelectedVehicle.png"/>
+          <Image iconType="3" name="/Images/selectedVehicle.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Vehicles"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -200,7 +200,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/RouteIcon.png"/>
+          <Image iconType="3" name="/Images/routeIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Routes"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -227,7 +227,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/TripIcon.png"/>
+          <Image iconType="3" name="/Images/tripIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Trips"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -254,7 +254,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/UserIcon.png"/>
+          <Image iconType="3" name="/Images/userIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Users"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -281,7 +281,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/NotifIcon.png"/>
+          <Image iconType="3" name="/Images/notifIcon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Notifications"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
