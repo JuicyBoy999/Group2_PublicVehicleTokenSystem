@@ -56,7 +56,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        vehicleTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -306,8 +306,13 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
 
+<<<<<<< HEAD
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
+        vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> 951e6513de862c4632a483fa3d74844f55090991
             new Object [][] {
 
             },
@@ -315,7 +320,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                 "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(vehicleTable);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 620, 1150, 90);
@@ -383,7 +388,6 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField number;
@@ -397,6 +401,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> type;
     private javax.swing.JButton users;
     private javax.swing.JLabel vehicleNumber;
+    private javax.swing.JTable vehicleTable;
     private javax.swing.JLabel vehicleType;
     private javax.swing.JButton vehicles;
     private javax.swing.JLabel whoDriver;
