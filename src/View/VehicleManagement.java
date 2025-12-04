@@ -234,7 +234,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         type.setBackground(new java.awt.Color(255, 255, 255));
         type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         type.setForeground(new java.awt.Color(51, 51, 51));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the vehicle type", "Bus", "Micro Bus", "Tempo" }));
         type.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         type.addActionListener(this::typeActionPerformed);
 
@@ -245,7 +245,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         driver.setBackground(new java.awt.Color(255, 255, 255));
         driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         driver.setForeground(new java.awt.Color(51, 51, 51));
-        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the driver", "Item 2", "Item 3", "Item 4" }));
         driver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         submit.setBackground(new java.awt.Color(0, 0, 204));
