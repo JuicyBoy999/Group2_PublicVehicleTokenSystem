@@ -50,6 +50,11 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="966" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="picture" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="logo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="966" max="32767" attributes="0"/>
+                  <Component id="loginbtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -60,13 +65,22 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+=======
+                          <Component id="picture" min="-2" max="-2" attributes="0"/>
+>>>>>>> searchtrips
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+=======
+                              <Component id="loginbtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="logo" min="-2" max="-2" attributes="0"/>
+>>>>>>> searchtrips
                           </Group>
                       </Group>
                   </Group>
@@ -76,14 +90,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="jLabel1">
+=======
+        <Component class="javax.swing.JLabel" name="picture">
+>>>>>>> searchtrips
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/Minibus.png"/>
             </Property>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="jLabel2">
+=======
+        <Component class="javax.swing.JLabel" name="logo">
+>>>>>>> searchtrips
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="40" style="1"/>
@@ -91,7 +113,11 @@
             <Property name="text" type="java.lang.String" value="Bato+"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="jButton1">
+=======
+        <Component class="javax.swing.JButton" name="loginbtn">
+>>>>>>> searchtrips
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/Profile.png"/>
@@ -103,7 +129,11 @@
         </Component>
       </SubComponents>
     </Container>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="jLabel3">
+=======
+    <Component class="javax.swing.JLabel" name="PassDash">
+>>>>>>> searchtrips
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="30" style="1"/>
@@ -116,7 +146,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="jLabel4">
+=======
+    <Component class="javax.swing.JLabel" name="managetrips">
+>>>>>>> searchtrips
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="1"/>
@@ -132,7 +166,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="jButton2">
+=======
+    <Component class="javax.swing.JButton" name="Searchtrips">
+>>>>>>> searchtrips
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -146,7 +184,11 @@
         <Property name="text" type="java.lang.String" value="Search Trips"/>
       </Properties>
       <Events>
+<<<<<<< HEAD
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+=======
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchtripsActionPerformed"/>
+>>>>>>> searchtrips
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -154,7 +196,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="jButton3">
+=======
+    <Component class="javax.swing.JButton" name="mybookings">
+>>>>>>> searchtrips
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -192,7 +238,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="Mybookings">
+=======
+    <Component class="javax.swing.JButton" name="pending">
+>>>>>>> searchtrips
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -211,7 +261,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="jButton4">
+=======
+    <Component class="javax.swing.JButton" name="boarded">
+>>>>>>> searchtrips
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -230,7 +284,11 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="jButton5">
+=======
+    <Component class="javax.swing.JButton" name="completedbtn">
+>>>>>>> searchtrips
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>

@@ -43,6 +43,17 @@ public class BookingPassenger extends javax.swing.JFrame {
         Mybookings = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        picture = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        loginbtn = new javax.swing.JButton();
+        PassDash = new javax.swing.JLabel();
+        managetrips = new javax.swing.JLabel();
+        Searchtrips = new javax.swing.JButton();
+        mybookings = new javax.swing.JButton();
+        Allbooking = new javax.swing.JButton();
+        pending = new javax.swing.JButton();
+        boarded = new javax.swing.JButton();
+        completedbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -58,6 +69,13 @@ public class BookingPassenger extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
         jButton1.setBorder(null);
+        picture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Minibus.png"))); // NOI18N
+
+        logo.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        logo.setText("Bato+");
+
+        loginbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
+        loginbtn.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,6 +88,11 @@ public class BookingPassenger extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 966, Short.MAX_VALUE)
                 .addComponent(jButton1)
+                .addComponent(picture)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(logo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 966, Short.MAX_VALUE)
+                .addComponent(loginbtn)
                 .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,6 +107,12 @@ public class BookingPassenger extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jLabel2))))
+                        .addComponent(picture))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginbtn)
+                            .addComponent(logo))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -115,6 +144,31 @@ public class BookingPassenger extends javax.swing.JFrame {
         jButton3.setText("My Bookings");
         getContentPane().add(jButton3);
         jButton3.setBounds(180, 220, 150, 30);
+        PassDash.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        PassDash.setText("Passenger Dashboard");
+        getContentPane().add(PassDash);
+        PassDash.setBounds(20, 130, 320, 50);
+
+        managetrips.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        managetrips.setForeground(new java.awt.Color(153, 153, 153));
+        managetrips.setText("Manage Trips");
+        getContentPane().add(managetrips);
+        managetrips.setBounds(20, 180, 110, 21);
+
+        Searchtrips.setBackground(new java.awt.Color(204, 204, 204));
+        Searchtrips.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Searchtrips.setForeground(new java.awt.Color(102, 102, 102));
+        Searchtrips.setText("Search Trips");
+        Searchtrips.addActionListener(this::SearchtripsActionPerformed);
+        getContentPane().add(Searchtrips);
+        Searchtrips.setBounds(20, 220, 140, 32);
+
+        mybookings.setBackground(new java.awt.Color(0, 51, 255));
+        mybookings.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mybookings.setForeground(new java.awt.Color(255, 255, 255));
+        mybookings.setText("My Bookings");
+        getContentPane().add(mybookings);
+        mybookings.setBounds(180, 220, 150, 30);
 
         Allbooking.setBackground(new java.awt.Color(0, 51, 255));
         Allbooking.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -143,6 +197,26 @@ public class BookingPassenger extends javax.swing.JFrame {
         jButton5.setText("Completed");
         getContentPane().add(jButton5);
         jButton5.setBounds(370, 290, 140, 30);
+        pending.setBackground(new java.awt.Color(204, 204, 204));
+        pending.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pending.setForeground(new java.awt.Color(102, 102, 102));
+        pending.setText("Pending");
+        getContentPane().add(pending);
+        pending.setBounds(100, 290, 110, 30);
+
+        boarded.setBackground(new java.awt.Color(204, 204, 204));
+        boarded.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        boarded.setForeground(new java.awt.Color(102, 102, 102));
+        boarded.setText("Boarded");
+        getContentPane().add(boarded);
+        boarded.setBounds(230, 290, 120, 30);
+
+        completedbtn.setBackground(new java.awt.Color(204, 204, 204));
+        completedbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        completedbtn.setForeground(new java.awt.Color(102, 102, 102));
+        completedbtn.setText("Completed");
+        getContentPane().add(completedbtn);
+        completedbtn.setBounds(370, 290, 140, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -179,6 +253,9 @@ public class BookingPassenger extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+    private void SearchtripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchtripsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchtripsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,5 +297,18 @@ public class BookingPassenger extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel PassDash;
+    private javax.swing.JButton Searchtrips;
+    private javax.swing.JButton boarded;
+    private javax.swing.JButton completedbtn;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton loginbtn;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel managetrips;
+    private javax.swing.JButton mybookings;
+    private javax.swing.JButton pending;
+    private javax.swing.JLabel picture;
     // End of variables declaration//GEN-END:variables
 }
