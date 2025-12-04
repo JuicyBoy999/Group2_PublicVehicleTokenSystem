@@ -307,8 +307,13 @@ public class VehicleManagement extends javax.swing.JFrame {
         form.setBounds(60, 310, 1150, 260);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
+        vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> 951e6513de862c4632a483fa3d74844f55090991
 =======
         vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
         vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
