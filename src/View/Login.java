@@ -74,11 +74,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(259, 259));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
-<<<<<<< HEAD
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg"))); // NOI18N
-=======
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg"))); // NOI18N
->>>>>>> 34bc68ed126ce40db20e89f0cc39d29abb682291
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignBackground.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 570));
 

@@ -67,14 +67,14 @@ public class ResetPassword extends javax.swing.JFrame {
         jLabel2.setText("Account Recovery");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignupBackground.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jLabel3.setMaximumSize(new java.awt.Dimension(259, 259));
         jLabel3.setMinimumSize(new java.awt.Dimension(259, 259));
         jLabel3.setPreferredSize(new java.awt.Dimension(259, 259));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignBackground.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 570));
 

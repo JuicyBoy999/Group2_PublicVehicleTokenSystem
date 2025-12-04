@@ -60,7 +60,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 740));
         getContentPane().setLayout(null);
 
         header.setBackground(new java.awt.Color(255, 255, 255));
@@ -156,6 +155,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -354,6 +354,10 @@ public class VehicleManagement extends javax.swing.JFrame {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tripsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -133,11 +133,9 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-<<<<<<< HEAD
           <Image iconType="3" name="/Images/Desktop Screenshot 2025.12.01 - 19.36.11.44.jpg"/>
-=======
           <Image iconType="3" name="/Images/willian-justen-de-vasconcellos-jUCQRQeRs3k-unsplashasasaqq11.jpg"/>
->>>>>>> 34bc68ed126ce40db20e89f0cc39d29abb682291
+          <Image iconType="3" name="/Images/SignBackground.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
