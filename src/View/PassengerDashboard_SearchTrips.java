@@ -17,6 +17,9 @@ public class PassengerDashboard_SearchTrips extends javax.swing.JFrame {
      */
     public PassengerDashboard_SearchTrips() {
         initComponents();
+          this.setLocationRelativeTo(null); // centers the window
+    this.setVisible(true); // makes sure it shows
+    this.toFront();
     }
 
     /**
