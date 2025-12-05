@@ -228,6 +228,23 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+<<<<<<< Updated upstream:src/View/Driver_Ongoing.java
+=======
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setText("Ended:");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setText("8:15 AM");
+
+        passengers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        passengers.setForeground(new java.awt.Color(51, 51, 255));
+        passengers.setText("View Passengers");
+        passengers.setBorder(null);
+        passengers.setBorderPainted(false);
+        passengers.setContentAreaFilled(false);
+        passengers.addActionListener(this::passengersActionPerformed);
+
+>>>>>>> Stashed changes:src/View/Driver_Completed.java
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
