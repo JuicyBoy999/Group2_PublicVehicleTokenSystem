@@ -224,7 +224,7 @@ public class RouteManagement extends javax.swing.JFrame {
         Origin.setText("Origin");
 
         Driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        Driver.setText("Driver");
+        Driver.setText("Fare");
 
         SubmitRoute.setBackground(new java.awt.Color(0, 0, 204));
         SubmitRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -246,7 +246,7 @@ public class RouteManagement extends javax.swing.JFrame {
         OriginText.addActionListener(this::OriginTextActionPerformed);
 
         Duration.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        Duration.setText("Duration");
+        Duration.setText("Duration (in minutes)");
 
         DurationText.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         DurationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
