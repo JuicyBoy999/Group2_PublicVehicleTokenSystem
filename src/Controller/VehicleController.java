@@ -9,6 +9,8 @@ import Model.VehicleData;
 import View.VehicleManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +21,7 @@ public class VehicleController {
     public final VehicleDao vehicledao = new VehicleDao();
     public final VehicleManagement vehicleView;
     
-    public VehicleController(VehicleManagement vehicleView) {
+    public VehicleController(VehicleManagement vehicleView) {   // Constructor
         this.vehicleView = vehicleView;
         
         vehicleView.AddVehicleListener(new AddActionListener());
@@ -28,10 +30,23 @@ public class VehicleController {
     
     public void open() {    // Open UI
         this.vehicleView.setVisible(true);
+        loadDrivers();  // Add drivers in JComboBox from database
     }
     
     public void close() {   // Close UI
         this.vehicleView.dispose();
+    }
+    
+    private void loadDrivers() {
+        ArrayList<String> drivers = vehicledao.getDrivers();    // Fetch driver names
+        JComboBox driver = vehicleView.getDriver();
+        driver.removeAllItems();    // Clear previous items
+        
+        driver.addItem("Select the Driver");    // Placeholder at index 0
+        
+        for (String d : drivers) {
+            driver.addItem(d);  // Add all drivers from index 1
+        }
     }
     
     class AddActionListener implements ActionListener {
