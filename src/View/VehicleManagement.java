@@ -58,11 +58,10 @@ public class VehicleManagement extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        vehicleTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 740));
         getContentPane().setLayout(null);
 
         header.setBackground(new java.awt.Color(255, 255, 255));
@@ -82,7 +81,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         profile.setBorder(null);
         profile.setBorderPainted(false);
         profile.setContentAreaFilled(false);
-        profile.setLabel("");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -161,6 +159,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -219,9 +218,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         number.setText("######");
         number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-<<<<<<< Updated upstream
-        number.setCaretColor(new java.awt.Color(0, 0, 0));
-=======
         number.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 numberFocusGained(evt);
@@ -230,7 +226,6 @@ public class VehicleManagement extends javax.swing.JFrame {
                 numberFocusLost(evt);
             }
         });
->>>>>>> Stashed changes
         number.addActionListener(this::numberActionPerformed);
 
         seatCount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -241,9 +236,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         seat.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         seat.setText("0");
         seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-<<<<<<< Updated upstream
-        seat.setCaretColor(new java.awt.Color(0, 0, 0));
-=======
         seat.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 seatFocusGained(evt);
@@ -252,7 +244,6 @@ public class VehicleManagement extends javax.swing.JFrame {
                 seatFocusLost(evt);
             }
         });
->>>>>>> Stashed changes
 
         vehicleType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicleType.setForeground(new java.awt.Color(0, 0, 0));
@@ -261,7 +252,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         type.setBackground(new java.awt.Color(255, 255, 255));
         type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         type.setForeground(new java.awt.Color(51, 51, 51));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Vehicle Type", "Bus", "Micro Bus", "Tempo" }));
         type.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         type.addActionListener(this::typeActionPerformed);
 
@@ -272,7 +263,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         driver.setBackground(new java.awt.Color(255, 255, 255));
         driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         driver.setForeground(new java.awt.Color(51, 51, 51));
-        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Driver" }));
         driver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         submit.setBackground(new java.awt.Color(0, 0, 204));
@@ -345,9 +336,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
+        vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -355,7 +345,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                 "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(vehicleTable);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 620, 1150, 90);
@@ -385,41 +375,38 @@ public class VehicleManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
 
-<<<<<<< Updated upstream
-=======
     private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tripsActionPerformed
 
     private void numberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusGained
-        // TODO add your handling code here:
+        // Removes placeholder
         if (number.getText().equals("######")) {
             number.setText("");
         }
     }//GEN-LAST:event_numberFocusGained
 
     private void numberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusLost
-        // TODO add your handling code here:
+        // Adds placeholder if empty
         if (number.getText().equals("")) {
             number.setText("######");
         }
     }//GEN-LAST:event_numberFocusLost
 
     private void seatFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusGained
-        // TODO add your handling code here:
+        // Removes placeholder
         if (seat.getText().equals("0")) {
             seat.setText("");
         }
     }//GEN-LAST:event_seatFocusGained
 
     private void seatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusLost
-        // TODO add your handling code here:
+        // Adds placeholder if empty
         if (seat.getText().equals("")) {
             seat.setText("0");
         }
     }//GEN-LAST:event_seatFocusLost
 
->>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -458,7 +445,6 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField number;
@@ -472,11 +458,13 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> type;
     private javax.swing.JButton users;
     private javax.swing.JLabel vehicleNumber;
+    private javax.swing.JTable vehicleTable;
     private javax.swing.JLabel vehicleType;
     private javax.swing.JButton vehicles;
     private javax.swing.JLabel whoDriver;
     // End of variables declaration//GEN-END:variables
 
+    // What happens when user clicks button
     public void AddVehicleListener(ActionListener listener) {
         submit.addActionListener(listener);
     }
@@ -485,6 +473,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         cancel.addActionListener(listener);
     }
     
+    
+    // Read / Manipulate value entered by user
     public javax.swing.JTextField getVehicleNumber() {
         return number;
     }

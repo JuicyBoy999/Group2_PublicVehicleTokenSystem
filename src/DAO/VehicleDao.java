@@ -7,6 +7,7 @@ package DAO;
 import Database.MySqlConnection;
 import Model.VehicleData;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,15 +16,39 @@ import java.sql.*;
 public class VehicleDao {
     MySqlConnection mysql = new MySqlConnection();
     
+    public ArrayList<String> getDrivers() {
+        // List of users with role = 'driver' is retrieved and return ArrayList
+        ArrayList<String> drivers = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "Select name from users where role = 'driver'";
+        
+        try(PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    // Iterate and add names to list
+                    drivers.add(rs.getString("name"));
+                }
+        }
+        catch(SQLException e) {
+            System.out.println(e);
+        }
+        finally {
+            mysql.closeConnection(conn);
+        }
+        
+        return drivers;
+    }
+    
     public void addVehicle(VehicleData vehicle) {
         Connection conn = mysql.openConnection();
         String sql = "Insert into vehicles (number, seat, type, driver) values (?,?,?,?)";
         
         try(PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setString(1, vehicle.getVehicleNumber());  // Sends values from variables to database
+            // Sends values from variables to database
+            pstm.setString(1, vehicle.getVehicleNumber());
             pstm.setInt(2, vehicle.getSeatCount());
             pstm.setString(3, vehicle.getVehicleType());
-            pstm.setInt(4, vehicle.getDriver());
+            pstm.setInt(4, vehicle.getDriver());    // Driver is stored as ID in database
             
             pstm.executeUpdate();
         }
