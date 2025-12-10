@@ -18,8 +18,8 @@ public class userData {
     
     public userData(String name, String password, String email,String phone, String address){
     this.name = name;
-    this.password = email;
-    this.email = password;
+    this.password = password;
+    this.email = email;
     this.phone = phone;
     this.address = address;
     }
