@@ -62,7 +62,7 @@ public class Signup extends javax.swing.JFrame {
         SignUp.setForeground(new java.awt.Color(102, 102, 102));
         SignUp.setText("Sign Up");
         getContentPane().add(SignUp);
-        SignUp.setBounds(470, 60, 97, 40);
+        SignUp.setBounds(470, 60, 100, 40);
 
         Name.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         Name.setForeground(new java.awt.Color(95, 95, 95));
@@ -73,6 +73,14 @@ public class Signup extends javax.swing.JFrame {
         name.setForeground(new java.awt.Color(102, 102, 102));
         name.setText("Enter Your Name");
         name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nameFocusLost(evt);
+            }
+        });
         name.addActionListener(this::nameActionPerformed);
         getContentPane().add(name);
         name.setBounds(390, 140, 220, 18);
@@ -86,6 +94,14 @@ public class Signup extends javax.swing.JFrame {
         email.setForeground(new java.awt.Color(102, 102, 102));
         email.setText("Enter Your Email");
         email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
+        email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFocusLost(evt);
+            }
+        });
         email.addActionListener(this::emailActionPerformed);
         getContentPane().add(email);
         email.setBounds(390, 190, 220, 18);
@@ -99,6 +115,14 @@ public class Signup extends javax.swing.JFrame {
         phone.setForeground(new java.awt.Color(102, 102, 102));
         phone.setText("Enter Your Phone");
         phone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
+        phone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phoneFocusLost(evt);
+            }
+        });
         phone.addActionListener(this::phoneActionPerformed);
         getContentPane().add(phone);
         phone.setBounds(390, 240, 220, 18);
@@ -112,6 +136,14 @@ public class Signup extends javax.swing.JFrame {
         address.setForeground(new java.awt.Color(102, 102, 102));
         address.setText("Enter Your Address");
         address.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
+        address.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                addressFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                addressFocusLost(evt);
+            }
+        });
         address.addActionListener(this::addressActionPerformed);
         getContentPane().add(address);
         address.setBounds(390, 290, 220, 18);
@@ -125,6 +157,14 @@ public class Signup extends javax.swing.JFrame {
         password.setForeground(new java.awt.Color(102, 102, 102));
         password.setText("Enter Your Password");
         password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordFocusLost(evt);
+            }
+        });
         password.addActionListener(this::passwordActionPerformed);
         getContentPane().add(password);
         password.setBounds(390, 350, 220, 18);
@@ -213,6 +253,56 @@ public class Signup extends javax.swing.JFrame {
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
+
+    private void nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusGained
+if(name.getText().trim().equals("Enter Your Name")){
+            name.setText("");}        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFocusGained
+
+    private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
+if(name.getText().trim().equals("")){
+            name.setText("Enter Your Name");}        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFocusLost
+
+    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
+     if(email.getText().trim().equals("Enter Your Email")){
+            email.setText("");}   // TODO add your handling code here:
+    }//GEN-LAST:event_emailFocusGained
+
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+     if(email.getText().trim().equals("")){
+            email.setText("Enter Your Email");}    // TODO add your handling code here:
+    }//GEN-LAST:event_emailFocusLost
+
+    private void phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusGained
+    if(phone.getText().trim().equals("Enter Your Phone")){
+            phone.setText("");}    // TODO add your handling code here:
+    }//GEN-LAST:event_phoneFocusGained
+
+    private void phoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusLost
+    if(phone.getText().trim().equals("")){
+            phone.setText("Enter Your Phone");}     // TODO add your handling code here:
+    }//GEN-LAST:event_phoneFocusLost
+
+    private void addressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressFocusGained
+    if(address.getText().trim().equals("Enter Your Address")){
+            address.setText("");}    // TODO add your handling code here:
+    }//GEN-LAST:event_addressFocusGained
+
+    private void addressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressFocusLost
+     if(address.getText().trim().equals("")){
+            address.setText("Enter Your Address");}   // TODO add your handling code here:
+    }//GEN-LAST:event_addressFocusLost
+
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
+   if(password.getText().trim().equals("Enter Your Password")){
+            password.setText("");}     // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFocusGained
+
+    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+     if(password.getText().trim().equals("")){
+            password.setText("Enter Your Password");}   // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFocusLost
 
     /**
      * @param args the command line arguments
