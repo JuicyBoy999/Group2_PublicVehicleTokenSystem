@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author hp
@@ -47,7 +49,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         AddNewVehicle = new javax.swing.JLabel();
         vehicleNumber = new javax.swing.JLabel();
         number = new javax.swing.JTextField();
-        seatsNumber = new javax.swing.JLabel();
+        seatCount = new javax.swing.JLabel();
         seat = new javax.swing.JTextField();
         vehicleType = new javax.swing.JLabel();
         type = new javax.swing.JComboBox<>();
@@ -217,18 +219,40 @@ public class VehicleManagement extends javax.swing.JFrame {
         number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         number.setText("######");
         number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+<<<<<<< Updated upstream
         number.setCaretColor(new java.awt.Color(0, 0, 0));
+=======
+        number.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                numberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                numberFocusLost(evt);
+            }
+        });
+>>>>>>> Stashed changes
         number.addActionListener(this::numberActionPerformed);
 
-        seatsNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        seatsNumber.setForeground(new java.awt.Color(0, 0, 0));
-        seatsNumber.setText("Number of Seats");
+        seatCount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        seatCount.setForeground(new java.awt.Color(0, 0, 0));
+        seatCount.setText("Number of Seats");
 
         seat.setBackground(new java.awt.Color(255, 255, 255));
         seat.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         seat.setText("0");
         seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+<<<<<<< Updated upstream
         seat.setCaretColor(new java.awt.Color(0, 0, 0));
+=======
+        seat.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                seatFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                seatFocusLost(evt);
+            }
+        });
+>>>>>>> Stashed changes
 
         vehicleType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicleType.setForeground(new java.awt.Color(0, 0, 0));
@@ -277,7 +301,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                             .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(seatsNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(seatCount, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)))
                 .addGap(44, 44, 44)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +329,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                         .addComponent(type)))
                 .addGap(18, 19, Short.MAX_VALUE)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seatsNumber)
+                    .addComponent(seatCount)
                     .addComponent(whoDriver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -361,6 +385,41 @@ public class VehicleManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tripsActionPerformed
+
+    private void numberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusGained
+        // TODO add your handling code here:
+        if (number.getText().equals("######")) {
+            number.setText("");
+        }
+    }//GEN-LAST:event_numberFocusGained
+
+    private void numberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusLost
+        // TODO add your handling code here:
+        if (number.getText().equals("")) {
+            number.setText("######");
+        }
+    }//GEN-LAST:event_numberFocusLost
+
+    private void seatFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusGained
+        // TODO add your handling code here:
+        if (seat.getText().equals("0")) {
+            seat.setText("");
+        }
+    }//GEN-LAST:event_seatFocusGained
+
+    private void seatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusLost
+        // TODO add your handling code here:
+        if (seat.getText().equals("")) {
+            seat.setText("0");
+        }
+    }//GEN-LAST:event_seatFocusLost
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -406,7 +465,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JButton profile;
     private javax.swing.JButton routes;
     private javax.swing.JTextField seat;
-    private javax.swing.JLabel seatsNumber;
+    private javax.swing.JLabel seatCount;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton submit;
     private javax.swing.JButton trips;
@@ -417,4 +476,28 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JButton vehicles;
     private javax.swing.JLabel whoDriver;
     // End of variables declaration//GEN-END:variables
+
+    public void AddVehicleListener(ActionListener listener) {
+        submit.addActionListener(listener);
+    }
+    
+    public void CancelVehicleListener(ActionListener listener) {
+        cancel.addActionListener(listener);
+    }
+    
+    public javax.swing.JTextField getVehicleNumber() {
+        return number;
+    }
+    
+    public javax.swing.JTextField getSeatCount() {
+        return seat;
+    }
+    
+    public javax.swing.JComboBox getVehicleType() {
+        return type;
+    }
+    
+    public javax.swing.JComboBox getDriver() {
+        return driver;
+    }
 }
