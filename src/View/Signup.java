@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author user
@@ -45,7 +47,7 @@ public class Signup extends javax.swing.JFrame {
         role = new javax.swing.JComboBox<>();
         signUp = new javax.swing.JButton();
         Account = new javax.swing.JLabel();
-        login = new javax.swing.JButton();
+        signinBtn = new javax.swing.JButton();
         formBackground = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
@@ -60,7 +62,7 @@ public class Signup extends javax.swing.JFrame {
         SignUp.setForeground(new java.awt.Color(102, 102, 102));
         SignUp.setText("Sign Up");
         getContentPane().add(SignUp);
-        SignUp.setBounds(470, 60, 96, 40);
+        SignUp.setBounds(470, 60, 97, 40);
 
         Name.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         Name.setForeground(new java.awt.Color(95, 95, 95));
@@ -68,7 +70,6 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(Name);
         Name.setBounds(390, 120, 60, 16);
 
-        name.setBackground(new java.awt.Color(255, 255, 255));
         name.setForeground(new java.awt.Color(102, 102, 102));
         name.setText("Enter Your Name");
         name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
@@ -80,9 +81,8 @@ public class Signup extends javax.swing.JFrame {
         Email.setForeground(new java.awt.Color(95, 95, 95));
         Email.setText("Email");
         getContentPane().add(Email);
-        Email.setBounds(390, 170, 29, 16);
+        Email.setBounds(390, 170, 40, 16);
 
-        email.setBackground(new java.awt.Color(255, 255, 255));
         email.setForeground(new java.awt.Color(102, 102, 102));
         email.setText("Enter Your Email");
         email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
@@ -96,7 +96,6 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(Phone);
         Phone.setBounds(390, 220, 40, 16);
 
-        phone.setBackground(new java.awt.Color(255, 255, 255));
         phone.setForeground(new java.awt.Color(102, 102, 102));
         phone.setText("Enter Your Phone");
         phone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
@@ -110,7 +109,6 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(Address);
         Address.setBounds(390, 270, 50, 16);
 
-        address.setBackground(new java.awt.Color(255, 255, 255));
         address.setForeground(new java.awt.Color(102, 102, 102));
         address.setText("Enter Your Address");
         address.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
@@ -124,7 +122,6 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(Password);
         Password.setBounds(390, 320, 60, 16);
 
-        password.setBackground(new java.awt.Color(255, 255, 255));
         password.setForeground(new java.awt.Color(102, 102, 102));
         password.setText("Enter Your Password");
         password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(95, 95, 95)));
@@ -138,7 +135,6 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(Role);
         Role.setBounds(390, 380, 30, 16);
 
-        role.setBackground(new java.awt.Color(255, 255, 255));
         role.setForeground(new java.awt.Color(51, 51, 51));
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Your Role", "Passenger", "Driver" }));
         role.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -151,22 +147,22 @@ public class Signup extends javax.swing.JFrame {
         signUp.setText("SIGN IN");
         signUp.addActionListener(this::signUpActionPerformed);
         getContentPane().add(signUp);
-        signUp.setBounds(450, 440, 96, 29);
+        signUp.setBounds(450, 440, 96, 25);
 
         Account.setForeground(new java.awt.Color(95, 95, 95));
         Account.setText("Already have an account?");
         getContentPane().add(Account);
         Account.setBounds(410, 470, 140, 16);
 
-        login.setBackground(new java.awt.Color(244, 244, 244));
-        login.setForeground(new java.awt.Color(0, 0, 204));
-        login.setText("Sign in");
-        login.setBorder(null);
-        login.setBorderPainted(false);
-        login.setContentAreaFilled(false);
-        login.addActionListener(this::loginActionPerformed);
-        getContentPane().add(login);
-        login.setBounds(550, 470, 40, 16);
+        signinBtn.setBackground(new java.awt.Color(244, 244, 244));
+        signinBtn.setForeground(new java.awt.Color(0, 0, 204));
+        signinBtn.setText("Sign in");
+        signinBtn.setBorder(null);
+        signinBtn.setBorderPainted(false);
+        signinBtn.setContentAreaFilled(false);
+        signinBtn.addActionListener(this::signinBtnActionPerformed);
+        getContentPane().add(signinBtn);
+        signinBtn.setBounds(550, 470, 40, 16);
 
         formBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignupBackground.png"))); // NOI18N
         formBackground.setMaximumSize(new java.awt.Dimension(259, 259));
@@ -185,10 +181,10 @@ public class Signup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+    private void signinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBtnActionPerformed
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginActionPerformed
+    }//GEN-LAST:event_signinBtnActionPerformed
 
     private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
         // TODO add your handling code here:
@@ -257,11 +253,35 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JTextField email;
     private javax.swing.JLabel formBackground;
     private javax.swing.JLabel icon;
-    private javax.swing.JButton login;
     private javax.swing.JTextField name;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField phone;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JButton signUp;
+    private javax.swing.JButton signinBtn;
     // End of variables declaration//GEN-END:variables
+public void AddAAUserListener(ActionListener listener) {
+    signUp.addActionListener(listener);
+}
+public void SignIn(ActionListener listener) {
+    signinBtn.addActionListener(listener);
+}
+public javax.swing.JTextField getname(){
+    return name;
+}
+public javax.swing.JTextField getemail(){
+    return email;
+}
+public javax.swing.JTextField getphone(){
+    return phone;
+}
+public javax.swing.JTextField getaddress(){
+    return address;
+}
+public javax.swing.JPasswordField getpassword(){
+    return password;
+}
+public javax.swing.JComboBox <String> getrole() {
+    return role;
+}
 }
