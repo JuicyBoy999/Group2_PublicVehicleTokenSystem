@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,13 +31,15 @@ public class VehicleController {
     
     public void open() {    // Open UI
         this.vehicleView.setVisible(true);
-        loadDrivers();  // Add drivers in JComboBox from database
+        loadDrivers();
+        loadVehicleTable();
     }
     
     public void close() {   // Close UI
         this.vehicleView.dispose();
     }
     
+    // Add drivers in JComboBox from database
     private void loadDrivers() {
         ArrayList<String> drivers = vehicledao.getDrivers();    // Fetch driver names
         JComboBox driver = vehicleView.getDriver();
@@ -53,12 +56,38 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
+                // Read text fields from UI
                 String number = vehicleView.getVehicleNumber().getText();
                 int seat = Integer.parseInt(vehicleView.getSeatCount().getText());  // Convert String from text field to int
                 String type = vehicleView.getVehicleType().getSelectedItem().toString();    // Combobox returns object, convert it to string
-                int driver = Integer.parseInt(vehicleView.getDriver().getSelectedItem().toString());
+                String driverName = vehicleView.getDriver().getSelectedItem().toString();
 
-                VehicleData vehicledata = new VehicleData(number, seat, type, driver);
+                // Validates inputs
+                if (number.equals("######")) {
+                    JOptionPane.showMessageDialog(vehicleView, "Please enter a valid vehicle number.");
+                    return;
+                }
+                if (seat == 0) {
+                    JOptionPane.showMessageDialog(vehicleView, "Please enter a valid number.");
+                    return;
+                }
+                if (type.equals("Select the Vehicle Type")) {
+                    JOptionPane.showMessageDialog(vehicleView, "Please select a vehicle type.");
+                    return;
+                }
+                if (driverName.equals("Select the Driver")) {
+                    JOptionPane.showMessageDialog(vehicleView, "Please select a driver.");
+                    return;
+                }
+                
+                // Map driver name to ID
+                int driver = vehicledao.getDriverIdByName(driverName);
+                if (driver == -1) {
+                    JOptionPane.showMessageDialog(vehicleView, "Selected driver not found.");
+                    return;
+                }
+                
+                VehicleData vehicledata = new VehicleData(number, type, seat, driver);
 
                 boolean check = vehicledao.check(vehicledata);  // Check if duplicate
                 if (check) {
@@ -84,5 +113,25 @@ public class VehicleController {
             vehicleView.getDriver().setSelectedIndex(0);
         }
         
+    }
+    
+    // Add vehicles in JTable from database
+    private void loadVehicleTable() {
+        ArrayList<VehicleData> vehiclelist = vehicledao.getAllVehicles();
+        DefaultTableModel tableModel = (DefaultTableModel) vehicleView.getVehicleTable().getModel();
+        
+        tableModel.setRowCount(0);  // Clear old rows
+        
+        for (VehicleData v : vehiclelist) {
+            Object[] row = {
+                v.getVehicleNumber(),
+                v.getVehicleType(),
+                v.getSeatCount(),
+                v.getDriverName(),
+                "Edit | Delete"
+            };
+            
+            tableModel.addRow(row);
+        }
     }
 }
