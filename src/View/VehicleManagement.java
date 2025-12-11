@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
 
 /**
  *
@@ -233,7 +234,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         seatCount.setText("Number of Seats");
 
         seat.setBackground(new java.awt.Color(255, 255, 255));
-        seat.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        seat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         seat.setText("0");
         seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         seat.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -309,16 +310,17 @@ public class VehicleManagement extends javax.swing.JFrame {
                     .addGroup(formLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(AddNewVehicle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(vehicleNumber)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
                     .addGroup(formLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(vehicleType)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(type)))
-                .addGap(18, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(type, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 20, Short.MAX_VALUE)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seatCount)
                     .addComponent(whoDriver))
@@ -330,7 +332,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         getContentPane().add(form);
@@ -345,10 +347,11 @@ public class VehicleManagement extends javax.swing.JFrame {
                 "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
+        vehicleTable.setRowHeight(25);
         jScrollPane1.setViewportView(vehicleTable);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 620, 1150, 90);
+        jScrollPane1.setBounds(60, 610, 1150, 100);
 
         background.setBackground(new java.awt.Color(0, 0, 0));
         background.setForeground(new java.awt.Color(255, 255, 255));
@@ -489,5 +492,11 @@ public class VehicleManagement extends javax.swing.JFrame {
     
     public javax.swing.JComboBox getDriver() {
         return driver;
+    }
+    
+    
+    // Getter for JTable
+    public JTable getVehicleTable() {
+        return vehicleTable;
     }
 }

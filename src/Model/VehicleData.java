@@ -13,13 +13,24 @@ public class VehicleData {
     private String number;
     private int seat;
     private String type;
-    private int driver;
+    private int driverId;
+    private String driverName;
     
-    public VehicleData(String number, int seat, String type, int driver) {
+    // Constructor for adding vehicle
+    public VehicleData(String number, String type, int seat, int driverId) {
         this.number = number;
         this.seat = seat;
         this.type = type;
-        this.driver = driver;
+        this.driverId = driverId;
+    }
+    
+    // Constructor for loading table
+    public VehicleData(String number, String type, int seat, int driverId, String driverName) {
+        this.number = number;
+        this.type = type;
+        this.seat = seat;
+        this.driverId = driverId;
+        this.driverName = driverName;
     }
     
     public void setVehicleNumber(String number) {
@@ -43,11 +54,18 @@ public class VehicleData {
         return type;
     }
     
-    public void setDriver(int driver) {
-        this.driver = driver;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
-    public int getDriver() {
-        return driver;
+    public int getDriverId() {
+        return driverId;
+    }
+    
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+    public String getDriverName() {
+        return driverName;
     }
     
     public void setVehicleID(int vehicle_id) {
