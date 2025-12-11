@@ -19,20 +19,19 @@ public class MySqlConnection implements Database {
     @Override
     public Connection openConnection() {
         try{
-            String password="";//password in workbench
+            String password="Ace@1002";
             String username="root";
-            String database="bato+";
-        Connection connection;
-        connection = DriverManager.getConnection(
-        "jdbc:mysql://localhost:/" +database, username,password);
-        if (connection !=null){
-            System.out.println("Not connection");
+            String database="bato_plus";
+            Connection connection;
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +database, username,password);
+            if (connection != null){
+                System.out.println("Database connected successfully!");
         }else{
-            System.out.println("Successful");
+            System.out.println("Database connection failed!");
         }
-        System.out.println(database);
         return connection;
-        }catch(SQLException e){
+        }
+        catch(SQLException e){
             System.out.println(e);
             return null;
         }
