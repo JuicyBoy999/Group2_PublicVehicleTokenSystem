@@ -384,7 +384,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="cancel" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="seatsNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="seatCount" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="number" alignment="1" pref="519" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -420,7 +420,7 @@
                   </Group>
                   <EmptySpace type="separate" pref="19" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="seatsNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="seatCount" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="whoDriver" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -477,10 +477,12 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numberFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numberFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numberActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="seatsNumber">
+        <Component class="javax.swing.JLabel" name="seatCount">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="0"/>
@@ -506,6 +508,10 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="seatFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="seatFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="vehicleType">
           <Properties>
@@ -531,10 +537,10 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Select the Vehicle Type"/>
+                <StringItem index="1" value="Bus"/>
+                <StringItem index="2" value="Micro Bus"/>
+                <StringItem index="3" value="Tempo"/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -573,11 +579,8 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Select the Driver"/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

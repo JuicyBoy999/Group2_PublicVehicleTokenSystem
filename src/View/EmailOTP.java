@@ -29,9 +29,7 @@ public class EmailOTP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Email = new javax.swing.JTextField();
         ResetPasswordBTN = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         OTP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -42,40 +40,29 @@ public class EmailOTP extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Email.setBackground(new java.awt.Color(255, 255, 255));
-        Email.setForeground(new java.awt.Color(102, 102, 102));
-        Email.setText("Enter Your Email");
-        Email.addActionListener(this::EmailActionPerformed);
-        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 230, -1));
-
         ResetPasswordBTN.setBackground(new java.awt.Color(0, 0, 204));
         ResetPasswordBTN.setForeground(new java.awt.Color(255, 255, 255));
         ResetPasswordBTN.setText("Reset Password");
-        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 120, -1));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Enter Email");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
+        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 120, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
         OTP.setBackground(new java.awt.Color(255, 255, 255));
         OTP.setForeground(new java.awt.Color(102, 102, 102));
         OTP.setText("Enter OTP");
-        getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 230, -1));
+        getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 230, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("OTP");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Account Recovery");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
@@ -85,10 +72,6 @@ public class EmailOTP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +99,6 @@ public class EmailOTP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Email;
     private javax.swing.JTextField OTP;
     private javax.swing.JButton ResetPasswordBTN;
     private javax.swing.JLabel jLabel1;
@@ -124,6 +106,5 @@ public class EmailOTP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,7 +46,6 @@ public class UserManagement extends javax.swing.JFrame {
         all = new javax.swing.JButton();
         passsenger = new javax.swing.JButton();
         driver = new javax.swing.JButton();
-        admin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
@@ -204,12 +203,6 @@ public class UserManagement extends javax.swing.JFrame {
         driver.setText("Driver");
         driver.addActionListener(this::driverActionPerformed);
 
-        admin.setBackground(new java.awt.Color(153, 153, 153));
-        admin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        admin.setForeground(new java.awt.Color(255, 255, 255));
-        admin.setText("Admin");
-        admin.addActionListener(this::adminActionPerformed);
-
         usersTable.setBackground(new java.awt.Color(255, 255, 255));
         usersTable.setForeground(new java.awt.Color(51, 51, 51));
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -240,9 +233,7 @@ public class UserManagement extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(driver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(admin)))))
+                                .addComponent(driver)))))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
@@ -254,8 +245,7 @@ public class UserManagement extends javax.swing.JFrame {
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
@@ -289,10 +279,6 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_driverActionPerformed
 
-    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -322,7 +308,6 @@ public class UserManagement extends javax.swing.JFrame {
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
     private javax.swing.JLabel UsersManagement;
-    private javax.swing.JButton admin;
     private javax.swing.JButton all;
     private javax.swing.JLabel background;
     private javax.swing.JButton driver;

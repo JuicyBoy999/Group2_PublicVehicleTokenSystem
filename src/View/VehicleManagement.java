@@ -216,6 +216,14 @@ public class VehicleManagement extends javax.swing.JFrame {
         number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         number.setText("######");
         number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        number.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                numberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                numberFocusLost(evt);
+            }
+        });
         number.addActionListener(this::numberActionPerformed);
 
         seatsNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -226,6 +234,14 @@ public class VehicleManagement extends javax.swing.JFrame {
         seat.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         seat.setText("0");
         seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        seat.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                seatFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                seatFocusLost(evt);
+            }
+        });
 
         vehicleType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         vehicleType.setForeground(new java.awt.Color(0, 0, 0));
@@ -234,7 +250,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         type.setBackground(new java.awt.Color(255, 255, 255));
         type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         type.setForeground(new java.awt.Color(51, 51, 51));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Vehicle Type", "Bus", "Micro Bus", "Tempo" }));
         type.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         type.addActionListener(this::typeActionPerformed);
 
@@ -245,7 +261,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         driver.setBackground(new java.awt.Color(255, 255, 255));
         driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         driver.setForeground(new java.awt.Color(51, 51, 51));
-        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Driver" }));
         driver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         submit.setBackground(new java.awt.Color(0, 0, 204));
@@ -361,6 +377,34 @@ public class VehicleManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tripsActionPerformed
 
+    private void numberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusGained
+        // Removes placeholder
+        if (number.getText().equals("######")) {
+            number.setText("");
+        }
+    }//GEN-LAST:event_numberFocusGained
+
+    private void numberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusLost
+        // Adds placeholder if empty
+        if (number.getText().equals("")) {
+            number.setText("######");
+        }
+    }//GEN-LAST:event_numberFocusLost
+
+    private void seatFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusGained
+        // Removes placeholder
+        if (seat.getText().equals("0")) {
+            seat.setText("");
+        }
+    }//GEN-LAST:event_seatFocusGained
+
+    private void seatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatFocusLost
+        // Adds placeholder if empty
+        if (seat.getText().equals("")) {
+            seat.setText("0");
+        }
+    }//GEN-LAST:event_seatFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -417,4 +461,31 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JButton vehicles;
     private javax.swing.JLabel whoDriver;
     // End of variables declaration//GEN-END:variables
+
+    // What happens when user clicks button
+    public void AddVehicleListener(ActionListener listener) {
+        submit.addActionListener(listener);
+    }
+    
+    public void CancelVehicleListener(ActionListener listener) {
+        cancel.addActionListener(listener);
+    }
+    
+    
+    // Read / Manipulate value entered by user
+    public javax.swing.JTextField getVehicleNumber() {
+        return number;
+    }
+    
+    public javax.swing.JTextField getSeatCount() {
+        return seat;
+    }
+    
+    public javax.swing.JComboBox getVehicleType() {
+        return type;
+    }
+    
+    public javax.swing.JComboBox getDriver() {
+        return driver;
+    }
 }
