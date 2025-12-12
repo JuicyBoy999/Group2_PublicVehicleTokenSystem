@@ -4,13 +4,42 @@
  */
 package View;
 
+import DAO.UserDao;
+
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author hp
  */
 public class UserManagement extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserManagement.class.getName());
+    public UserDao userDao;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AdminDashboard;
+    private javax.swing.JLabel Bato;
+    private javax.swing.JLabel UsersManagement;
+    private javax.swing.JButton all;
+    private javax.swing.JLabel background;
+    private javax.swing.JButton driver;
+    private javax.swing.JPanel form;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel intro;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JButton notifications;
+    private javax.swing.JButton passsenger;
+    private javax.swing.JButton profile;
+    private javax.swing.JButton routes;
+    private javax.swing.JSeparator separator;
+    private javax.swing.JButton trips;
+    private javax.swing.JButton users;
+    private javax.swing.JTable usersTable;
+    private javax.swing.JButton vehicles;
 
     /**
      * Creates new form VehicleManagement
@@ -18,6 +47,31 @@ public class UserManagement extends javax.swing.JFrame {
     public UserManagement() {
         initComponents();
         setSize(1280, 740);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new UserManagement().setVisible(true));
     }
 
     /**
@@ -46,9 +100,8 @@ public class UserManagement extends javax.swing.JFrame {
         all = new javax.swing.JButton();
         passsenger = new javax.swing.JButton();
         driver = new javax.swing.JButton();
-        admin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        routeTable = new javax.swing.JTable();
+        usersTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,29 +128,29 @@ public class UserManagement extends javax.swing.JFrame {
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(logo)
-                .addGap(18, 18, 18)
-                .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(logo)
+                                .addGap(18, 18, 18)
+                                .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
+                                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))
         );
         headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(headerLayout.createSequentialGroup()
+                                                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(logo)
+                                                        .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(headerLayout.createSequentialGroup()
+                                                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 11, Short.MAX_VALUE))))
         );
 
         getContentPane().add(header);
@@ -204,61 +257,52 @@ public class UserManagement extends javax.swing.JFrame {
         driver.setText("Driver");
         driver.addActionListener(this::driverActionPerformed);
 
-        admin.setBackground(new java.awt.Color(153, 153, 153));
-        admin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        admin.setForeground(new java.awt.Color(255, 255, 255));
-        admin.setText("Admin");
-        admin.addActionListener(this::adminActionPerformed);
+        usersTable.setBackground(new java.awt.Color(255, 255, 255));
+        usersTable.setForeground(new java.awt.Color(51, 51, 51));
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
 
-        routeTable.setBackground(new java.awt.Color(255, 255, 255));
-        routeTable.setForeground(new java.awt.Color(51, 51, 51));
-        routeTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Email", "Phone", "Role", "Joined"
-            }
+                },
+                new String[]{
+                        "Name", "Email", "Phone", "Role", "Joined"
+                }
         ));
-        jScrollPane1.setViewportView(routeTable);
+        jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
-            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLayout.createSequentialGroup()
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formLayout.createSequentialGroup()
-                                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(driver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(admin)))))
-                .addGap(0, 12, Short.MAX_VALUE))
+                formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(formLayout.createSequentialGroup()
+                                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(formLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(formLayout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(formLayout.createSequentialGroup()
+                                                                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(driver)))))
+                                .addGap(0, 12, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
-            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(formLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         getContentPane().add(form);
@@ -284,61 +328,76 @@ public class UserManagement extends javax.swing.JFrame {
     private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_allActionPerformed
+    // End of variables declaration//GEN-END:variables
 
     private void driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_driverActionPerformed
 
-    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void loadAllUsers() {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            ResultSet rs = userDao.getAllUsers();
+            populateTable(rs);
+        } catch (Exception e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error loading users", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error loading users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new UserManagement().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AdminDashboard;
-    private javax.swing.JLabel Bato;
-    private javax.swing.JLabel UsersManagement;
-    private javax.swing.JButton admin;
-    private javax.swing.JButton all;
-    private javax.swing.JLabel background;
-    private javax.swing.JButton driver;
-    private javax.swing.JPanel form;
-    private javax.swing.JPanel header;
-    private javax.swing.JLabel intro;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel logo;
-    private javax.swing.JButton notifications;
-    private javax.swing.JButton passsenger;
-    private javax.swing.JButton profile;
-    private javax.swing.JTable routeTable;
-    private javax.swing.JButton routes;
-    private javax.swing.JSeparator separator;
-    private javax.swing.JButton trips;
-    private javax.swing.JButton users;
-    private javax.swing.JButton vehicles;
-    // End of variables declaration//GEN-END:variables
+    private void loadUsersByRole(String role) {
+        try {
+            ResultSet rs = userDao.getUsersByRole(role);
+            populateTable(rs);
+        } catch (Exception e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error loading users by role", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error loading users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void populateTable(ResultSet rs) {
+        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        if (rs == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "No data available",
+                    "Info",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            while (rs.next()) {
+                String name = rs.getString("username");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String role = rs.getString("role");
+                String joined = "";
+
+                try {
+                    java.sql.Timestamp timestamp = rs.getTimestamp("created_at");
+                    if (timestamp != null) {
+                        joined = dateFormat.format(timestamp);
+                    }
+                } catch (SQLException e) {
+                    joined = "N/A";
+                }
+
+                model.addRow(new Object[]{name, email, phone, role, joined});
+            }
+        } catch (SQLException e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error populating table", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error displaying users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
