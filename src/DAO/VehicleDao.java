@@ -85,47 +85,122 @@ public class VehicleDao {
     
     public boolean check(VehicleData vehicle) { // Check if unique or not
         Connection conn = mysql.openConnection();
-        String sql = "Select * from vehicles where number = ?";
+        String sql;
+        PreparedStatement pstm = null;
+
+        try {
+            if (vehicle.getVehicleID() > 0) {
+                // Updating: ignore this vehicle
+                sql = "SELECT * FROM vehicles WHERE number = ? AND vehicle_id <> ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, vehicle.getVehicleNumber());
+                pstm.setInt(2, vehicle.getVehicleID());
+            } else {
+                // Adding: check normally
+                sql = "SELECT * FROM vehicles WHERE number = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, vehicle.getVehicleNumber());
+            }
+
+            ResultSet rs = pstm.executeQuery();
+            return rs.next();
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return false;
+    }
+    
+    public VehicleData getVehicleById(int vehicleId) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.name " +
+                     "FROM vehicles v JOIN users u ON v.driver = u.user_id WHERE v.vehicle_id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, vehicleId);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                VehicleData v = new VehicleData(
+                    rs.getString("number"),
+                    rs.getString("type"),
+                    rs.getInt("seat"),
+                    rs.getInt("user_id"),
+                    rs.getString("name")
+                );
+                v.setVehicleID(rs.getInt("vehicle_id"));
+                return v;
+            }
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return null;
+    }
+
+    public void updateVehicle(VehicleData vehicle) {
+        Connection conn = mysql.openConnection();
+        String sql = "Update vehicles set number = ?, type = ?, seat = ?, driver = ? where vehicle_id = ?";
         
-        try(PreparedStatement pstm = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setString(1, vehicle.getVehicleNumber());
-            ResultSet result = pstm.executeQuery();
-            return result.next();
+            pstm.setString(2, vehicle.getVehicleType());
+            pstm.setInt(3, vehicle.getSeatCount());
+            pstm.setInt(4, vehicle.getDriverId());
+            pstm.setInt(5, vehicle.getVehicleID());
+
+            pstm.executeUpdate();
+        } 
+        catch(SQLException e) {
+            System.out.println(e);
+        } 
+        finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    
+    public void deleteVehicle(int vehicleId) {
+        Connection conn = mysql.openConnection();
+        String sql = "Delete from vehicles where vehicle_id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, vehicleId);
+            pstm.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    
+    // Return ArrayList of all vehicles
+    public ArrayList<VehicleData> getAllVehicles() {
+        ArrayList<VehicleData> vehiclelist = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "Select v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.name from vehicles v " +
+                     "join users u on v.driver = u.user_id";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();) {
+                while (rs.next()) {
+                    VehicleData v = new VehicleData (
+                        rs.getString("number"),
+                        rs.getString("type"),
+                        rs.getInt("seat"),
+                        rs.getInt("user_id"),
+                        rs.getString("name")
+                    );
+                    
+                    v.setVehicleID(rs.getInt("vehicle_id")); // important!
+                    vehiclelist.add(v);
+
+                }
         }
         catch(SQLException e) {
             System.out.println(e);
         }
         finally {
             mysql.closeConnection(conn);
-        }
-        
-        return false;
-    }
-    
-    // Return ArrayList of all vehicles
-    public ArrayList<VehicleData> getAllVehicles() {
-        ArrayList<VehicleData> vehiclelist = new ArrayList<>();
-        
-        try {
-            Connection conn = mysql.openConnection();
-            String sql = "Select v.number, v.type, v.seat, u.user_id, u.name from vehicles v " +
-                         "join users u on v.driver = u.user_id";
-            
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
-                  
-            while (rs.next()) {
-                    vehiclelist.add(new VehicleData (
-                        rs.getString("number"),
-                        rs.getString("type"),
-                        rs.getInt("seat"),
-                        rs.getInt("user_id"),
-                        rs.getString("name")
-                    ));
-                }
-        }
-        catch(SQLException e) {
-            System.out.println(e);
         }
         
         return vehiclelist;
