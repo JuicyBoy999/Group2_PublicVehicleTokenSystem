@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
@@ -35,7 +36,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Bato = new javax.swing.JLabel();
-        profile = new javax.swing.JButton();
         AdminDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         vehicles = new javax.swing.JButton();
@@ -50,7 +50,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         AddNewVehicle = new javax.swing.JLabel();
         vehicleNumber = new javax.swing.JLabel();
         number = new javax.swing.JTextField();
-        seatsNumber = new javax.swing.JLabel();
+        seatCount = new javax.swing.JLabel();
         seat = new javax.swing.JTextField();
         vehicleType = new javax.swing.JLabel();
         type = new javax.swing.JComboBox<>();
@@ -58,7 +58,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         driver = new javax.swing.JComboBox<>();
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         vehicleTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
@@ -75,14 +75,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
 
-        profile.setBackground(new java.awt.Color(244, 244, 244));
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        profile.setForeground(new java.awt.Color(102, 102, 102));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
-        profile.setBorder(null);
-        profile.setBorderPainted(false);
-        profile.setContentAreaFilled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -92,23 +84,16 @@ public class VehicleManagement extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(1065, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                    .addComponent(logo)
+                    .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(header);
@@ -229,9 +214,9 @@ public class VehicleManagement extends javax.swing.JFrame {
         });
         number.addActionListener(this::numberActionPerformed);
 
-        seatsNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        seatsNumber.setForeground(new java.awt.Color(0, 0, 0));
-        seatsNumber.setText("Number of Seats");
+        seatCount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        seatCount.setForeground(new java.awt.Color(0, 0, 0));
+        seatCount.setText("Number of Seats");
 
         seat.setBackground(new java.awt.Color(255, 255, 255));
         seat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -293,7 +278,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                             .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(seatsNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(seatCount, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)))
                 .addGap(44, 44, 44)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +307,7 @@ public class VehicleManagement extends javax.swing.JFrame {
                             .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 20, Short.MAX_VALUE)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seatsNumber)
+                    .addComponent(seatCount)
                     .addComponent(whoDriver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -344,14 +329,19 @@ public class VehicleManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Vehicle", "Type", "Seats", "Driver", "Actions"
+                "Id", "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
         vehicleTable.setRowHeight(25);
-        jScrollPane1.setViewportView(vehicleTable);
+        scroll.setViewportView(vehicleTable);
+        if (vehicleTable.getColumnModel().getColumnCount() > 0) {
+            vehicleTable.getColumnModel().getColumn(0).setMinWidth(0);
+            vehicleTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            vehicleTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 610, 1150, 100);
+        getContentPane().add(scroll);
+        scroll.setBounds(60, 610, 1150, 100);
 
         background.setBackground(new java.awt.Color(0, 0, 0));
         background.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,14 +437,13 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField number;
-    private javax.swing.JButton profile;
     private javax.swing.JButton routes;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JTextField seat;
-    private javax.swing.JLabel seatsNumber;
+    private javax.swing.JLabel seatCount;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton submit;
     private javax.swing.JButton trips;
@@ -468,12 +457,32 @@ public class VehicleManagement extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // What happens when user clicks button
+    public void VehicleFormListener(ActionListener listener) {
+        add.addActionListener(listener);
+    }
+    
     public void AddVehicleListener(ActionListener listener) {
         submit.addActionListener(listener);
     }
     
     public void CancelVehicleListener(ActionListener listener) {
         cancel.addActionListener(listener);
+    }
+    
+    public void RouteManagementListener(ActionListener listener) {
+        routes.addActionListener(listener);
+    }
+    
+    public void TripManagementListener(ActionListener listener) {
+        trips.addActionListener(listener);
+    }
+    
+    public void UserManagementListener(ActionListener listener) {
+        users.addActionListener(listener);
+    }
+    
+    public void NotificationListener(ActionListener listener) {
+        notifications.addActionListener(listener);
     }
     
     
@@ -495,7 +504,35 @@ public class VehicleManagement extends javax.swing.JFrame {
     }
     
     
-    // Getter for JTable
+    // Getter for UI elements
+    public javax.swing.JButton getSubmitButton() {
+        return submit;
+    }
+    
+    public javax.swing.JButton getRouteButton() {
+        return routes;
+    }
+    
+    public javax.swing.JButton getTripButton() {
+        return trips;
+    }
+    
+    public javax.swing.JButton getUserButton() {
+        return users;
+    }
+    
+    public javax.swing.JButton getNotificationButton() {
+        return notifications;
+    }
+    
+    public javax.swing.JPanel getFormPanel() {
+        return form;
+    }
+    
+    public JScrollPane getScrollPane() {
+        return scroll;
+    }
+    
     public JTable getVehicleTable() {
         return vehicleTable;
     }
