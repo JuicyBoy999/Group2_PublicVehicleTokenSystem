@@ -312,7 +312,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI Semibold" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="SIGN IN"/>
+        <Property name="text" type="java.lang.String" value="SIGN UP"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpActionPerformed"/>

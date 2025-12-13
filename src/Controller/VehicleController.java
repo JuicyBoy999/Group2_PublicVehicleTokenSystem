@@ -200,7 +200,7 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             vehicleView.getFormPanel().setVisible(false);
-            vehicleView.getScrollPane().setBounds(60, 310, 1150, 100);
+            vehicleView.getScrollPane().setBounds(60, 310, 1150, 350);
         } 
     }
     

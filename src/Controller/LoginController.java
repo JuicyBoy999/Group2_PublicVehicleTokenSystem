@@ -6,6 +6,7 @@ package Controller;
 
 import DAO.LoginDao;
 import Model.userData;
+import View.Email;
 import View.Login;
 import View.Signup;
 import java.awt.event.ActionEvent;
@@ -24,8 +25,8 @@ class LoginController {
         this.loginView = loginView;
 
         loginView.AddLoginListener(new  LoginListner());
-//        loginView.AddRegisterListner(new RegisterListener());
-//        loginView.AddForgotPasswordListener(new ForgotPasswordListener());
+        loginView.AddRegisterListener(new RegisterListener());
+        loginView.addForgotPasswordListener(new ForgotPasswordListener());
     }
 
     public void open() {
@@ -36,26 +37,46 @@ class LoginController {
         this.loginView.dispose();
     }
 
-    class LoginListner implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                String email = loginView.getemail().getText();
-                String Password = loginView.getpassword().getText();
-                userData userdata = new userData(email, Password);
-                boolean check = logindao.login(userdata);
-
-                if (check) {
-                    JOptionPane.showMessageDialog(loginView, "Login successful");
-                } else {
-                    JOptionPane.showMessageDialog(loginView, "Invalid credentials");
-                }
-
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+class LoginListner implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            String email = loginView.getemail().getText();
+            String password = loginView.getpassword().getText();
+            
+            if (email.trim().isEmpty() || password.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(loginView, "Please enter email and password!");
+                return;
             }
+            
+            userData userdata = new userData(email, password);
+            String role = logindao.loginAndGetRole(userdata); 
+            
+            if (role != null) {
+                JOptionPane.showMessageDialog(loginView, "Login successful!");
+                
+                close();
+                
+                if (role.equals("Passenger")) {
+                    // passengerDashboard_SearchTrips passengerView = new passengerDashboard_SearchTrips();
+                    // PassengerController passengerController = new PassengerController(passengerView);
+                    // passengerController.open();
+                    System.out.println("Redirecting to Passenger Dashboard...");
+                } else if (role.equals("Driver")) {
+                    // DriverScheduled driverView = new DriverScheduled();
+                    // DriverController driverController = new DriverController(driverView);
+                    // driverController.open();
+                    System.out.println("Redirecting to Driver Dashboard...");
+                }
+            } else {
+                JOptionPane.showMessageDialog(loginView, "Invalid credentials");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(loginView, "Error: " + ex.getMessage());
         }
     }
+}
 
     class RegisterListener implements ActionListener {
           @Override
@@ -68,19 +89,15 @@ class LoginController {
         }
     }
 
-//    class ForgotPasswordListener implements ActionListener {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            String email = loginView.getEmail().getText().trim();
-//
-//            if (email.isEmpty()) {
-//                JOptionPane.showMessageDialog(loginView, "Please enter your email first.");
-//                return;
-//            }
-//
-//            Reset_Password resetView = new Reset_Password(email);
-//            resetView.setVisible(true);
-//        }
-//    }
+    class ForgotPasswordListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Email forgotView = new Email();
+            ForgotPasswordController forgotController = new ForgotPasswordController(forgotView);
+            
+            close(); 
+            forgotController.open(); 
+        }
+    }
 }
 

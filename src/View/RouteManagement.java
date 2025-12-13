@@ -191,6 +191,7 @@ public class RouteManagement extends javax.swing.JFrame {
         users.setBorder(null);
         users.setBorderPainted(false);
         users.setContentAreaFilled(false);
+        users.addActionListener(this::usersActionPerformed);
         getContentPane().add(users);
         users.setBounds(360, 193, 110, 40);
 
@@ -442,6 +443,13 @@ public class RouteManagement extends javax.swing.JFrame {
         form.setVisible(true);
         scroll.setBounds(60, 640, 1150, 70);
     }//GEN-LAST:event_AddRouteActionPerformed
+
+    private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openUserList();
+    }//GEN-LAST:event_usersActionPerformed
 
     /**
      * @param args the command line arguments

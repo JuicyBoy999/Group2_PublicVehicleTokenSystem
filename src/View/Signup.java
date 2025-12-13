@@ -184,7 +184,7 @@ public class Signup extends javax.swing.JFrame {
 
         signUp.setBackground(new java.awt.Color(0, 0, 204));
         signUp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 13)); // NOI18N
-        signUp.setText("SIGN IN");
+        signUp.setText("SIGN UP");
         signUp.addActionListener(this::signUpActionPerformed);
         getContentPane().add(signUp);
         signUp.setBounds(450, 440, 96, 25);

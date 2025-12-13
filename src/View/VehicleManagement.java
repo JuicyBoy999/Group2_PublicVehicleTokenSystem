@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.VehicleController;
 import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +23,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     public VehicleManagement() {
         initComponents();
         setSize(1280, 740);
+        new VehicleController(this).openVehicleManagement();
     }
 
     /**
@@ -422,7 +424,11 @@ public class VehicleManagement extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VehicleManagement().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            VehicleManagement view = new VehicleManagement();
+            VehicleController controller = new VehicleController(view);
+            controller.openVehicleManagement();
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

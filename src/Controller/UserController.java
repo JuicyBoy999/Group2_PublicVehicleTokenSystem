@@ -25,9 +25,6 @@ public class UserController {
 
         userView.AddAAUserListener(new AddUserActionListener());
         userView.SignIn(new LoginListener() );
-//        userView.AddSignInListener(new SignInActionListener());
-//
-//        userView.AddCancelListener(e -> close());
     }
 
     public void open() {
@@ -48,48 +45,46 @@ public class UserController {
         }
     }
 
-    class AddUserActionListener implements ActionListener {
-
-       @Override
-        public void actionPerformed(ActionEvent ex) {
-            try {
-                String phone = userView.getphone().getText();
-                String email = userView.getemail().getText();
-                String name = userView.getname().getText();
-                String Password = userView.getpassword().getText();
-String address = userView.getemail().getText();
-                userData userdata = new userData(phone, email, name, Password, address);
-
-                boolean exists = userdao.checkUser(userdata);
-                if (exists) {
-                    JOptionPane.showMessageDialog(userView,
-                              "User already exists with this email or mobile number.");
-                } else {
-                    userdao.signUp(userdata);
-                    JOptionPane.showMessageDialog(userView,
-                            "Registration successful! Please log in.");
-
-//                    LoginView loginView = new LoginView();
-//                    LoginController loginController = new LoginController(loginView);
-//
-//                    close();             
-//                    loginController.open();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(userView, "Error: " + e.getMessage());
+class AddUserActionListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent ex) {
+        try {
+            String phone = userView.getphone().getText();
+            String email = userView.getemail().getText();
+            String name = userView.getname().getText();
+            String password = userView.getpassword().getText();
+            String address = userView.getaddress().getText();
+            String role = (String) userView.getrole().getSelectedItem();
+            
+            if (name.trim().isEmpty() || email.trim().isEmpty() || 
+                phone.trim().isEmpty() || address.trim().isEmpty() || 
+                password.trim().isEmpty() || role.equals("Select Your Role")) {
+                JOptionPane.showMessageDialog(userView, 
+                    "Please fill all fields and select a role!");
+                return;
             }
+            
+            userData userdata = new userData(phone, email, name, password, address, role);
+            
+            boolean exists = userdao.checkUser(userdata);
+            if (exists) {
+                JOptionPane.showMessageDialog(userView,
+                      "User already exists with this email or phone number.");
+            } else {
+                userdao.signUp(userdata);
+                JOptionPane.showMessageDialog(userView,
+                        "Registration successful! Please log in.");
+                
+                Login loginView = new Login();
+                LoginController loginController = new LoginController(loginView);
+                
+                close();
+                loginController.open();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(userView, "Error: " + e.getMessage());
         }
     }
-//
-//    class SignInActionListener implements ActionListener {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            LoginView loginView = new LoginView();
-//            LoginController loginController = new LoginController(loginView);
-//
-//            close();
-//            loginController.open();
-        }
-
+}
+}

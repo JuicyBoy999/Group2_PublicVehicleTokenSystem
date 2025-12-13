@@ -5,27 +5,20 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
-public class EmailOTP extends javax.swing.JFrame {
+public class Email extends javax.swing.JFrame {
     
-    private String userEmail;
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EmailOTP.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Email.class.getName());
 
     /**
      * Creates new form Login
      */
-    
-    public EmailOTP(String email) {
-        this.userEmail = email;
-        initComponents();
-    }
-    
-    public EmailOTP() {
+    public Email() {
         initComponents();
         setSize(1000,564);
     }
@@ -39,41 +32,41 @@ public class EmailOTP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ResetPasswordBTN = new javax.swing.JButton();
+        SendOtpBTN = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        OTP = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        resend = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ResetPasswordBTN.setBackground(new java.awt.Color(0, 0, 204));
-        ResetPasswordBTN.setForeground(new java.awt.Color(255, 255, 255));
-        ResetPasswordBTN.setText("Reset Password");
-        getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 120, -1));
+        SendOtpBTN.setBackground(new java.awt.Color(0, 0, 204));
+        SendOtpBTN.setForeground(new java.awt.Color(255, 255, 255));
+        SendOtpBTN.setText("Send OTP");
+        getContentPane().add(SendOtpBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 120, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
-        OTP.setForeground(new java.awt.Color(102, 102, 102));
-        OTP.setText("Enter OTP");
-        OTP.addFocusListener(new java.awt.event.FocusAdapter() {
+        Email.setForeground(new java.awt.Color(102, 102, 102));
+        Email.setText("Enter email");
+        Email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                OTPFocusGained(evt);
+                EmailFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                OTPFocusLost(evt);
+                EmailFocusLost(evt);
             }
         });
-        getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 230, -1));
+        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 230, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("OTP");
+        jLabel4.setText("Email");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -82,14 +75,14 @@ public class EmailOTP extends javax.swing.JFrame {
         jLabel2.setText("Account Recovery");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
-        resend.setBackground(new java.awt.Color(244, 244, 244));
-        resend.setForeground(new java.awt.Color(0, 0, 204));
-        resend.setText("Resend");
-        resend.setBorder(null);
-        resend.setBorderPainted(false);
-        resend.setContentAreaFilled(false);
-        resend.addActionListener(this::resendActionPerformed);
-        getContentPane().add(resend, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
+        back.setBackground(new java.awt.Color(244, 244, 244));
+        back.setForeground(new java.awt.Color(0, 0, 204));
+        back.setText("Back to SIgn in");
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.addActionListener(this::backActionPerformed);
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
@@ -100,24 +93,24 @@ public class EmailOTP extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resendActionPerformed
-
+    private void EmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_resendActionPerformed
-
-    private void OTPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OTPFocusGained
-        // TODO add your handling code here:
-        if(OTP.getText().equals("Enter OTP")){
-            OTP.setText("");
+        if (Email.getText().equals("Enter email")){
+            Email.setText("");
         }
-    }//GEN-LAST:event_OTPFocusGained
+    }//GEN-LAST:event_EmailFocusGained
 
-    private void OTPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OTPFocusLost
+    private void EmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFocusLost
         // TODO add your handling code here:
-        if(OTP.getText().equals("")) {
-            OTP.setText("ENter OTP");
+        if(Email.getText().equals("")){
+            Email.setText("Enter email");
         }
-    }//GEN-LAST:event_OTPFocusLost
+    }//GEN-LAST:event_EmailFocusLost
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,32 +134,32 @@ public class EmailOTP extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new EmailOTP().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Email().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField OTP;
-    private javax.swing.JButton ResetPasswordBTN;
+    private javax.swing.JTextField Email;
+    private javax.swing.JButton SendOtpBTN;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton resend;
     // End of variables declaration//GEN-END:variables
-    public String getOTP() {
-        return OTP.getText().trim();
-    }
-    
     public String getEmail() {
-        return userEmail;
+        return Email.getText().trim();
     }
     
-    public void addVerifyListener(ActionListener listener) {
-        ResetPasswordBTN.addActionListener(listener);
+    public void addSendOTPListener(ActionListener listener) {
+        SendOtpBTN.addActionListener(listener);
     }
     
-    public void addResendListener(ActionListener listener) {
-        resend.addActionListener(listener);
+    public void addBackListener(ActionListener listener) {
+        back.addActionListener(listener);
+    }
+    
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 }

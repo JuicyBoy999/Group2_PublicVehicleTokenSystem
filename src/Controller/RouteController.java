@@ -7,6 +7,7 @@ package Controller;
 import DAO.RouteDAO;
 import Model.Route;
 import View.RouteManagement;
+import View.UserManagement;
 import View.VehicleManagement;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +26,11 @@ public class RouteController {
     public void openVehicleManagement() {
         VehicleManagement vm = new VehicleManagement();
         vm.setVisible(true);
+    }
+    
+    public void openUserList() {
+        UserManagement um = new UserManagement();
+        um.setVisible(true);
     }
     
     public void closeRouteManagement(RouteManagement rm) {

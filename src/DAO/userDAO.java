@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import utils.PasswordService;
 
 /**
  *
@@ -19,13 +20,15 @@ public class userDAO {
         MySqlConnection mysql = new MySqlConnection(); 
     public void signUp(userData user){
         Connection conn = mysql.openConnection();
-        String sql=  "Insert into users (username, email, phone,address, password) values( ?,?,?,?,?)";
+        String sql=  "Insert into users (username, email, phone,address, password, role) values( ?,?,?,?,?,?)";
         try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            String hashedPassword = PasswordService.hashPassword(user.getPassword());
             pstm.setString(1, user.getname());
             pstm.setString(2, user.getemail());
             pstm.setString(3, user.getphone());
             pstm.setString(4, user.getaddress());
-            pstm.setString(5, user.getPassword());
+            pstm.setString(5, hashedPassword);
+            pstm.setString(6, user.getrole());
             pstm.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);
@@ -34,10 +37,31 @@ public class userDAO {
         }
     }
     
-public boolean checkUser(userData user) {
-    Connection conn = mysql.openConnection();
-    String sql = "Select * from users where name = ? or email= ?";
-    try(PreparedStatement pstm = conn.prepareStatement(sql)){
+    public boolean updatePassword(String email, String newPassword) {
+        Connection conn = mysql.openConnection();
+        String sql = "UPDATE users SET password = ? WHERE email = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+            String hashedPassword = PasswordService.hashPassword(newPassword);
+            
+            pstm.setString(1, hashedPassword);
+            pstm.setString(2, email);
+            
+            int rowsAffected = pstm.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating password: " + e);
+            return false;
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    
+    public boolean checkUser(userData user) {
+        Connection conn = mysql.openConnection();
+        String sql = "Select * from users where username = ? or email= ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getname());
             pstm.setString(2, user.getemail());
             ResultSet result = pstm.executeQuery();
@@ -48,5 +72,30 @@ public boolean checkUser(userData user) {
             mysql.closeConnection(conn);
         }
         return false;
+    }
+    
+    public ResultSet getAllUsers() {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT username, email, phone, role, created_at FROM users";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            return pstm.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Error fetching users: " + e);
+            return null;
+        }
+    }
+    
+    public ResultSet getUsersByRole(String role) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT username, email, phone, role, created_at FROM users WHERE role = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, role);
+            return pstm.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Error fetching users by role: " + e);
+            return null;
+        }
     }
 }
