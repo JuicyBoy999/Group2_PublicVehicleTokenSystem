@@ -20,13 +20,13 @@ public class VehicleDao {
     public ArrayList<String> getDrivers() {
         ArrayList<String> drivers = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "Select name from users where role = 'driver'";
+        String sql = "Select username from users where role = 'driver'";
         
         try(PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
                     // Iterate and add names to list
-                    drivers.add(rs.getString("name"));
+                    drivers.add(rs.getString("username"));
                 }
         }
         catch(SQLException e) {
@@ -42,7 +42,7 @@ public class VehicleDao {
     // Map driver name to driver ID
     public int getDriverIdByName(String driverName) {
         Connection conn = mysql.openConnection();
-        String sql = "Select user_id from users where name = ?";
+        String sql = "Select user_id from users where username = ?";
         
         try(PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setString(1, driverName);
@@ -91,13 +91,13 @@ public class VehicleDao {
         try {
             if (vehicle.getVehicleID() > 0) {
                 // Updating: ignore this vehicle
-                sql = "SELECT * FROM vehicles WHERE number = ? AND vehicle_id <> ?";
+                sql = "Select * from vehicles where number = ? and vehicle_id <> ?";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, vehicle.getVehicleNumber());
                 pstm.setInt(2, vehicle.getVehicleID());
             } else {
                 // Adding: check normally
-                sql = "SELECT * FROM vehicles WHERE number = ?";
+                sql = "Select * from vehicles where number = ?";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, vehicle.getVehicleNumber());
             }
@@ -115,8 +115,8 @@ public class VehicleDao {
     
     public VehicleData getVehicleById(int vehicleId) {
         Connection conn = mysql.openConnection();
-        String sql = "SELECT v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.name " +
-                     "FROM vehicles v JOIN users u ON v.driver = u.user_id WHERE v.vehicle_id = ?";
+        String sql = "Select v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.username " +
+                     "from vehicles v join users u on v.driver = u.user_id where v.vehicle_id = ?";
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setInt(1, vehicleId);
             ResultSet rs = pstm.executeQuery();
@@ -177,7 +177,7 @@ public class VehicleDao {
     public ArrayList<VehicleData> getAllVehicles() {
         ArrayList<VehicleData> vehiclelist = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "Select v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.name from vehicles v " +
+        String sql = "Select v.vehicle_id, v.number, v.type, v.seat, u.user_id, u.username from vehicles v " +
                      "join users u on v.driver = u.user_id";
         
         try (PreparedStatement pstm = conn.prepareStatement(sql);

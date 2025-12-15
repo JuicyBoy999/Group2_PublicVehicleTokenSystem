@@ -486,7 +486,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     }
     
     
-    // Read / Manipulate value entered by user
+    // Read / Manipulate values entered by user
     public javax.swing.JTextField getVehicleNumber() {
         return number;
     }

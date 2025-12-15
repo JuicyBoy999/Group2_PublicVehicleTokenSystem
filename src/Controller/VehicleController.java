@@ -64,7 +64,8 @@ public class VehicleController {
 
                     if (choice == 0) { // Edit
                         editVehicle(vehicleId);
-                    } else if (choice == 1) { // Delete
+                    }
+                    else if (choice == 1) { // Delete
                         deleteVehicle(vehicleId);
                     }
                 }
@@ -272,7 +273,8 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             TripManagement tm = new TripManagement();  // Create view
-            tm.setVisible(true);    // Open Route Management page
+            TripController tc = new TripController(tm); // Create controller
+            tc.openTripManagement();  // Open Trip Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
     }
@@ -282,7 +284,7 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             UserManagement um = new UserManagement();  // Create view
-            um.setVisible(true);    // Open Route Management page
+            um.setVisible(true);    // Open User Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
     }
@@ -292,7 +294,7 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             Notification n = new Notification();  // Create view
-            n.setVisible(true);    // Open Route Management page
+            n.setVisible(true);    // Open Notification Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
     }
