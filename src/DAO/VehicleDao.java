@@ -126,7 +126,7 @@ public class VehicleDao {
                     rs.getString("type"),
                     rs.getInt("seat"),
                     rs.getInt("user_id"),
-                    rs.getString("name")
+                    rs.getString("username")
                 );
                 v.setVehicleID(rs.getInt("vehicle_id"));
                 return v;
@@ -188,7 +188,7 @@ public class VehicleDao {
                         rs.getString("type"),
                         rs.getInt("seat"),
                         rs.getInt("user_id"),
-                        rs.getString("name")
+                        rs.getString("username")
                     );
                     
                     v.setVehicleID(rs.getInt("vehicle_id")); // important!

@@ -6,6 +6,7 @@ package View;
 
 import Controller.VehicleController;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -60,6 +61,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         driver = new javax.swing.JComboBox<>();
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        noData = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         vehicleTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
@@ -72,7 +74,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
 
         Bato.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Bato.setForeground(new java.awt.Color(0, 0, 0));
         Bato.setText("Bato+");
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
@@ -103,7 +104,6 @@ public class VehicleManagement extends javax.swing.JFrame {
 
         AdminDashboard.setBackground(new java.awt.Color(255, 255, 255));
         AdminDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 1, 30)); // NOI18N
-        AdminDashboard.setForeground(new java.awt.Color(0, 0, 0));
         AdminDashboard.setText("Admin Dashboard");
         AdminDashboard.setMaximumSize(new java.awt.Dimension(356, 47));
         AdminDashboard.setMinimumSize(new java.awt.Dimension(356, 47));
@@ -178,7 +178,6 @@ public class VehicleManagement extends javax.swing.JFrame {
         separator.setBounds(30, 230, 1205, 20);
 
         VehicleManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        VehicleManagement.setForeground(new java.awt.Color(0, 0, 0));
         VehicleManagement.setText("Vehicle Management");
         getContentPane().add(VehicleManagement);
         VehicleManagement.setBounds(50, 240, 240, 54);
@@ -195,14 +194,11 @@ public class VehicleManagement extends javax.swing.JFrame {
         form.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         AddNewVehicle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        AddNewVehicle.setForeground(new java.awt.Color(0, 0, 0));
         AddNewVehicle.setText("Add New Vehicle");
 
         vehicleNumber.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        vehicleNumber.setForeground(new java.awt.Color(0, 0, 0));
         vehicleNumber.setText("Vehicle Number");
 
-        number.setBackground(new java.awt.Color(255, 255, 255));
         number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         number.setText("######");
         number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -217,10 +213,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         number.addActionListener(this::numberActionPerformed);
 
         seatCount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        seatCount.setForeground(new java.awt.Color(0, 0, 0));
         seatCount.setText("Number of Seats");
 
-        seat.setBackground(new java.awt.Color(255, 255, 255));
         seat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         seat.setText("0");
         seat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -234,10 +228,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         });
 
         vehicleType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        vehicleType.setForeground(new java.awt.Color(0, 0, 0));
         vehicleType.setText("Vehicle Type");
 
-        type.setBackground(new java.awt.Color(255, 255, 255));
         type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         type.setForeground(new java.awt.Color(51, 51, 51));
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Vehicle Type", "Bus", "Micro Bus", "Tempo" }));
@@ -245,10 +237,8 @@ public class VehicleManagement extends javax.swing.JFrame {
         type.addActionListener(this::typeActionPerformed);
 
         whoDriver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        whoDriver.setForeground(new java.awt.Color(0, 0, 0));
         whoDriver.setText("Driver");
 
-        driver.setBackground(new java.awt.Color(255, 255, 255));
         driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         driver.setForeground(new java.awt.Color(51, 51, 51));
         driver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Driver" }));
@@ -324,6 +314,11 @@ public class VehicleManagement extends javax.swing.JFrame {
 
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
+
+        noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        noData.setText("No Records");
+        getContentPane().add(noData);
+        noData.setBounds(600, 660, 80, 20);
 
         vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
         vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -444,6 +439,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel noData;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField number;
     private javax.swing.JButton routes;
@@ -462,6 +458,7 @@ public class VehicleManagement extends javax.swing.JFrame {
     private javax.swing.JLabel whoDriver;
     // End of variables declaration//GEN-END:variables
 
+    
     // What happens when user clicks button
     public void VehicleFormListener(ActionListener listener) {
         add.addActionListener(listener);
@@ -541,5 +538,9 @@ public class VehicleManagement extends javax.swing.JFrame {
     
     public JTable getVehicleTable() {
         return vehicleTable;
+    }
+     
+    public JLabel getNoData() {
+        return noData;
     }
 }

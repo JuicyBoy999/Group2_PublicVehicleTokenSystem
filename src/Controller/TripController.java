@@ -64,7 +64,8 @@ public class TripController {
 
                     if (choice == 0) { // Edit
                         editTrip(tripId);
-                    } else if (choice == 1) { // Delete
+                    }
+                    else if (choice == 1) { // Delete
                         deleteTrip(tripId);
                     }
                 }
@@ -224,7 +225,7 @@ public class TripController {
         @Override
         public void actionPerformed(ActionEvent e) {
             tripView.getFormPanel().setVisible(false);
-            tripView.getScrollPane().setBounds(60, 310, 1150, 100);
+            tripView.getScrollPane().setBounds(60, 310, 1150, 350);
         } 
     }
     
@@ -266,20 +267,47 @@ public class TripController {
         DefaultTableModel tableModel = (DefaultTableModel) tripView.getTripTable().getModel();
 
         tableModel.setRowCount(0);  // Clear old rows
-
-        for (TripData t : triplist) {
-            Object[] row = {
-                t.getTripID(),     // Hidden ID column
-                t.getVehicleNum(),
-                t.getRouteName(),
-                t.getDepartureTime(),
-                t.getArrivalTime(),
-                t.getStatus(),
-                "Edit | Delete"
-            };
-            
-            tableModel.addRow(row);
+        
+        if (triplist.isEmpty()) {
+            tripView.getNoData().setVisible(true);  // Show "no data"
         }
+        else {
+            tripView.getNoData().setVisible(false); // Hide label
+            
+            for (TripData t : triplist) {
+                Object[] row = {
+                    t.getTripID(),     // Hidden ID column
+                    t.getVehicleNum(),
+                    t.getRouteName(),
+                    t.getDepartureTime(),
+                    t.getArrivalTime(),
+                    t.getStatus(),
+                    "Edit | Delete"
+                };
+
+                tableModel.addRow(row);
+            }
+        }
+        updateNoDataLabelPosition();
+    }
+    
+    
+    private void updateNoDataLabelPosition() {
+        int scrollX = tripView.getScrollPane().getX();
+        int scrollY = tripView.getScrollPane().getY();
+        int scrollWidth = tripView.getScrollPane().getWidth();
+        int scrollHeight = tripView.getScrollPane().getHeight();
+
+        // Get label preferred size
+        int labelWidth = tripView.getNoData().getPreferredSize().width;
+        int labelHeight = tripView.getNoData().getPreferredSize().height;
+
+        // Center label inside scroll pane
+        int labelX = scrollX + (scrollWidth - labelWidth) / 2;
+        int labelY = scrollY + (scrollHeight - labelHeight) / 2;
+
+        tripView.getNoData().setBounds(labelX, labelY, labelWidth, labelHeight);
+        tripView.getNoData().repaint();
     }
     
     

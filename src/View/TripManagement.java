@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -59,6 +60,7 @@ public class TripManagement extends javax.swing.JFrame {
         arrival = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        noData = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         tripTable = new javax.swing.JTable();
         background = new javax.swing.JLabel();
@@ -332,24 +334,27 @@ public class TripManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 250);
 
+        noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        noData.setText("No Records");
+        getContentPane().add(noData);
+        noData.setBounds(600, 660, 80, 20);
+
         tripTable.setForeground(new java.awt.Color(51, 51, 51));
         tripTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Vehicle", "Routes", "Destination", "Arrival", "Status", "Actions"
+                "", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
-            };
+        ));
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         scroll.setViewportView(tripTable);
+        if (tripTable.getColumnModel().getColumnCount() > 0) {
+            tripTable.getColumnModel().getColumn(0).setMinWidth(0);
+            tripTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tripTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         getContentPane().add(scroll);
         scroll.setBounds(60, 610, 1150, 100);
@@ -459,6 +464,7 @@ public class TripManagement extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel noData;
     private javax.swing.JButton notifications;
     private javax.swing.JButton profile;
     private javax.swing.JComboBox<String> route;
@@ -472,6 +478,7 @@ public class TripManagement extends javax.swing.JFrame {
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
 
+    
     // What happens when user clicks button
     public void TripFormListener(ActionListener listener) {
         add.addActionListener(listener);
@@ -486,11 +493,11 @@ public class TripManagement extends javax.swing.JFrame {
     }
     
     public void VehicleManagementListener(ActionListener listener) {
-        routes.addActionListener(listener);
+        vehicles.addActionListener(listener);
     }
     
     public void RouteManagementListener(ActionListener listener) {
-        trips.addActionListener(listener);
+        routes.addActionListener(listener);
     }
     
     public void UserManagementListener(ActionListener listener) {
@@ -551,5 +558,9 @@ public class TripManagement extends javax.swing.JFrame {
     
     public JTable getTripTable() {
         return tripTable;
+    }
+    
+    public JLabel getNoData() {
+        return noData;
     }
 }

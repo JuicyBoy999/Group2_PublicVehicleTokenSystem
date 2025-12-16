@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.TripController;
+import Controller.VehicleController;
 import DAO.userDAO;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
@@ -139,6 +141,7 @@ public class UserManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -243,7 +246,8 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         VehicleManagement vm = new VehicleManagement();
-        vm.setVisible(true);
+        VehicleController vc = new VehicleController(vm);
+        vc.openVehicleManagement();
     }//GEN-LAST:event_vehiclesActionPerformed
 
     private void routesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesActionPerformed
@@ -271,6 +275,14 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadUsersByRole("Driver");
     }//GEN-LAST:event_driverActionPerformed
+
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        TripManagement tm = new TripManagement();
+        TripController tc = new TripController(tm);
+        tc.openTripManagement();
+    }//GEN-LAST:event_tripsActionPerformed
 
     /**
      * @param args the command line arguments

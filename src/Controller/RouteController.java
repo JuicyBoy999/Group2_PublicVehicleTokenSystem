@@ -7,6 +7,7 @@ package Controller;
 import DAO.RouteDAO;
 import Model.Route;
 import View.RouteManagement;
+import View.TripManagement;
 import View.UserManagement;
 import View.VehicleManagement;
 import java.sql.*;
@@ -25,7 +26,14 @@ public class RouteController {
 
     public void openVehicleManagement() {
         VehicleManagement vm = new VehicleManagement();
-        vm.setVisible(true);
+        VehicleController vc = new VehicleController(vm);
+        vc.openVehicleManagement();
+    }
+
+    public void openTripManagement() {
+        TripManagement tm = new TripManagement();
+        TripController tc = new TripController(tm);
+        tc.openTripManagement();
     }
     
     public void openUserList() {
@@ -43,7 +51,7 @@ public class RouteController {
         
         DefaultTableModel model = (DefaultTableModel) view.getRouteTable().getModel();
         model.setRowCount(0);
-        
+            
         try {
             while (rs != null && rs.next()) {
                 model.addRow(new Object[]{
@@ -60,7 +68,7 @@ public class RouteController {
             System.out.println(e);
         }
     }
-    
+   
     public void deleteRoute(int id) {
         dao.deleteRoute(id);
     }

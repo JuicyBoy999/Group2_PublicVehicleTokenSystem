@@ -26,9 +26,9 @@ public class RouteManagement extends javax.swing.JFrame {
         RouteTable.getColumnModel().getColumn(0).setWidth(0);
 
         setSize(1280, 740);
+
         RouteController controller = new RouteController();
         controller.loadRoutes(this);
-        
         RouteTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,6 +180,7 @@ public class RouteManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -450,6 +451,13 @@ public class RouteManagement extends javax.swing.JFrame {
         controller.closeRouteManagement(this);
         controller.openUserList();
     }//GEN-LAST:event_usersActionPerformed
+
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openTripManagement();
+    }//GEN-LAST:event_tripsActionPerformed
 
     /**
      * @param args the command line arguments

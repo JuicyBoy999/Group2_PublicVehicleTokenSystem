@@ -244,19 +244,46 @@ public class VehicleController {
 
         tableModel.setRowCount(0);  // Clear old rows
 
-        for (VehicleData v : vehiclelist) {
-            Object[] row = {
-                v.getVehicleID(),     // Hidden ID column
-                v.getVehicleNumber(),
-                v.getVehicleType(),
-                v.getSeatCount(),
-                v.getDriverName(),
-                "Edit | Delete"
-            };
-            
-            tableModel.addRow(row);
+        if (vehiclelist.isEmpty()) {
+            vehicleView.getNoData().setVisible(true);  // Show "no data"
         }
+        else {
+            vehicleView.getNoData().setVisible(false); // Hide label
+            
+            for (VehicleData v : vehiclelist) {
+                Object[] row = {
+                    v.getVehicleID(),     // Hidden ID column
+                    v.getVehicleNumber(),
+                    v.getVehicleType(),
+                    v.getSeatCount(),
+                    v.getDriverName(),
+                    "Edit | Delete"
+                };
+                tableModel.addRow(row);
+            }
+        }
+        updateNoDataLabelPosition();
     }
+    
+    
+    private void updateNoDataLabelPosition() {
+        int scrollX = vehicleView.getScrollPane().getX();
+        int scrollY = vehicleView.getScrollPane().getY();
+        int scrollWidth = vehicleView.getScrollPane().getWidth();
+        int scrollHeight = vehicleView.getScrollPane().getHeight();
+
+        // Get label preferred size
+        int labelWidth = vehicleView.getNoData().getPreferredSize().width;
+        int labelHeight = vehicleView.getNoData().getPreferredSize().height;
+
+        // Center label inside scroll pane
+        int labelX = scrollX + (scrollWidth - labelWidth) / 2;
+        int labelY = scrollY + (scrollHeight - labelHeight) / 2;
+
+        vehicleView.getNoData().setBounds(labelX, labelY, labelWidth, labelHeight);
+        vehicleView.getNoData().repaint();
+    }
+    
     
     // Open Route Management
     class RouteListener implements ActionListener {
