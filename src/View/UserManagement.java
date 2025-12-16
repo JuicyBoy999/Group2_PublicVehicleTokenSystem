@@ -4,6 +4,17 @@
  */
 package View;
 
+<<<<<<< Updated upstream
+=======
+import Controller.TripController;
+import Controller.VehicleController;
+import DAO.userDAO;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
+>>>>>>> Stashed changes
 /**
  *
  * @author hp
@@ -148,6 +159,7 @@ public class UserManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -269,7 +281,26 @@ public class UserManagement extends javax.swing.JFrame {
 
     private void passsengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passsengerActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
     }//GEN-LAST:event_passsengerActionPerformed
+=======
+        this.dispose();
+        VehicleManagement vm = new VehicleManagement();
+        VehicleController vc = new VehicleController(vm);
+        vc.openVehicleManagement();
+    }//GEN-LAST:event_vehiclesActionPerformed
+
+    private void routesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        RouteManagement rm = new RouteManagement();
+        rm.setVisible(true);
+    }//GEN-LAST:event_routesActionPerformed
+
+    private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usersActionPerformed
+>>>>>>> Stashed changes
 
     private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
         // TODO add your handling code here:
@@ -278,6 +309,14 @@ public class UserManagement extends javax.swing.JFrame {
     private void driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_driverActionPerformed
+
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        TripManagement tm = new TripManagement();
+        TripController tc = new TripController(tm);
+        tc.openTripManagement();
+    }//GEN-LAST:event_tripsActionPerformed
 
     /**
      * @param args the command line arguments

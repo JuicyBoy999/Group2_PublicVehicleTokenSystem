@@ -18,6 +18,39 @@ public class RouteManagement extends javax.swing.JFrame {
     public RouteManagement() {
         initComponents();
         setSize(1280, 740);
+<<<<<<< Updated upstream
+=======
+        RouteController controller = new RouteController();
+        controller.loadRoutes(this);
+
+        RouteTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = RouteTable.rowAtPoint(evt.getPoint());
+                int col = RouteTable.columnAtPoint(evt.getPoint());
+                
+                if (col == 6) {
+                    String[] options = {"Edit", "Delete"};
+                    int choice = JOptionPane.showOptionDialog(
+                            null,
+                            "Choose an action",
+                            "Action",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            options,
+                            options[0]
+                    );
+                    
+                    if (choice == 0) {
+                        editRoute(row);
+                    } else if (choice == 1) {
+                        deleteRoute(row);
+                    }
+                }
+            }
+        });
+>>>>>>> Stashed changes
     }
 
     /**
@@ -158,6 +191,7 @@ public class RouteManagement extends javax.swing.JFrame {
         trips.setBorder(null);
         trips.setBorderPainted(false);
         trips.setContentAreaFilled(false);
+        trips.addActionListener(this::tripsActionPerformed);
         getContentPane().add(trips);
         trips.setBounds(250, 193, 110, 40);
 
@@ -378,6 +412,69 @@ public class RouteManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DurationTextActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void SubmitRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitRouteActionPerformed
+        // TODO add your handling code here:
+        String routename = RouteNameText.getText().trim();
+        String origin = OriginText.getText().trim();
+        String destination = DestinationText.getText().trim();
+        String durationStr = DurationText.getText().trim();
+        String fareStr = FareText.getText().trim();
+        
+        if (routename.isEmpty() || origin.isEmpty() || destination.isEmpty() || durationStr.isEmpty() || fareStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all the fields!");
+            return;
+        }
+        
+        int duration = Integer.parseInt(durationStr);
+        double fare = Double.parseDouble(fareStr);
+        
+        RouteController controller = new RouteController();
+        controller.addRoute(routename, origin, destination, duration, fare);
+        
+        loadRouteTable();
+        
+        RouteNameText.setText("");
+        OriginText.setText("");
+        DestinationText.setText("");
+        DurationText.setText("");
+        FareText.setText("");
+        
+        form.setVisible(false);
+        scroll.setBounds(60, 310, 1150, 70);
+        
+        JOptionPane.showMessageDialog(this, "Route added successfully!");   
+    }//GEN-LAST:event_SubmitRouteActionPerformed
+
+    private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openVehicleManagement();
+    }//GEN-LAST:event_vehiclesActionPerformed
+
+    private void AddRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouteActionPerformed
+        // TODO add your handling code here:
+        form.setVisible(true);
+        scroll.setBounds(60, 640, 1150, 70);
+    }//GEN-LAST:event_AddRouteActionPerformed
+
+    private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openUserList();
+    }//GEN-LAST:event_usersActionPerformed
+
+    private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openTripManagement();
+    }//GEN-LAST:event_tripsActionPerformed
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */

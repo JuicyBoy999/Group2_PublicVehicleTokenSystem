@@ -4,6 +4,14 @@
  */
 package View;
 
+<<<<<<< Updated upstream
+=======
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+>>>>>>> Stashed changes
 /**
  *
  * @author hp
@@ -52,11 +60,17 @@ public class TripManagement extends javax.swing.JFrame {
         ArrivalTime = new javax.swing.JLabel();
         ConfirmTrip = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+<<<<<<< Updated upstream
         RouteSelect = new javax.swing.JComboBox<>();
         ArrivalTimeSelect = new javax.swing.JComboBox<>();
         DepartureTimeSelect = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+=======
+        noData = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        tripTable = new javax.swing.JTable();
+>>>>>>> Stashed changes
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -299,14 +313,25 @@ public class TripManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 250);
 
+<<<<<<< Updated upstream
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        noData.setText("No Records");
+        getContentPane().add(noData);
+        noData.setBounds(600, 660, 80, 20);
+
+        tripTable.setForeground(new java.awt.Color(51, 51, 51));
+        tripTable.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> Stashed changes
             new Object [][] {
 
             },
             new String [] {
-                "Vehicle", "Routes", "Destination", "Arrival", "Status", "Actions"
+                "", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
             }
+<<<<<<< Updated upstream
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
@@ -317,6 +342,15 @@ public class TripManagement extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+=======
+        ));
+        scroll.setViewportView(tripTable);
+        if (tripTable.getColumnModel().getColumnCount() > 0) {
+            tripTable.getColumnModel().getColumn(0).setMinWidth(0);
+            tripTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tripTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+>>>>>>> Stashed changes
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 610, 1150, 100);
@@ -406,6 +440,7 @@ public class TripManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel noData;
     private javax.swing.JButton notifications;
     private javax.swing.JButton profile;
     private javax.swing.JButton routes;
@@ -414,4 +449,93 @@ public class TripManagement extends javax.swing.JFrame {
     private javax.swing.JButton users;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
+<<<<<<< Updated upstream
 }
+=======
+     
+    // What happens when user clicks button
+    public void TripFormListener(ActionListener listener) {
+        add.addActionListener(listener);
+    }
+    
+    public void AddTripListener(ActionListener listener) {
+        confirm.addActionListener(listener);
+    }
+    
+    public void CancelTripListener(ActionListener listener) {
+        cancel.addActionListener(listener);
+    }
+    
+    public void VehicleManagementListener(ActionListener listener) {
+        vehicles.addActionListener(listener);
+    }
+    
+    public void RouteManagementListener(ActionListener listener) {
+        routes.addActionListener(listener);
+    }
+    
+    public void UserManagementListener(ActionListener listener) {
+        users.addActionListener(listener);
+    }
+    
+    public void NotificationListener(ActionListener listener) {
+        notifications.addActionListener(listener);
+    }
+    
+    
+    // Read / Manipulate value entered by user
+    public javax.swing.JComboBox getVehicle() {
+        return vehicle;
+    }
+    
+    public javax.swing.JComboBox getRoute() {
+        return route;
+    }
+    
+    public javax.swing.JTextField getDeparture() {
+        return departure;
+    }
+    
+    public javax.swing.JTextField getArrival() {
+        return arrival;
+    }
+    
+    
+    // Getter for UI elements
+    public javax.swing.JButton getSubmitButton() {
+        return confirm;
+    }
+    
+    public javax.swing.JButton getVehicleButton() {
+        return vehicles;
+    }
+    
+    public javax.swing.JButton getRouteButton() {
+        return routes;
+    }
+    
+    public javax.swing.JButton getUserButton() {
+        return users;
+    }
+    
+    public javax.swing.JButton getNotificationButton() {
+        return notifications;
+    }
+    
+    public javax.swing.JPanel getFormPanel() {
+        return form;
+    }
+    
+    public JScrollPane getScrollPane() {
+        return scroll;
+    }
+    
+    public JTable getTripTable() {
+        return tripTable;
+    }
+    
+    public JLabel getNoData() {
+        return noData;
+    }
+}
+>>>>>>> Stashed changes
