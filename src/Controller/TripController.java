@@ -106,8 +106,8 @@ public class TripController {
             // Move table down
             tripView.getScrollPane().setBounds(60, 610, 1150, 100);
 
-            // Change submit button text to "Add Vehicle"
-            tripView.getSubmitButton().setText("Add Vehicle");
+            // Change submit button text to "Schedule Trip"
+            tripView.getSubmitButton().setText("Schedule Trip");
         }
     }
 

@@ -36,7 +36,6 @@ public class TripManagement extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Bato = new javax.swing.JLabel();
-        profile = new javax.swing.JButton();
         AdminDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         vehicles = new javax.swing.JButton();
@@ -75,14 +74,6 @@ public class TripManagement extends javax.swing.JFrame {
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
 
-        profile.setBackground(new java.awt.Color(244, 244, 244));
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        profile.setForeground(new java.awt.Color(102, 102, 102));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
-        profile.setBorder(null);
-        profile.setBorderPainted(false);
-        profile.setContentAreaFilled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -92,23 +83,16 @@ public class TripManagement extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(1065, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                    .addComponent(logo)
+                    .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(header);
@@ -289,14 +273,12 @@ public class TripManagement extends javax.swing.JFrame {
                     .addComponent(vehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departure, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Route)
-                            .addComponent(ArrivalTime)
-                            .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 38, Short.MAX_VALUE))
-                    .addComponent(arrival)))
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Route)
+                    .addComponent(ArrivalTime)
+                    .addComponent(route, 0, 515, Short.MAX_VALUE)
+                    .addComponent(arrival))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,6 +320,7 @@ public class TripManagement extends javax.swing.JFrame {
 
             },
             new String [] {
+<<<<<<< Updated upstream
                 "Vehicle", "Routes", "Destination", "Arrival", "Status", "Actions"
             }
         ) {
@@ -349,6 +332,11 @@ public class TripManagement extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+=======
+                "Id", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
+            }
+        ));
+>>>>>>> Stashed changes
         scroll.setViewportView(tripTable);
 
         getContentPane().add(scroll);
@@ -460,7 +448,6 @@ public class TripManagement extends javax.swing.JFrame {
     private javax.swing.JLabel intro;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private javax.swing.JButton profile;
     private javax.swing.JComboBox<String> route;
     private javax.swing.JButton routes;
     private javax.swing.JScrollPane scroll;
