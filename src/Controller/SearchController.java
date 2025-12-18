@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,9 +46,57 @@ public class SearchController {
                     DefaultTableModel model = (DefaultTableModel) searchView.getResultTable().getModel();
 
                     int tripId = (int) model.getValueAt(row, 0);
+                    int seatsLeft = searchdao.getAvailableSeats(tripId);    // Re-check seats before booking
 
+                    int choice = javax.swing.JOptionPane.showOptionDialog(
+                        searchView,
+                        "Do you want to book  this trip?",
+                        "Booking Action",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new Object[]{"Book", "Cancel"},
+                        "Book"
+                    );
+
+                    if (choice == 0) { // Book
+                        if (seatsLeft <= 0) {
+                            JOptionPane.showMessageDialog(
+                                searchView,
+                                "Sorry, this trip is fully booked.",
+                                "Booking Failed",
+                                JOptionPane.WARNING_MESSAGE
+                            );
+                            return;
+                        }
+
+                        int passengerId = 1; // TODO: replace with logged-in user ID
+
+                        boolean success = searchdao.bookTrip(tripId, passengerId);
+
+                        if (success) {
+                            JOptionPane.showMessageDialog(
+                                searchView,
+                                "Booking successful!",
+                                "Success",
+                                JOptionPane.INFORMATION_MESSAGE
+                            );
+                            loadSearchTable(""); // reload after booking
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(
+                                searchView,
+                                "Booking failed. Please try again.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                        }
+                    }
+                    else {
+                        return;
+                    }
+                    
                     System.out.println("Book trip ID: " + tripId);
-                    // booking logic
                 }
             }
         });
