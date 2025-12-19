@@ -4,6 +4,8 @@
  */
 package View;
 
+import DAO.TripDao;
+
 /**
  *
  * @author Nitro V 16
@@ -11,6 +13,7 @@ package View;
 public class DriverScheduled extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DriverScheduled.class.getName());
+    private int trip_id;
 
     /**
      * Creates new form Driver_Ongoing
@@ -69,7 +72,6 @@ public class DriverScheduled extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
 
         Bato.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Bato.setForeground(new java.awt.Color(0, 0, 0));
         Bato.setText("Bato+");
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
@@ -126,28 +128,28 @@ public class DriverScheduled extends javax.swing.JFrame {
         all.setText("All");
         all.addActionListener(this::allActionPerformed);
         getContentPane().add(all);
-        all.setBounds(50, 170, 76, 31);
+        all.setBounds(50, 170, 72, 27);
 
         scheduled.setBackground(new java.awt.Color(51, 102, 255));
         scheduled.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         scheduled.setForeground(new java.awt.Color(255, 255, 255));
         scheduled.setText("Scheduled");
         getContentPane().add(scheduled);
-        scheduled.setBounds(132, 170, 100, 31);
+        scheduled.setBounds(132, 170, 100, 27);
 
         ongoing.setBackground(new java.awt.Color(204, 204, 204));
         ongoing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ongoing.setForeground(new java.awt.Color(102, 102, 102));
         ongoing.setText("Ongoing");
         getContentPane().add(ongoing);
-        ongoing.setBounds(240, 170, 88, 31);
+        ongoing.setBounds(240, 170, 87, 27);
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         completed.setForeground(new java.awt.Color(102, 102, 102));
         completed.setText("Completed");
         getContentPane().add(completed);
-        completed.setBounds(336, 170, 101, 31);
+        completed.setBounds(336, 170, 100, 27);
 
         schedule.setBackground(new java.awt.Color(255, 255, 255));
         schedule.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -178,7 +180,6 @@ public class DriverScheduled extends javax.swing.JFrame {
         );
 
         vehicle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        vehicle.setForeground(new java.awt.Color(0, 0, 0));
         vehicle.setText("Micro - BAE 23891");
 
         Status.setBackground(new java.awt.Color(51, 153, 255));
@@ -206,6 +207,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         start.setForeground(new java.awt.Color(255, 255, 255));
         start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/startIcon.png"))); // NOI18N
         start.setText("Start Trip");
+        start.addActionListener(this::startActionPerformed);
 
         delay.setBackground(new java.awt.Color(237, 102, 10));
         delay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -238,7 +240,6 @@ public class DriverScheduled extends javax.swing.JFrame {
         seats.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         seats.setText("0/10 Booked");
 
-        passengers.setBackground(new java.awt.Color(255, 255, 255));
         passengers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         passengers.setForeground(new java.awt.Color(51, 51, 255));
         passengers.setText("View Passengers");
@@ -346,6 +347,17 @@ public class DriverScheduled extends javax.swing.JFrame {
     private void passengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passengersActionPerformed
+
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
+Driver_Ongoing.setVisible(true);
+int trip_id = this.trip_id; // pass tripId when opening this frame
+    TripDao dao = new TripDao();
+    dao.startTrip(trip_id);
+     Driver_Ongoing ongoing = new Driver_Ongoing();
+    ongoing.setVisible(true);
+this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_startActionPerformed
 
     /**
      * @param args the command line arguments
