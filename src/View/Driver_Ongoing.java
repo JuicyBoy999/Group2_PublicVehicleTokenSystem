@@ -4,6 +4,8 @@
  */
 package View;
 
+import DAO.TripDao;
+
 /**
  *
  * @author Nitro V 16
@@ -11,6 +13,7 @@ package View;
 public class Driver_Ongoing extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Driver_Ongoing.class.getName());
+    private int trip_id;
 
     /**
      * Creates new form Driver_Ongoing
@@ -40,7 +43,7 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        EndTrip = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -153,12 +156,12 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.setBackground(new java.awt.Color(255, 0, 51));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Stop Circled.png"))); // NOI18N
-        jButton5.setText("End Trip");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        EndTrip.setBackground(new java.awt.Color(255, 0, 51));
+        EndTrip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        EndTrip.setForeground(new java.awt.Color(255, 255, 255));
+        EndTrip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Stop Circled.png"))); // NOI18N
+        EndTrip.setText("End Trip");
+        EndTrip.addActionListener(this::EndTripActionPerformed);
 
         jButton6.setBackground(new java.awt.Color(255, 51, 51));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -240,7 +243,7 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addComponent(EndTrip)
                         .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
@@ -256,14 +259,22 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton5))
+                                .addComponent(EndTrip))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,10 +310,18 @@ public class Driver_Ongoing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+;// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void EndTripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndTripActionPerformed
 Driver_Completed Driver_Completed=new Driver_Completed();
 Driver_Completed.setVisible(true);
-this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    int trip_id = this.trip_id;
+    TripDao dao = new TripDao();
+    dao.EndTrip(trip_id);
+    Driver_Completed Completed = new Driver_Completed();
+    Completed.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_EndTripActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,11 +349,11 @@ this.dispose();// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EndTrip;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
