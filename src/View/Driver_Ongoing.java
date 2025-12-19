@@ -42,12 +42,8 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-<<<<<<< Updated upstream
-        jButton5 = new javax.swing.JButton();
-=======
         jLabel13 = new javax.swing.JLabel();
         EndTrip = new javax.swing.JButton();
->>>>>>> Stashed changes
         jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -150,20 +146,12 @@ public class Driver_Ongoing extends javax.swing.JFrame {
             .addGap(0, 61, Short.MAX_VALUE)
         );
 
-<<<<<<< Updated upstream
-        jButton5.setBackground(new java.awt.Color(255, 0, 51));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Stop Circled.png"))); // NOI18N
-        jButton5.setText("End Trip");
-=======
         EndTrip.setBackground(new java.awt.Color(255, 0, 51));
         EndTrip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         EndTrip.setForeground(new java.awt.Color(255, 255, 255));
         EndTrip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Stop Circled.png"))); // NOI18N
         EndTrip.setText("End Trip");
         EndTrip.addActionListener(this::EndTripActionPerformed);
->>>>>>> Stashed changes
 
         jButton6.setBackground(new java.awt.Color(255, 51, 51));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -236,7 +224,6 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addGap(103, 103, 103))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9)
                                 .addGap(54, 54, 54))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -260,7 +247,6 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< Updated upstream
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,23 +256,6 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-=======
-                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -311,7 +280,6 @@ public class Driver_Ongoing extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7)))
->>>>>>> Stashed changes
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -329,8 +297,6 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-<<<<<<< Updated upstream
-=======
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 ;// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -345,7 +311,6 @@ Driver_Completed.setVisible(true);
     Completed.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_EndTripActionPerformed
 
->>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
