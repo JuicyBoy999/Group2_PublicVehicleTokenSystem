@@ -108,6 +108,43 @@ public class TripDao {
         return -1;  // not found
     }
     
+    public int startTrip(int tripId) {
+        Connection con = mysql.openConnection();
+        String sql = "UPDATE trip SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "ONGOING");
+            ps.setInt(2, tripId);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No trips found");
+        }
+        finally{
+            mysql.closeConnection(con);
+        }
+        return -1;
+}
+
+    public void EndTrip(int tripId) {
+        Connection con = mysql.openConnection();
+    String sql = "UPDATE trip SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
+
+    try (
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, "COMPLETED");
+        ps.setInt(2, tripId);
+        ps.executeUpdate();
+
+    } catch (Exception e) {
+        System.out.println("No trips found");
+    }
+    finally{
+            mysql.closeConnection(con);
+    }
+}
+
     
     public void addTrip(TripData trip) {
         Connection conn = mysql.openConnection();
