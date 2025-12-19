@@ -4,6 +4,8 @@
  */
 package View;
 
+import DAO.TripDao;
+
 /**
  *
  * @author Nitro V 16
@@ -11,6 +13,7 @@ package View;
 public class DriverScheduled extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DriverScheduled.class.getName());
+    private int trip_id;
 
     /**
      * Creates new form Driver_Ongoing
@@ -139,14 +142,14 @@ public class DriverScheduled extends javax.swing.JFrame {
         ongoing.setForeground(new java.awt.Color(102, 102, 102));
         ongoing.setText("Ongoing");
         getContentPane().add(ongoing);
-        ongoing.setBounds(240, 170, 90, 27);
+        ongoing.setBounds(240, 170, 87, 27);
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         completed.setForeground(new java.awt.Color(102, 102, 102));
         completed.setText("Completed");
         getContentPane().add(completed);
-        completed.setBounds(340, 170, 100, 27);
+        completed.setBounds(336, 170, 100, 27);
 
         schedule.setBackground(new java.awt.Color(255, 255, 255));
         schedule.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -348,6 +351,11 @@ public class DriverScheduled extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
 Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
 Driver_Ongoing.setVisible(true);
+int trip_id = this.trip_id; // pass tripId when opening this frame
+    TripDao dao = new TripDao();
+    dao.startTrip(trip_id);
+     Driver_Ongoing ongoing = new Driver_Ongoing();
+    ongoing.setVisible(true);
 this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_startActionPerformed
 
