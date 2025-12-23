@@ -17,8 +17,9 @@ public class TripData {
     private String departure;
     private String arrival;
     private String status;
+    private String vehicleType;
+    private String destination;
     
-    // Constructor for adding trip
     public TripData(int vehicleId, int routeId, String departure, String arrival) {
         this.vehicleId = vehicleId;
         this.routeId = routeId;
@@ -26,7 +27,6 @@ public class TripData {
         this.arrival = arrival;
     }
     
-    // Constructor for loading table
     public TripData(int vehicleId, String vehicleName, int routeId, String routeName, String departure, String arrival, String status) {
         this.vehicleId = vehicleId;
         this.vehicleName = vehicleName;
@@ -49,6 +49,18 @@ public class TripData {
     }
     public String getVehicleNum() {
         return vehicleName;
+    }
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+    public String getVehicleType() {
+        return vehicleType;
+    }   
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+    public String getDestination() {
+        return destination;
     }
     
     public void setRouteId(int routeId) {

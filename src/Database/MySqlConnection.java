@@ -19,7 +19,7 @@ public class MySqlConnection implements Database {
     @Override
     public Connection openConnection() {
         try{
-            String password="";
+            String password="Ace@1002";
             String username="root";
             String database="bato_plus";
             Connection connection;

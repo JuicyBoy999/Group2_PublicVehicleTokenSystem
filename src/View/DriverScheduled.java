@@ -120,7 +120,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         intro.setForeground(new java.awt.Color(153, 153, 153));
         intro.setText("Manage your trips and passenger");
         getContentPane().add(intro);
-        intro.setBounds(50, 130, 220, 20);
+        intro.setBounds(50, 130, 210, 20);
 
         all.setBackground(new java.awt.Color(204, 204, 204));
         all.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -207,7 +207,6 @@ public class DriverScheduled extends javax.swing.JFrame {
         start.setForeground(new java.awt.Color(255, 255, 255));
         start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/startIcon.png"))); // NOI18N
         start.setText("Start Trip");
-        start.addActionListener(this::startActionPerformed);
 
         delay.setBackground(new java.awt.Color(237, 102, 10));
         delay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -342,6 +341,8 @@ public class DriverScheduled extends javax.swing.JFrame {
 
     private void delayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delayActionPerformed
         // TODO add your handling code here:
+        ReportdelayPassenger reportDelay = new ReportdelayPassenger();
+        reportDelay.setVisible(true);
     }//GEN-LAST:event_delayActionPerformed
 
     private void passengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersActionPerformed

@@ -7,6 +7,9 @@ package Controller;
 import DAO.SearchDao;
 import Model.SearchData;
 import View.SearchTrips;
+import View.ConfirmBooking;
+import View.MyBooking;
+import View.RouteManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -42,61 +45,34 @@ public class SearchController {
                 int row = searchView.getResultTable().rowAtPoint(evt.getPoint());
                 int col = searchView.getResultTable().columnAtPoint(evt.getPoint());
 
-                if (col == 9) { // Book column index
+                if (col == 9 && row != -1) { // Book column index
                     DefaultTableModel model = (DefaultTableModel) searchView.getResultTable().getModel();
 
+                    // Retrieve data from the selected row
                     int tripId = (int) model.getValueAt(row, 0);
-                    int seatsLeft = searchdao.getAvailableSeats(tripId);    // Re-check seats before booking
-
-                    int choice = javax.swing.JOptionPane.showOptionDialog(
-                        searchView,
-                        "Do you want to book  this trip?",
-                        "Booking Action",
-                        javax.swing.JOptionPane.YES_NO_OPTION,
-                        javax.swing.JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        new Object[]{"Book", "Cancel"},
-                        "Book"
-                    );
-
-                    if (choice == 0) { // Book
-                        if (seatsLeft <= 0) {
-                            JOptionPane.showMessageDialog(
-                                searchView,
-                                "Sorry, this trip is fully booked.",
-                                "Booking Failed",
-                                JOptionPane.WARNING_MESSAGE
-                            );
-                            return;
-                        }
-
-                        int passengerId = 1; // TODO: replace with logged-in user ID
-
-                        boolean success = searchdao.bookTrip(tripId, passengerId);
-
-                        if (success) {
-                            JOptionPane.showMessageDialog(
-                                searchView,
-                                "Booking successful!",
-                                "Success",
-                                JOptionPane.INFORMATION_MESSAGE
-                            );
-                            loadSearchTable(""); // reload after booking
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(
-                                searchView,
-                                "Booking failed. Please try again.",
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE
-                            );
-                        }
-                    }
-                    else {
-                        return;
-                    }
+                    String vNumber = (String) model.getValueAt(row, 1);
+                    String vType = (String) model.getValueAt(row, 2);
+                    String dest = (String) model.getValueAt(row, 4);
+                    String deptTime = (String) model.getValueAt(row, 5);
                     
-                    System.out.println("Book trip ID: " + tripId);
+                    Object fareObj = model.getValueAt(row, 7);
+                    double fare = 0.0;
+                    if (fareObj instanceof Double) {
+                        fare = (Double) fareObj;
+                    } else if (fareObj instanceof String) {
+                        try {
+                            fare = Double.parseDouble((String) fareObj);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error parsing fare: " + e.getMessage());
+                        }
+                    } else if (fareObj instanceof Integer) {
+                        fare = ((Integer) fareObj).doubleValue();
+                    }
+
+                    // Open ConfirmBooking frame
+                    ConfirmBooking confirmBooking = new ConfirmBooking(tripId, vType, vNumber, dest, deptTime);
+                    confirmBooking.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); 
+                    confirmBooking.setVisible(true);
                 }
             }
         });
@@ -199,6 +175,7 @@ public class SearchController {
             loadSearchTable(dest);
         }
     }
+    
     
     // Add results in JTable from database
     private void loadSearchTable(String destination) {

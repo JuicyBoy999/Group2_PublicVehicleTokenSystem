@@ -16,96 +16,85 @@ import java.util.ArrayList;
 public class TripDao {
     MySqlConnection mysql = new MySqlConnection();
     
-    // Return ArrayList of vehicles
     public ArrayList<String> getVehicles() {
         ArrayList<String> vehicles = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "Select number from vehicles";
         
-        try(PreparedStatement pstm = conn.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery()) {
-                while (rs.next()) {
-                    // Iterate and add numbers to list
-                    vehicles.add(rs.getString("number"));
-                }
-        }
-        catch(SQLException e) {
+        String sql = "SELECT type, number FROM vehicles";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql);
+                ResultSet rs = pstm.executeQuery()) {
+            
+            while (rs.next()) {
+                String display = rs.getString("type") + " - " + rs.getString("number");
+                vehicles.add(display);
+            }
+        } catch (SQLException e) {
             System.out.println(e);
-        }
-        finally {
+        } finally {
             mysql.closeConnection(conn);
         }
-        
         return vehicles;
     }
     
-    // Map vehicle number to vehicle ID
-    public int getVehicleIdByNum(String vehicleNum) {
-        Connection conn = mysql.openConnection();
-        String sql = "Select vehicle_id from vehicles where number = ?";
+    public int getVehicleIdByNum(String vehicleDisplay) {
+        String vehicleNum = vehicleDisplay.split(" - ")[1];
         
-        try(PreparedStatement pstm = conn.prepareStatement(sql)) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT vehicle_id FROM vehicles WHERE number = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setString(1, vehicleNum);
             ResultSet rs = pstm.executeQuery();
             
             if (rs.next()) {
                 return rs.getInt("vehicle_id");
             }
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error getting vehicle ID: " + e.getMessage());
-        }
-        finally {
+        } finally {
             mysql.closeConnection(conn);
         }
-        
-        return -1;  // not found
+        return -1;
     }
     
-    // Return ArrayList of routes
     public ArrayList<String> getRoutes() {
         ArrayList<String> routes = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "Select route_name from routes";
         
-        try(PreparedStatement pstm = conn.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery()) {
-                while (rs.next()) {
-                    // Iterate and add route names to list
-                    routes.add(rs.getString("route_name"));
-                }
-        }
-        catch(SQLException e) {
+        String sql = "SELECT route_name, origin, destination FROM routes";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql);
+                ResultSet rs = pstm.executeQuery()) {
+            while (rs.next()) {
+                String display = rs.getString("route_name") + " - " + rs.getString("origin") + " -> " + rs.getString("destination");
+                routes.add(display);
+            }
+        } catch (SQLException e) {
             System.out.println(e);
-        }
-        finally {
+        } finally {
             mysql.closeConnection(conn);
         }
-        
         return routes;
     }
     
-    // Map route name to route ID
-    public int getRouteIdByName(String routeName) {
-        Connection conn = mysql.openConnection();
-        String sql = "Select route_id from routes where route_name = ?";
+    public int getRouteIdByName(String routeDisplay) {
+        String routeName = routeDisplay.split(" - ")[0];
         
-        try(PreparedStatement pstm = conn.prepareStatement(sql)) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT route_id FROM routes WHERE route_name = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setString(1, routeName);
             ResultSet rs = pstm.executeQuery();
-            
             if (rs.next()) {
                 return rs.getInt("route_id");
             }
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error getting route ID: " + e.getMessage());
-        }
-        finally {
+        } finally {
             mysql.closeConnection(conn);
         }
-        
-        return -1;  // not found
+        return -1;
     }
     
     public int startTrip(int tripId) {
@@ -149,16 +138,11 @@ public class TripDao {
     public void addTrip(TripData trip) {
         Connection conn = mysql.openConnection();
         String sql = "Insert into trips (vehicle, route, departure, arrival) values (?,?,?,?)";
-        
         try(PreparedStatement pstm = conn.prepareStatement(sql)) {
-            // Sends values from variables to database
-            pstm.setInt(1, trip.getVehicleId());    // Vehicle is stored as ID in database
-            pstm.setInt(2, trip.getRouteId());  // Routes as well
-            
-            // String (UI Friendly) -> Datetime (Database friendly)
+            pstm.setInt(1, trip.getVehicleId());
+            pstm.setInt(2, trip.getRouteId());
             pstm.setTimestamp(3, Timestamp.valueOf(trip.getDepartureTime()));
             pstm.setTimestamp(4, Timestamp.valueOf(trip.getArrivalTime()));
-            
             pstm.executeUpdate();
         }
         catch(SQLException e) {
@@ -169,14 +153,12 @@ public class TripDao {
         }
     }
     
-    public boolean check(TripData trip) { // Check if unique or not
+    public boolean check(TripData trip) {
         Connection conn = mysql.openConnection();
         String sql;
         PreparedStatement pstm = null;
-
         try {
             if (trip.getTripID() > 0) {
-                // Updating: ignore this vehicle
                 sql = "Select * from trips where vehicle = ? and route = ? and departure = ? and trip_id <> ?";
                 pstm = conn.prepareStatement(sql);
                 pstm.setInt(1, trip.getVehicleId());
@@ -185,14 +167,13 @@ public class TripDao {
                 pstm.setInt(2, trip.getTripID());
             }
             else {
-                // Adding: check normally
                 sql = "Select * from trips where vehicle = ? and route = ? and departure = ?";
                 pstm = conn.prepareStatement(sql);
                 pstm.setInt(1, trip.getVehicleId());
                 pstm.setInt(2, trip.getRouteId());
                 pstm.setTimestamp(3, Timestamp.valueOf(trip.getDepartureTime()));
             }
-
+            
             ResultSet rs = pstm.executeQuery();
             return rs.next();
         }
@@ -202,11 +183,9 @@ public class TripDao {
         finally {
             mysql.closeConnection(conn);
         }
-
         return false;
     }
     
-    // Get full record by its ID
     public TripData getTripById(int tripId) {
         Connection conn = mysql.openConnection();
         String sql = "Select t.trip_id, t.departure, t.arrival, t.status, v.vehicle_id, v.number, r.route_id, r.route_name " +
@@ -278,7 +257,6 @@ public class TripDao {
         }
     }
     
-    // Return ArrayList of all trips
     public ArrayList<TripData> getAllTrips() {
         ArrayList<TripData> triplist = new ArrayList<>();
         
@@ -301,7 +279,7 @@ public class TripDao {
                         rs.getString("status")
                     );
                     
-                    t.setTripID(rs.getInt("trip_id")); // important!
+                    t.setTripID(rs.getInt("trip_id")); 
                     triplist.add(t);
                 }
         }
@@ -313,5 +291,99 @@ public class TripDao {
         }
         
         return triplist;
+    }
+    
+    public String getVehicleDisplayById(int vehicleId) {
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT type, number FROM vehicles WHERE vehicle_id = ?";
+
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        pstm.setInt(1, vehicleId);
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("type") + " - " + rs.getString("number");
+        }
+    } catch (SQLException e) {
+        System.out.println(e);
+    } finally {
+        mysql.closeConnection(conn);
+    }
+    return null;
+}
+
+    public String getRouteDisplayById(int routeId) {
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT route_name, origin, destination FROM routes WHERE route_id = ?";
+
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        pstm.setInt(1, routeId);
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("route_name") + " - " +
+                   rs.getString("origin") + " -> " +
+                   rs.getString("destination");
+        }
+    } catch (SQLException e) {
+        System.out.println(e);
+    } finally {
+        mysql.closeConnection(conn);
+    }
+    return null;
+}
+
+    public double getFareByTripId(int tripId) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT fare FROM trips WHERE trip_id = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, tripId);
+            ResultSet rs = pstm.executeQuery();
+            
+            if (rs.next()) {
+                return rs.getDouble("fare");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting fare: " + e.getMessage());
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return 0.0;
+    }
+
+    public boolean checkSeatAvailability(int tripId, int requestedSeats) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT available_seats FROM trips WHERE trip_id = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, tripId);
+            ResultSet rs = pstm.executeQuery();
+            
+            if (rs.next()) {
+                int available = rs.getInt("available_seats");
+                return available >= requestedSeats;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking availability: " + e.getMessage());
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return false;
+    }
+
+    public void updateAvailableSeats(int tripId, int seatsBooked) {
+        Connection conn = mysql.openConnection();
+        String sql = "UPDATE trips SET available_seats = available_seats - ? WHERE trip_id = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, seatsBooked);
+            pstm.setInt(2, tripId);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating seats: " + e.getMessage());
+        } finally {
+            mysql.closeConnection(conn);
+        }
     }
 }

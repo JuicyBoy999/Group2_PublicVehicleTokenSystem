@@ -117,12 +117,13 @@ public class SearchTrips extends javax.swing.JFrame {
         trip.setText("Search Trips");
         trip.addActionListener(this::tripActionPerformed);
         getContentPane().add(trip);
-        trip.setBounds(20, 230, 140, 36);
+        trip.setBounds(20, 230, 140, 32);
 
         booking.setBackground(new java.awt.Color(204, 204, 204));
         booking.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         booking.setForeground(new java.awt.Color(102, 102, 102));
         booking.setText("My Bookings");
+        booking.addActionListener(this::bookingActionPerformed);
         getContentPane().add(booking);
         booking.setBounds(180, 230, 150, 30);
 
@@ -175,7 +176,6 @@ public class SearchTrips extends javax.swing.JFrame {
         Title.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Title.setText("Destination");
 
-        destination.setBackground(new java.awt.Color(255, 255, 255));
         destination.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         destination.setForeground(new java.awt.Color(102, 102, 102));
         destination.setText("Enter Destination");
@@ -245,7 +245,7 @@ public class SearchTrips extends javax.swing.JFrame {
         noData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         noData.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(noData);
-        noData.setBounds(520, 600, 250, 77);
+        noData.setBounds(520, 600, 260, 77);
 
         resultTable.setForeground(new java.awt.Color(51, 51, 51));
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -294,6 +294,10 @@ public class SearchTrips extends javax.swing.JFrame {
             destination.setText("Enter Destination");
         }
     }//GEN-LAST:event_destinationFocusLost
+
+    private void bookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookingActionPerformed
 
     /**
      * @param args the command line arguments

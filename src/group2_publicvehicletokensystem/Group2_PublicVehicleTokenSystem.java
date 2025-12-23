@@ -4,11 +4,14 @@
  */
 package group2_publicvehicletokensystem;
 
+import Controller.SearchController;
+import Controller.TripController;
 import Controller.UserController;
 import Database.Database;
 import Database.MySqlConnection;
+import View.SearchTrips;
 import View.Signup;
-import utils.EmailService;
+import View.TripManagement;
 
 /**
  *
@@ -32,5 +35,13 @@ public class Group2_PublicVehicleTokenSystem {
         UserController usercontroller = new UserController(signup);
 
         usercontroller.open();
+        
+            SearchTrips view = new SearchTrips();
+            SearchController controller = new SearchController(view);
+            controller.openSearchTrips();
+            
+            TripManagement viewtrip = new TripManagement();
+            TripController controllertrip = new TripController(viewtrip);
+            controllertrip.openTripManagement();
     }
 }

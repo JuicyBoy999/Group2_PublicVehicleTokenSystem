@@ -17,6 +17,7 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
      */
     public ReportdelayPassenger() {
         initComponents();
+        NotifyBtn.addActionListener(evt -> javax.swing.JOptionPane.showMessageDialog(this, "Notified to passenger"));
     }
 
     /**
@@ -33,9 +34,10 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
         Estdelay = new javax.swing.JLabel();
         EstimatedDelay = new javax.swing.JTextField();
         ReasonofDelay = new javax.swing.JLabel();
-        ReasonForDelay = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         NotifyBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -61,6 +63,11 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
         NotifyBtn.setForeground(new java.awt.Color(255, 255, 255));
         NotifyBtn.setText("Notify Passengers");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -69,19 +76,18 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ReasonofDelay)
-                                .addComponent(Estdelay)
-                                .addComponent(EstimatedDelay, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-                                .addComponent(ReasonForDelay))
-                            .addComponent(Reportdelay, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ReasonofDelay)
+                            .addComponent(Estdelay)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                            .addComponent(EstimatedDelay)
+                            .addComponent(Reportdelay)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(149, 149, 149)
                         .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(NotifyBtn)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +100,9 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
                 .addComponent(EstimatedDelay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(ReasonofDelay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ReasonForDelay, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NotifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,6 +117,7 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     /**
@@ -143,9 +150,10 @@ public class ReportdelayPassenger extends javax.swing.JFrame {
     private javax.swing.JLabel Estdelay;
     private javax.swing.JTextField EstimatedDelay;
     private javax.swing.JButton NotifyBtn;
-    private javax.swing.JTextField ReasonForDelay;
     private javax.swing.JLabel ReasonofDelay;
     private javax.swing.JLabel Reportdelay;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
