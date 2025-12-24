@@ -110,17 +110,18 @@ public class TripDao {
     
     public int startTrip(int tripId) {
         Connection con = mysql.openConnection();
-        String sql = "UPDATE trip SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
+        String sql = "UPDATE trips SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "ONGOING");
             ps.setInt(2, tripId);
             ps.executeUpdate();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("No trips found");
         }
-        finally{
+        finally {
             mysql.closeConnection(con);
         }
         return -1;
@@ -128,22 +129,23 @@ public class TripDao {
 
     public void EndTrip(int tripId) {
         Connection con = mysql.openConnection();
-    String sql = "UPDATE trip SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
+        String sql = "UPDATE trips SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
 
-    try (
-         PreparedStatement ps = con.prepareStatement(sql)) {
+        try (
+            PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setString(1, "COMPLETED");
-        ps.setInt(2, tripId);
-        ps.executeUpdate();
+            ps.setString(1, "COMPLETED");
+            ps.setInt(2, tripId);
+            ps.executeUpdate();
 
-    } catch (Exception e) {
-        System.out.println("No trips found");
-    }
-    finally{
+        }
+        catch (Exception e) {
+            System.out.println("No trips found");
+        }
+        finally {
             mysql.closeConnection(con);
+        }
     }
-}
 
     
     public void addTrip(TripData trip) {
@@ -275,6 +277,23 @@ public class TripDao {
         }
         finally {
             mysql.closeConnection(conn);
+        }
+    }
+    
+    public void cancelTrip(int tripId) {
+        Connection con = mysql.openConnection();
+        String sql = "Update trips set status = 'Cancelled', where trip_id = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, tripId);
+            ps.executeUpdate();
+
+        }
+        catch (Exception e) {
+            System.out.println("Cancel trip error: " + e.getMessage());
+        }
+        finally {
+            mysql.closeConnection(con);
         }
     }
     
