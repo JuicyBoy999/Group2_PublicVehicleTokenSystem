@@ -23,15 +23,16 @@ public class TripDao {
         String sql = "SELECT type, number FROM vehicles";
         
         try (PreparedStatement pstm = conn.prepareStatement(sql);
-                ResultSet rs = pstm.executeQuery()) {
-            
+             ResultSet rs = pstm.executeQuery()) {
             while (rs.next()) {
                 String display = rs.getString("type") + " - " + rs.getString("number");
                 vehicles.add(display);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e);
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return vehicles;
@@ -50,9 +51,11 @@ public class TripDao {
             if (rs.next()) {
                 return rs.getInt("vehicle_id");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error getting vehicle ID: " + e.getMessage());
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return -1;
@@ -65,14 +68,16 @@ public class TripDao {
         String sql = "SELECT route_name, origin, destination FROM routes";
         
         try (PreparedStatement pstm = conn.prepareStatement(sql);
-                ResultSet rs = pstm.executeQuery()) {
+             ResultSet rs = pstm.executeQuery()) {
             while (rs.next()) {
                 String display = rs.getString("route_name") + " - " + rs.getString("origin") + " -> " + rs.getString("destination");
                 routes.add(display);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e);
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return routes;
@@ -89,9 +94,11 @@ public class TripDao {
             if (rs.next()) {
                 return rs.getInt("route_id");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error getting route ID: " + e.getMessage());
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return -1;
@@ -99,17 +106,18 @@ public class TripDao {
     
     public int startTrip(int tripId) {
         Connection con = mysql.openConnection();
-        String sql = "UPDATE trip SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
+        String sql = "UPDATE trips SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "ONGOING");
             ps.setInt(2, tripId);
             ps.executeUpdate();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("No trips found");
         }
-        finally{
+        finally {
             mysql.closeConnection(con);
         }
         return -1;
@@ -117,22 +125,21 @@ public class TripDao {
 
     public void EndTrip(int tripId) {
         Connection con = mysql.openConnection();
-    String sql = "UPDATE trip SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
+        String sql = "UPDATE trips SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
 
-    try (
-         PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "COMPLETED");
+            ps.setInt(2, tripId);
+            ps.executeUpdate();
 
-        ps.setString(1, "COMPLETED");
-        ps.setInt(2, tripId);
-        ps.executeUpdate();
-
-    } catch (Exception e) {
-        System.out.println("No trips found");
-    }
-    finally{
+        }
+        catch (Exception e) {
+            System.out.println("No trips found");
+        }
+        finally {
             mysql.closeConnection(con);
+        }
     }
-}
 
     
     public void addTrip(TripData trip) {
@@ -257,6 +264,24 @@ public class TripDao {
         }
     }
     
+    public void cancelTrip(int tripId) {
+        Connection con = mysql.openConnection();
+        String sql = "Update trips set status = 'Cancelled', where trip_id = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, tripId);
+            ps.executeUpdate();
+
+        }
+        catch (Exception e) {
+            System.out.println("Cancel trip error: " + e.getMessage());
+        }
+        finally {
+            mysql.closeConnection(con);
+        }
+    }
+    
+    // Return ArrayList of all trips
     public ArrayList<TripData> getAllTrips() {
         ArrayList<TripData> triplist = new ArrayList<>();
         
@@ -304,9 +329,11 @@ public class TripDao {
         if (rs.next()) {
             return rs.getString("type") + " - " + rs.getString("number");
         }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e) {
         System.out.println(e);
-    } finally {
+    }
+    finally {
         mysql.closeConnection(conn);
     }
     return null;
@@ -325,9 +352,11 @@ public class TripDao {
                    rs.getString("origin") + " -> " +
                    rs.getString("destination");
         }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e) {
         System.out.println(e);
-    } finally {
+    }
+    finally {
         mysql.closeConnection(conn);
     }
     return null;
@@ -344,9 +373,11 @@ public class TripDao {
             if (rs.next()) {
                 return rs.getDouble("fare");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error getting fare: " + e.getMessage());
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return 0.0;
@@ -364,9 +395,11 @@ public class TripDao {
                 int available = rs.getInt("available_seats");
                 return available >= requestedSeats;
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error checking availability: " + e.getMessage());
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
         return false;
@@ -380,9 +413,11 @@ public class TripDao {
             pstm.setInt(1, seatsBooked);
             pstm.setInt(2, tripId);
             pstm.executeUpdate();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error updating seats: " + e.getMessage());
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
     }
