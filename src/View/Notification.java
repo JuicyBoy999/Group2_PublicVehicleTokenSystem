@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Nitro V 16
@@ -40,17 +42,17 @@ public class Notification extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        VehicleManagement = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        ChooseTrip = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        General = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        SendNotification = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        MessageField = new javax.swing.JTextArea();
+        form = new javax.swing.JPanel();
+        NotificationCenter = new javax.swing.JLabel();
+        summary = new javax.swing.JLabel();
+        Trips = new javax.swing.JLabel();
+        trip = new javax.swing.JComboBox<>();
+        Notifications = new javax.swing.JLabel();
+        type = new javax.swing.JComboBox<>();
+        Messages = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        message = new javax.swing.JTextArea();
+        send = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -170,92 +172,100 @@ public class Notification extends javax.swing.JFrame {
         separator.setForeground(new java.awt.Color(102, 102, 102));
         getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1210, 10));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        form.setBackground(new java.awt.Color(255, 255, 255));
 
-        VehicleManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        VehicleManagement.setText("Notification Center");
+        NotificationCenter.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        NotificationCenter.setText("Notification Center");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("Send notifications to passengers about trip updates");
+        summary.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        summary.setForeground(new java.awt.Color(153, 153, 153));
+        summary.setText("Send notifications to passengers about trip updates");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Select Trips");
+        Trips.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Trips.setForeground(new java.awt.Color(102, 102, 102));
+        Trips.setText("Select Trips");
 
-        ChooseTrip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ChooseTrip.setForeground(new java.awt.Color(153, 153, 153));
-        ChooseTrip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Trip", "Item 2", "Item 3", "Item 4" }));
+        trip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        trip.setForeground(new java.awt.Color(153, 153, 153));
+        trip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Trip" }));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("Notifications Tab");
+        Notifications.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Notifications.setForeground(new java.awt.Color(102, 102, 102));
+        Notifications.setText("Notifications Tab");
 
-        General.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        General.setForeground(new java.awt.Color(153, 153, 153));
-        General.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General", "Item 2", "Item 3", "Item 4" }));
+        type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        type.setForeground(new java.awt.Color(153, 153, 153));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Notification Type", "General", "Rescheduled", "Cancelled", "Route Chnage" }));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Message");
+        Messages.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Messages.setForeground(new java.awt.Color(102, 102, 102));
+        Messages.setText("Message");
 
-        SendNotification.setBackground(new java.awt.Color(0, 0, 204));
-        SendNotification.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        SendNotification.setForeground(new java.awt.Color(255, 255, 255));
-        SendNotification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mynaui_send.png"))); // NOI18N
-        SendNotification.setText("Send Notification");
-        SendNotification.addActionListener(this::SendNotificationActionPerformed);
+        message.setColumns(20);
+        message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        message.setForeground(new java.awt.Color(153, 153, 153));
+        message.setRows(5);
+        message.setText("Enter your message here");
+        message.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                messageFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                messageFocusLost(evt);
+            }
+        });
+        scroll.setViewportView(message);
 
-        MessageField.setColumns(20);
-        MessageField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        MessageField.setForeground(new java.awt.Color(153, 153, 153));
-        MessageField.setRows(5);
-        MessageField.setText("Enter your message here");
-        jScrollPane1.setViewportView(MessageField);
+        send.setBackground(new java.awt.Color(0, 0, 204));
+        send.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        send.setForeground(new java.awt.Color(255, 255, 255));
+        send.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mynaui_send.png"))); // NOI18N
+        send.setText("Send Notification");
+        send.addActionListener(this::sendActionPerformed);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
+        form.setLayout(formLayout);
+        formLayout.setHorizontalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SendNotification)
-                    .addComponent(VehicleManagement)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(ChooseTrip, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addComponent(General, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE))
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(send)
+                    .addComponent(NotificationCenter)
+                    .addComponent(summary)
+                    .addComponent(Trips)
+                    .addComponent(trip, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Notifications)
+                    .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Messages)
+                    .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        formLayout.setVerticalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(VehicleManagement)
+                .addComponent(NotificationCenter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(summary)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(Trips)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChooseTrip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(Notifications)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(General, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(Messages)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SendNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 1220, 430));
+        getContentPane().add(form, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 1220, 430));
 
         setBounds(0, 0, 1280, 740);
     }// </editor-fold>//GEN-END:initComponents
@@ -268,9 +278,23 @@ public class Notification extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routesActionPerformed
 
-    private void SendNotificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendNotificationActionPerformed
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SendNotificationActionPerformed
+    }//GEN-LAST:event_sendActionPerformed
+
+    private void messageFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_messageFocusGained
+        // Removes placeholder
+        if (message.getText().equals("Enter your message here")) {
+            message.setText("");
+        }
+    }//GEN-LAST:event_messageFocusGained
+
+    private void messageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_messageFocusLost
+        // Adds placeholder
+        if (message.getText().equals("")) {
+            message.setText("Enter your message here");
+        }
+    }//GEN-LAST:event_messageFocusLost
 
     /**
      * @param args the command line arguments
@@ -300,26 +324,83 @@ public class Notification extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
-    private javax.swing.JComboBox<String> ChooseTrip;
-    private javax.swing.JComboBox<String> General;
-    private javax.swing.JTextArea MessageField;
-    private javax.swing.JButton SendNotification;
-    private javax.swing.JLabel VehicleManagement;
+    private javax.swing.JLabel Messages;
+    private javax.swing.JLabel NotificationCenter;
+    private javax.swing.JLabel Notifications;
+    private javax.swing.JLabel Trips;
+    private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextArea message;
     private javax.swing.JButton notifications;
     private javax.swing.JButton profile;
     private javax.swing.JButton routes;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JButton send;
     private javax.swing.JSeparator separator;
+    private javax.swing.JLabel summary;
+    private javax.swing.JComboBox<String> trip;
     private javax.swing.JButton trips;
+    private javax.swing.JComboBox<String> type;
     private javax.swing.JButton users;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
+
+    // What happens when user clicks button
+    public void SendNotificationListener(ActionListener listener) {
+        send.addActionListener(listener);
+    }
+    
+    public void VehicleManagementListener(ActionListener listener) {
+        vehicles.addActionListener(listener);
+    }
+        
+    public void RouteManagementListener(ActionListener listener) {
+        routes.addActionListener(listener);
+    }
+    
+    public void TripManagementListener(ActionListener listener) {
+        trips.addActionListener(listener);
+    }
+
+    public void UserManagementListener(ActionListener listener) {
+        users.addActionListener(listener);
+    }
+    
+    
+    // Read / Manipulate value entered by user
+    public javax.swing.JComboBox getTrip() {
+        return trip;
+    }
+    
+    public javax.swing.JComboBox getGenre() {
+        return type;
+    }
+    
+    public javax.swing.JTextArea getMessage() {
+        return message;
+    }
+    
+    
+    // Getter for UI elements
+    public javax.swing.JButton getSendButton() {
+        return send;
+    }
+    
+    public javax.swing.JButton getVehicleButton() {
+        return vehicles;
+    }
+    
+    public javax.swing.JButton getRouteButton() {
+        return routes;
+    }
+    
+    public javax.swing.JButton getUserButton() {
+        return users;
+    }
+    
+    public javax.swing.JButton getNotificationButton() {
+        return notifications;
+    }
 }
