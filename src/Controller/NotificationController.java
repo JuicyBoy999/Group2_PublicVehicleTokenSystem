@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import utils.EmailService;
 
 /**
  *
@@ -99,7 +100,26 @@ public class NotificationController {
                 NotificationData notif = new NotificationData(tripID, type, message);
                 notifdao.saveNotification(notif);
                 
-                JOptionPane.showMessageDialog(notifView, "Notification sent successfully!");
+                //Build email body
+                String subject = "Trip Update: " + type;
+                String body = "<h3>Trip Notification</h3>" +
+                                   "<p><strong>Type:</strong> " + type + "</p>" +
+                                   "<p>" + message + "</p>" +
+                                   "<br><p>Thank you,<br>Bato+ Management Team</p>";
+                
+                // Get passenger emails
+                ArrayList<String> emails = notifdao.getPassengerEmailsByTrip(tripID);
+                
+                // Send email
+                if (emails.isEmpty()) {
+                    JOptionPane.showMessageDialog(notifView, "No passengers booked for this trip.");
+                }
+                else {
+                    for (String email : emails) {
+                        EmailService.sendEmail(email, subject, body);
+                    }
+                    JOptionPane.showMessageDialog(notifView, "Notification sent successfully!");
+                }
                 resetForm();
             }
             catch(Exception ex) {
