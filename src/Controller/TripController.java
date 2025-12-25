@@ -26,7 +26,7 @@ public class TripController {
     public final TripDao tripdao = new TripDao();
     public final TripManagement tripView;
     
-    private int currentEditingId = -1; // tracks which vehicle is being edited
+    private int currentEditingId = -1; // tracks which trip is being edited
     
     public TripController(TripManagement tripView) {   // Constructor
         this.tripView = tripView;
@@ -158,7 +158,7 @@ public class TripController {
                     return;
                 }
                 if (routeName.equals("Select the Route")) {
-                    JOptionPane.showMessageDialog(tripView, "Please enter a valid number.");
+                    JOptionPane.showMessageDialog(tripView, "Please select a route.");
                     return;
                 }
                 if (departure.equals("yyyy-mm-dd hh:mm:ss")) {

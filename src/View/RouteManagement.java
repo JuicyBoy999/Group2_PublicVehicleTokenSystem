@@ -204,6 +204,7 @@ public class RouteManagement extends javax.swing.JFrame {
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
         notifications.setContentAreaFilled(false);
+        notifications.addActionListener(this::notificationsActionPerformed);
         getContentPane().add(notifications);
         notifications.setBounds(470, 193, 110, 40);
 
@@ -458,6 +459,13 @@ public class RouteManagement extends javax.swing.JFrame {
         controller.closeRouteManagement(this);
         controller.openTripManagement();
     }//GEN-LAST:event_tripsActionPerformed
+
+    private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openNotification();
+    }//GEN-LAST:event_notificationsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -321,7 +321,8 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             Notification n = new Notification();  // Create view
-            n.setVisible(true);    // Open Notification Management page
+            NotificationController nc = new NotificationController(n); // Create controller
+            nc.openNotification();  // Open Notification Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
     }

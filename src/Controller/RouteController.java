@@ -6,6 +6,7 @@ package Controller;
 
 import DAO.RouteDAO;
 import Model.Route;
+import View.Notification;
 import View.RouteManagement;
 import View.TripManagement;
 import View.UserManagement;
@@ -39,6 +40,12 @@ public class RouteController {
     public void openUserList() {
         UserManagement um = new UserManagement();
         um.setVisible(true);
+    }
+    
+    public void openNotification() {
+        Notification n = new Notification();  // Create view
+        NotificationController nc = new NotificationController(n); // Create controller
+        nc.openNotification();  // Open Notification Management page
     }
     
     public void closeRouteManagement(RouteManagement rm) {
