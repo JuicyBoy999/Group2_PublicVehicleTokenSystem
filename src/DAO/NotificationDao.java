@@ -25,8 +25,7 @@ public class NotificationDao {
         String sql = "Select t.trip_id, v.number, r.route_name, t.departure, t.arrival " +
                      "from trips t " +
                      "join vehicles v ON t.vehicle = v.vehicle_id " +
-                     "join routes r ON t.route = r.route_id " +
-                     "where t.status <> 'Cancelled'";
+                     "join routes r ON t.route = r.route_id";
 
         try (PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -72,13 +71,13 @@ public class NotificationDao {
     // Get passenger emails for selected trip
     public ArrayList<String> getPassengerEmailsByTrip(int tripId) {
         ArrayList<String> emails = new ArrayList<>();
-        Connection con = mysql.openConnection();
+        Connection conn = mysql.openConnection();
 
-        String sql = "SELECT u.email FROM bookings b " +
-                     "JOIN users u ON b.user_id = u.user_id " +
-                     "WHERE b.trip_id = ? AND b.status = 'CONFIRMED'";
+        String sql = "Select u.email from bookings b " +
+                     "join users u on b.user_id = u.user_id " +
+                     "where b.trip_id = ? and b.status = 'Confirmed'";
 
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, tripId);
             ResultSet rs = ps.executeQuery();
 
@@ -90,7 +89,7 @@ public class NotificationDao {
             System.out.println("Error fetching passenger emails: " + e.getMessage());
         }
         finally {
-            mysql.closeConnection(con);
+            mysql.closeConnection(conn);
         }
         return emails;
     }

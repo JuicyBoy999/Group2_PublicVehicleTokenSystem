@@ -15,12 +15,14 @@ public class NotificationData {
     private String genre;
     private String message;
     
+    // Sending/Saving notification
     public NotificationData(int tripId, String genre, String message) {
         this.tripId = tripId;
         this.genre = genre;
         this.message = message;
     }
     
+    // Loading trips into combobox
     public NotificationData(int tripId, String tripLabel, String genre, String message) {
         this.tripId = tripId;
         this.tripLabel = tripLabel;
