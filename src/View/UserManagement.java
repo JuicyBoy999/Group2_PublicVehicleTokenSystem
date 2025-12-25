@@ -4,8 +4,7 @@
  */
 package View;
 
-<<<<<<< Updated upstream
-=======
+import Controller.NotificationController;
 import Controller.TripController;
 import Controller.VehicleController;
 import DAO.userDAO;
@@ -14,21 +13,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
->>>>>>> Stashed changes
 /**
  *
- * @author hp
+ * @author Nitro V 16
  */
 public class UserManagement extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserManagement.class.getName());
-
+    public userDAO userDao;
     /**
-     * Creates new form VehicleManagement
+     * Creates new form UserManagement2
      */
     public UserManagement() {
         initComponents();
         setSize(1280, 740);
+        userDao = new userDAO(); 
+        loadAllUsers();
     }
 
     /**
@@ -43,7 +43,6 @@ public class UserManagement extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Bato = new javax.swing.JLabel();
-        profile = new javax.swing.JButton();
         AdminDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         vehicles = new javax.swing.JButton();
@@ -52,14 +51,13 @@ public class UserManagement extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
+        RouteManagement = new javax.swing.JLabel();
         form = new javax.swing.JPanel();
-        UsersManagement = new javax.swing.JLabel();
         all = new javax.swing.JButton();
-        passsenger = new javax.swing.JButton();
+        passenger = new javax.swing.JButton();
         driver = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
-        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -69,18 +67,9 @@ public class UserManagement extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
 
         Bato.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Bato.setForeground(new java.awt.Color(0, 0, 0));
         Bato.setText("Bato+");
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
-
-        profile.setBackground(new java.awt.Color(244, 244, 244));
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        profile.setForeground(new java.awt.Color(102, 102, 102));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
-        profile.setBorder(null);
-        profile.setBorderPainted(false);
-        profile.setContentAreaFilled(false);
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -91,23 +80,16 @@ public class UserManagement extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(1065, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                    .addComponent(logo)
+                    .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(header);
@@ -115,7 +97,6 @@ public class UserManagement extends javax.swing.JFrame {
 
         AdminDashboard.setBackground(new java.awt.Color(255, 255, 255));
         AdminDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 1, 30)); // NOI18N
-        AdminDashboard.setForeground(new java.awt.Color(0, 0, 0));
         AdminDashboard.setText("Admin Dashboard");
         AdminDashboard.setMaximumSize(new java.awt.Dimension(356, 47));
         AdminDashboard.setMinimumSize(new java.awt.Dimension(356, 47));
@@ -137,6 +118,7 @@ public class UserManagement extends javax.swing.JFrame {
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
         vehicles.setContentAreaFilled(false);
+        vehicles.addActionListener(this::vehiclesActionPerformed);
         getContentPane().add(vehicles);
         vehicles.setBounds(30, 193, 110, 40);
 
@@ -148,6 +130,7 @@ public class UserManagement extends javax.swing.JFrame {
         routes.setBorder(null);
         routes.setBorderPainted(false);
         routes.setContentAreaFilled(false);
+        routes.addActionListener(this::routesActionPerformed);
         getContentPane().add(routes);
         routes.setBounds(140, 193, 110, 40);
 
@@ -171,6 +154,7 @@ public class UserManagement extends javax.swing.JFrame {
         users.setBorder(null);
         users.setBorderPainted(false);
         users.setContentAreaFilled(false);
+        users.addActionListener(this::usersActionPerformed);
         getContentPane().add(users);
         users.setBounds(360, 193, 110, 40);
 
@@ -182,6 +166,7 @@ public class UserManagement extends javax.swing.JFrame {
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
         notifications.setContentAreaFilled(false);
+        notifications.addActionListener(this::notificationsActionPerformed);
         getContentPane().add(notifications);
         notifications.setBounds(470, 193, 110, 40);
 
@@ -189,13 +174,12 @@ public class UserManagement extends javax.swing.JFrame {
         getContentPane().add(separator);
         separator.setBounds(30, 230, 1205, 20);
 
-        form.setBackground(new java.awt.Color(255, 255, 255));
-        form.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        form.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        RouteManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        RouteManagement.setText("User Management");
+        getContentPane().add(RouteManagement);
+        RouteManagement.setBounds(50, 240, 240, 54);
 
-        UsersManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        UsersManagement.setForeground(new java.awt.Color(0, 0, 0));
-        UsersManagement.setText("Users Management");
+        form.setBackground(new java.awt.Color(255, 255, 255));
 
         all.setBackground(new java.awt.Color(0, 0, 204));
         all.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -203,20 +187,18 @@ public class UserManagement extends javax.swing.JFrame {
         all.setText("All");
         all.addActionListener(this::allActionPerformed);
 
-        passsenger.setBackground(new java.awt.Color(153, 153, 153));
-        passsenger.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        passsenger.setForeground(new java.awt.Color(255, 255, 255));
-        passsenger.setText("Passenger");
-        passsenger.addActionListener(this::passsengerActionPerformed);
+        passenger.setBackground(new java.awt.Color(0, 0, 204));
+        passenger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passenger.setForeground(new java.awt.Color(255, 255, 255));
+        passenger.setText("Passenger");
+        passenger.addActionListener(this::passengerActionPerformed);
 
-        driver.setBackground(new java.awt.Color(153, 153, 153));
-        driver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        driver.setBackground(new java.awt.Color(0, 0, 204));
+        driver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         driver.setForeground(new java.awt.Color(255, 255, 255));
         driver.setText("Driver");
         driver.addActionListener(this::driverActionPerformed);
 
-        usersTable.setBackground(new java.awt.Color(255, 255, 255));
-        usersTable.setForeground(new java.awt.Color(51, 51, 51));
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -225,65 +207,45 @@ public class UserManagement extends javax.swing.JFrame {
                 "Name", "Email", "Phone", "Role", "Joined"
             }
         ));
-        jScrollPane1.setViewportView(usersTable);
+        scroll.setViewportView(usersTable);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(formLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formLayout.createSequentialGroup()
-                                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(driver)))))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(passenger)
+                        .addGap(18, 18, 18)
+                        .addComponent(driver)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(UsersManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passsenger, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passenger, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         getContentPane().add(form);
-        form.setBounds(60, 270, 1150, 300);
+        form.setBounds(50, 290, 1180, 420);
 
-        background.setBackground(new java.awt.Color(0, 0, 0));
-        background.setForeground(new java.awt.Color(255, 255, 255));
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/DashboardBackground.png"))); // NOI18N
-        background.setFocusable(false);
-        background.setMaximumSize(new java.awt.Dimension(1024, 640));
-        background.setMinimumSize(new java.awt.Dimension(1024, 640));
-        background.setPreferredSize(new java.awt.Dimension(1480, 1024));
-        getContentPane().add(background);
-        background.setBounds(0, 0, 1440, 1024);
-
-        pack();
+        setBounds(0, 0, 1280, 740);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passsengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passsengerActionPerformed
+    private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
         // TODO add your handling code here:
-<<<<<<< Updated upstream
-    }//GEN-LAST:event_passsengerActionPerformed
-=======
         this.dispose();
         VehicleManagement vm = new VehicleManagement();
         VehicleController vc = new VehicleController(vm);
@@ -300,14 +262,20 @@ public class UserManagement extends javax.swing.JFrame {
     private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usersActionPerformed
->>>>>>> Stashed changes
 
     private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
         // TODO add your handling code here:
+        loadAllUsers();
     }//GEN-LAST:event_allActionPerformed
+
+    private void passengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengerActionPerformed
+        // TODO add your handling code here:
+        loadUsersByRole("Passenger");
+    }//GEN-LAST:event_passengerActionPerformed
 
     private void driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverActionPerformed
         // TODO add your handling code here:
+        loadUsersByRole("Driver");
     }//GEN-LAST:event_driverActionPerformed
 
     private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
@@ -317,6 +285,14 @@ public class UserManagement extends javax.swing.JFrame {
         TripController tc = new TripController(tm);
         tc.openTripManagement();
     }//GEN-LAST:event_tripsActionPerformed
+
+    private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Notification n = new Notification();
+        NotificationController nc = new NotificationController(n);
+        nc.openNotification();
+    }//GEN-LAST:event_notificationsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,23 +322,88 @@ public class UserManagement extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
-    private javax.swing.JLabel UsersManagement;
+    private javax.swing.JLabel RouteManagement;
     private javax.swing.JButton all;
-    private javax.swing.JLabel background;
     private javax.swing.JButton driver;
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private javax.swing.JButton passsenger;
-    private javax.swing.JButton profile;
+    private javax.swing.JButton passenger;
     private javax.swing.JButton routes;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
     private javax.swing.JTable usersTable;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
+
+    private void loadAllUsers() {
+        try {
+            ResultSet rs = userDao.getAllUsers();
+            populateTable(rs);
+        } catch (Exception e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error loading users", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error loading users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void loadUsersByRole(String role) {
+        try {
+            ResultSet rs = userDao.getUsersByRole(role);
+            populateTable(rs);
+        } catch (Exception e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error loading users by role", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error loading users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void populateTable(ResultSet rs) {
+        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        if (rs == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "No data available",
+                    "Info",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            while (rs.next()) {
+                String name = rs.getString("username");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String role = rs.getString("role");
+                String joined = "";
+
+                try {
+                    java.sql.Timestamp timestamp = rs.getTimestamp("created_at");
+                    if (timestamp != null) {
+                        joined = dateFormat.format(timestamp);
+                    }
+                } catch (SQLException e) {
+                    joined = "N/A";
+                }
+
+                model.addRow(new Object[]{name, email, phone, role, joined});
+            }
+        } catch (SQLException e) {
+            logger.log(java.util.logging.Level.SEVERE, "Error populating table", e);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error displaying users: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

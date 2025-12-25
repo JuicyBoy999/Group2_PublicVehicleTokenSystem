@@ -4,11 +4,15 @@
  */
 package View;
 
+import Controller.RouteController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
  */
 public class RouteManagement extends javax.swing.JFrame {
+    private int editingRouteId = -1;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RouteManagement.class.getName());
 
@@ -17,12 +21,14 @@ public class RouteManagement extends javax.swing.JFrame {
      */
     public RouteManagement() {
         initComponents();
+        RouteTable.getColumnModel().getColumn(0).setMinWidth(0);
+        RouteTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        RouteTable.getColumnModel().getColumn(0).setWidth(0);
+
         setSize(1280, 740);
-<<<<<<< Updated upstream
-=======
+
         RouteController controller = new RouteController();
         controller.loadRoutes(this);
-
         RouteTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -50,7 +56,6 @@ public class RouteManagement extends javax.swing.JFrame {
                 }
             }
         });
->>>>>>> Stashed changes
     }
 
     /**
@@ -65,7 +70,6 @@ public class RouteManagement extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Bato = new javax.swing.JLabel();
-        profile = new javax.swing.JButton();
         AdminDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         vehicles = new javax.swing.JButton();
@@ -79,20 +83,19 @@ public class RouteManagement extends javax.swing.JFrame {
         form = new javax.swing.JPanel();
         AddNewRoute = new javax.swing.JLabel();
         RouteName = new javax.swing.JLabel();
-        number = new javax.swing.JTextField();
+        RouteNameText = new javax.swing.JTextField();
         Destination = new javax.swing.JLabel();
         DestinationText = new javax.swing.JTextField();
         Origin = new javax.swing.JLabel();
         Driver = new javax.swing.JLabel();
         SubmitRoute = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        DriverText = new javax.swing.JTextField();
+        FareText = new javax.swing.JTextField();
         OriginText = new javax.swing.JTextField();
         Duration = new javax.swing.JLabel();
         DurationText = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        background = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        RouteTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -106,14 +109,6 @@ public class RouteManagement extends javax.swing.JFrame {
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
 
-        profile.setBackground(new java.awt.Color(244, 244, 244));
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        profile.setForeground(new java.awt.Color(102, 102, 102));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
-        profile.setBorder(null);
-        profile.setBorderPainted(false);
-        profile.setContentAreaFilled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -123,23 +118,16 @@ public class RouteManagement extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(1065, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                    .addComponent(logo)
+                    .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(header);
@@ -168,6 +156,7 @@ public class RouteManagement extends javax.swing.JFrame {
         vehicles.setBorder(null);
         vehicles.setBorderPainted(false);
         vehicles.setContentAreaFilled(false);
+        vehicles.addActionListener(this::vehiclesActionPerformed);
         getContentPane().add(vehicles);
         vehicles.setBounds(30, 193, 110, 40);
 
@@ -203,6 +192,7 @@ public class RouteManagement extends javax.swing.JFrame {
         users.setBorder(null);
         users.setBorderPainted(false);
         users.setContentAreaFilled(false);
+        users.addActionListener(this::usersActionPerformed);
         getContentPane().add(users);
         users.setBounds(360, 193, 110, 40);
 
@@ -214,6 +204,7 @@ public class RouteManagement extends javax.swing.JFrame {
         notifications.setBorder(null);
         notifications.setBorderPainted(false);
         notifications.setContentAreaFilled(false);
+        notifications.addActionListener(this::notificationsActionPerformed);
         getContentPane().add(notifications);
         notifications.setBounds(470, 193, 110, 40);
 
@@ -230,6 +221,7 @@ public class RouteManagement extends javax.swing.JFrame {
         AddRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         AddRoute.setForeground(new java.awt.Color(255, 255, 255));
         AddRoute.setText("+ Add Route");
+        AddRoute.addActionListener(this::AddRouteActionPerformed);
         getContentPane().add(AddRoute);
         AddRoute.setBounds(1070, 240, 150, 40);
 
@@ -243,15 +235,15 @@ public class RouteManagement extends javax.swing.JFrame {
         RouteName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         RouteName.setText("Route Name");
 
-        number.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        number.setToolTipText("");
-        number.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        number.addActionListener(this::numberActionPerformed);
+        RouteNameText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RouteNameText.setToolTipText("");
+        RouteNameText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        RouteNameText.addActionListener(this::RouteNameTextActionPerformed);
 
         Destination.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Destination.setText("Destination");
 
-        DestinationText.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        DestinationText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         DestinationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Origin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -264,6 +256,7 @@ public class RouteManagement extends javax.swing.JFrame {
         SubmitRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         SubmitRoute.setForeground(new java.awt.Color(255, 255, 255));
         SubmitRoute.setText("Add Route");
+        SubmitRoute.addActionListener(this::SubmitRouteActionPerformed);
 
         cancel.setBackground(new java.awt.Color(153, 153, 153));
         cancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -271,9 +264,9 @@ public class RouteManagement extends javax.swing.JFrame {
         cancel.setText("Cancel");
         cancel.addActionListener(this::cancelActionPerformed);
 
-        DriverText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DriverText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        DriverText.addActionListener(this::DriverTextActionPerformed);
+        FareText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        FareText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        FareText.addActionListener(this::FareTextActionPerformed);
 
         OriginText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         OriginText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -282,7 +275,7 @@ public class RouteManagement extends javax.swing.JFrame {
         Duration.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Duration.setText("Duration (in minutes)");
 
-        DurationText.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        DurationText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         DurationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         DurationText.addActionListener(this::DurationTextActionPerformed);
 
@@ -301,7 +294,7 @@ public class RouteManagement extends javax.swing.JFrame {
                                 .addComponent(DestinationText)
                                 .addComponent(AddNewRoute, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Destination, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                                .addComponent(RouteNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
                                     .addComponent(SubmitRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -311,7 +304,7 @@ public class RouteManagement extends javax.swing.JFrame {
                         .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Origin)
                             .addComponent(Driver)
-                            .addComponent(DriverText, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FareText, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OriginText, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 34, Short.MAX_VALUE))
         );
@@ -326,7 +319,7 @@ public class RouteManagement extends javax.swing.JFrame {
                         .addComponent(RouteName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RouteNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OriginText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,14 +329,14 @@ public class RouteManagement extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addComponent(Origin)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DriverText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DestinationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(FareText, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(DestinationText))
                 .addGap(12, 12, 12)
                 .addComponent(Duration)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(DurationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(DurationText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,56 +346,51 @@ public class RouteManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 310);
 
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        scroll.setPreferredSize(new java.awt.Dimension(450, 60));
+
+        RouteTable.setForeground(new java.awt.Color(51, 51, 51));
+        RouteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Origin", "Destination", "Fare", "Duration", "Actions"
+                "ID", "Name", "Origin", "Destination", "Fare", "Duration", "Actions"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        RouteTable.setPreferredSize(new java.awt.Dimension(450, 500));
+        scroll.setViewportView(RouteTable);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 640, 1150, 70);
-
-        background.setBackground(new java.awt.Color(0, 0, 0));
-        background.setForeground(new java.awt.Color(255, 255, 255));
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/DashboardBackground.png"))); // NOI18N
-        background.setFocusable(false);
-        background.setMaximumSize(new java.awt.Dimension(1024, 640));
-        background.setMinimumSize(new java.awt.Dimension(1024, 640));
-        background.setPreferredSize(new java.awt.Dimension(1480, 1024));
-        getContentPane().add(background);
-        background.setBounds(0, 0, 1440, 1024);
+        getContentPane().add(scroll);
+        scroll.setBounds(60, 640, 1150, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberActionPerformed
+    private void RouteNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RouteNameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numberActionPerformed
+    }//GEN-LAST:event_RouteNameTextActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
+        form.setVisible(false);
+        scroll.setBounds(60, 310, 1150, 350);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void routesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_routesActionPerformed
 
-    private void DriverTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DriverTextActionPerformed
+    private void FareTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FareTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DriverTextActionPerformed
+    }//GEN-LAST:event_FareTextActionPerformed
 
     private void OriginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OriginTextActionPerformed
         // TODO add your handling code here:
@@ -412,8 +400,6 @@ public class RouteManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DurationTextActionPerformed
 
-<<<<<<< Updated upstream
-=======
     private void SubmitRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitRouteActionPerformed
         // TODO add your handling code here:
         String routename = RouteNameText.getText().trim();
@@ -474,7 +460,13 @@ public class RouteManagement extends javax.swing.JFrame {
         controller.openTripManagement();
     }//GEN-LAST:event_tripsActionPerformed
 
->>>>>>> Stashed changes
+    private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
+        // TODO add your handling code here:
+        RouteController controller = new RouteController();
+        controller.closeRouteManagement(this);
+        controller.openNotification();
+    }//GEN-LAST:event_notificationsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -508,29 +500,95 @@ public class RouteManagement extends javax.swing.JFrame {
     private javax.swing.JLabel Destination;
     private javax.swing.JTextField DestinationText;
     private javax.swing.JLabel Driver;
-    private javax.swing.JTextField DriverText;
     private javax.swing.JLabel Duration;
     private javax.swing.JTextField DurationText;
+    private javax.swing.JTextField FareText;
     private javax.swing.JLabel Origin;
     private javax.swing.JTextField OriginText;
     private javax.swing.JLabel RouteManagement;
     private javax.swing.JLabel RouteName;
+    private javax.swing.JTextField RouteNameText;
+    private javax.swing.JTable RouteTable;
     private javax.swing.JButton SubmitRoute;
-    private javax.swing.JLabel background;
     private javax.swing.JButton cancel;
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private javax.swing.JTextField number;
-    private javax.swing.JButton profile;
     private javax.swing.JButton routes;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JSeparator separator;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTextField getRouteName() {
+    return RouteNameText;
+}
+
+public javax.swing.JTextField getOriginName() {
+    return OriginText;
+}
+
+public javax.swing.JTextField getDestinationName() {
+    return DestinationText;
+}
+
+public javax.swing.JTextField getFare() {
+    return FareText;
+}
+
+public javax.swing.JTextField getDuration() {
+    return DurationText;
+}
+
+public javax.swing.JTable getRouteTable() {
+    return RouteTable;
+}
+
+private void loadRouteTable() {
+    RouteController controller = new RouteController();
+    controller.loadRoutes(this);
+}
+
+private void editRoute(int row) {
+
+    int id = (int) RouteTable.getValueAt(row, 0);
+    String name = (String) RouteTable.getValueAt(row, 1);
+    String origin = (String) RouteTable.getValueAt(row, 2);
+    String destination = (String) RouteTable.getValueAt(row, 3);
+    double fare = (double) RouteTable.getValueAt(row, 4);
+    int duration = (int) RouteTable.getValueAt(row, 5);
+
+    RouteNameText.setText(name);
+    OriginText.setText(origin);
+    DestinationText.setText(destination);
+    FareText.setText(String.valueOf(fare));
+    DurationText.setText(String.valueOf(duration));
+
+    editingRouteId = id;
+
+    SubmitRoute.setText("Update Route");
+
+    form.setVisible(true);
+    scroll.setBounds(60, 640, 1150, 70);
+}
+
+private void deleteRoute(int row) {
+    int id = (int) RouteTable.getValueAt(row, 0);
+
+    int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Are you sure you want to delete this route?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirm == JOptionPane.YES_OPTION) {
+        RouteController controller = new RouteController();
+        controller.deleteRoute(id);
+        loadRouteTable();
+    }
+}
 }

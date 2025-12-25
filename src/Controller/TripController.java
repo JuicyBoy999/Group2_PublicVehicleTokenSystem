@@ -26,7 +26,7 @@ public class TripController {
     public final TripDao tripdao = new TripDao();
     public final TripManagement tripView;
     
-    private int currentEditingId = -1; // tracks which vehicle is being edited
+    private int currentEditingId = -1; // tracks which trip is being edited
     
     public TripController(TripManagement tripView) {   // Constructor
         this.tripView = tripView;
@@ -51,21 +51,25 @@ public class TripController {
                     int tripId = (int) model.getValueAt(row, 0); // Hidden ID column
                     String vehicleNumber = (String) model.getValueAt(row, 1);
 
-                    int choice = javax.swing.JOptionPane.showOptionDialog(
+                    int choice = JOptionPane.showOptionDialog(
                         tripView,
                         "Do you want to Edit or Delete vehicle: " + vehicleNumber + "?",
                         "Vehicle Action",
-                        javax.swing.JOptionPane.YES_NO_CANCEL_OPTION,
-                        javax.swing.JOptionPane.QUESTION_MESSAGE,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
                         null,
-                        new Object[]{"Edit", "Delete", "Cancel"},
+                        new Object[]{"Edit Trip", "Delete Trip", "Cancel Trip"},
                         "Edit"
                     );
 
                     if (choice == 0) { // Edit
                         editTrip(tripId);
-                    } else if (choice == 1) { // Delete
+                    }
+                    else if (choice == 1) { // Delete
                         deleteTrip(tripId);
+                    }
+                    else if (choice == 2) { // Cancel
+                        cancelTrip(tripId);
                     }
                 }
             }
@@ -106,8 +110,8 @@ public class TripController {
             // Move table down
             tripView.getScrollPane().setBounds(60, 610, 1150, 100);
 
-            // Change submit button text to "Add Vehicle"
-            tripView.getSubmitButton().setText("Add Vehicle");
+            // Change submit button text to "Schedule Trip"
+            tripView.getSubmitButton().setText("Schedule Trip");
         }
     }
 
@@ -154,7 +158,7 @@ public class TripController {
                     return;
                 }
                 if (routeName.equals("Select the Route")) {
-                    JOptionPane.showMessageDialog(tripView, "Please enter a valid number.");
+                    JOptionPane.showMessageDialog(tripView, "Please select a route.");
                     return;
                 }
                 if (departure.equals("yyyy-mm-dd hh:mm:ss")) {
@@ -234,6 +238,12 @@ public class TripController {
         
         for (TripData t : vehicles) {
             if (t.getTripID() == tripId) {
+                // Block editing cancelled trips
+                if (t.getStatus().equalsIgnoreCase("Cancelled")) {
+                    JOptionPane.showMessageDialog(tripView, "This trip is cancelled and cannot be edited.");
+                    return;
+                }
+                
                 currentEditingId = tripId;
 
                 // Populate form fields
@@ -251,12 +261,26 @@ public class TripController {
     }
 
     private void deleteTrip(int tripId) {
-        int confirm = javax.swing.JOptionPane.showConfirmDialog(tripView,
+        int confirm = JOptionPane.showConfirmDialog(tripView,
                 "Are you sure you want to delete this trip?",
-                "Confirm Delete", javax.swing.JOptionPane.YES_NO_OPTION);
-        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
             tripdao.deleteTrip(tripId);
+            JOptionPane.showMessageDialog(tripView, "Trip deleted successfully.");
             loadTripTable();
+        }
+    }
+    
+    public void cancelTrip(int tripId) {
+        int confirm = JOptionPane.showConfirmDialog(tripView,
+                "Are you sure you want to cancel this trip?",
+                "Cancel Trip", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            tripdao.cancelTrip(tripId);
+            JOptionPane.showMessageDialog(tripView, "Trip cancelled successfully.");
+            loadTripTable();
+            
+            // Next: API
         }
     }
     
@@ -281,7 +305,7 @@ public class TripController {
                     t.getDepartureTime(),
                     t.getArrivalTime(),
                     t.getStatus(),
-                    "Edit | Delete"
+                    "Edit | Delete | Cancel"
                 };
 
                 tableModel.addRow(row);
@@ -346,7 +370,8 @@ public class TripController {
         @Override
         public void actionPerformed(ActionEvent e) {
             Notification n = new Notification();  // Create view
-            n.setVisible(true);    // Open Notification Management page
+            NotificationController nc = new NotificationController(n); // Create controller
+            nc.openNotification();  // Open Notification Management page
             closeTripManagement();   // Close Trip Management page
         }
     }
