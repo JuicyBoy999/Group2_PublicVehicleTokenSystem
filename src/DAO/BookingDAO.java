@@ -33,14 +33,15 @@ public class BookingDAO {
             stmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
             
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-            
-        } catch (SQLException e) {
+            return rowsAffected > 0;  
+        }
+        catch (SQLException e) {
             e.printStackTrace();
-            return false;
-        } finally {
+        }
+        finally {
             mysql.closeConnection(conn);
         }
+        return false;
     }
     
     public List<Booking> getUserBookings(int userId) {
@@ -79,6 +80,48 @@ public class BookingDAO {
             mysql.closeConnection(conn);
         }
         
+        return bookings;
+    }
+    
+    // Filter
+    public List<Booking> getUserBookingsByStatus (int userID, String status) {
+        List<Booking> bookings = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        
+        String sql = "Select b.*, r.origin, r.destination " +
+                     "from bookings b " +
+                     "join trips t on b.trip_id = t.trip_id " +
+                     "join routes r on t.route = r.route_id " +
+                     "where b.user_id = ? and b.status = ? " +
+                     "order by b.booked_at desc";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, userID);
+            pstm.setString(2, status);
+            
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Booking booking = new Booking();
+                
+                booking.setBookingId(rs.getInt("booking_id"));
+                booking.setUserId(rs.getInt("user_id"));
+                booking.setTripId(rs.getInt("trip_id"));
+                booking.setNumberOfSeats(rs.getInt("number_of_seats"));
+                booking.setTotalFare(rs.getDouble("total_fare"));
+                booking.setStatus(rs.getString("status"));
+                booking.setBookingToken(rs.getString("booking_token"));               
+                booking.setOrigin(rs.getString("origin"));
+                booking.setDestination(rs.getString("destination"));
+                
+                bookings.add(booking);                
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            mysql.closeConnection(conn);
+        }
         return bookings;
     }
 }

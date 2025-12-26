@@ -14,9 +14,9 @@ import utils.PasswordService;
  * @author Nitro V 16
  */
 public class LoginDao {
-     MySqlConnection mysql = new MySqlConnection();
+    MySqlConnection mysql = new MySqlConnection();
     
-  public boolean login(userData user) {
+    public boolean login(userData user) {
         Connection conn = mysql.openConnection();
         if (conn == null) {
             System.out.println("LoginDao: Failed to open DB connection");
@@ -69,5 +69,32 @@ public class LoginDao {
         }
         return null;
     }
-}
 
+    public int getUserIdByEmail(String email) {
+        int userID = -1;    // Default if not found
+        Connection conn = mysql.openConnection();
+        
+        if (conn == null) {
+            System.out.println("LoginDao: Failed to open DB connection");
+            return userID;
+        }
+        
+        String sql = "Select user_id FROM users WHERE email = ?";
+        
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
+            
+            if (rs.next()) {
+                userID = rs.getInt("user_id");
+            }
+        }
+        catch (SQLException e) {
+            System.out.print("Error fetching user ID: " + e.getMessage());
+        }
+        finally {
+            mysql.closeConnection(conn);
+        }
+        return userID;
+    }
+}

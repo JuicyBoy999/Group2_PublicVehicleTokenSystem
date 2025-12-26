@@ -7,14 +7,12 @@ package Controller;
 import DAO.SearchDao;
 import Model.SearchData;
 import View.SearchTrips;
-import View.ConfirmBooking;
 import View.MyBooking;
-import View.RouteManagement;
+import View.Profile;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,16 +25,20 @@ public class SearchController {
     public final SearchTrips searchView;
     
     private Timer refresh;
+    private final int userId;   // Tracks which user is logged in
     private String currentVehicleType = "All"; // Tracks which vehicle to show
     
-    public SearchController(SearchTrips searchView) {   // Constructor
+    public SearchController(SearchTrips searchView, int userId) {   // Constructor
         this.searchView = searchView;
+        this.userId = userId;
         
         searchView.SearchListener(new SearchListener());
         searchView.AllListener(new AllListener());
         searchView.BusListener(new BusListener());
         searchView.MicroListener(new MicroListener());
         searchView.TempoListener(new TempoListener());
+        searchView.BookingListener(new BookingListener());
+        searchView.ProfileListener(new ProfileListener());
         
         // Mouse listener for Book column
         searchView.getResultTable().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,9 +72,8 @@ public class SearchController {
                     }
 
                     // Open ConfirmBooking frame
-                    ConfirmBooking confirmBooking = new ConfirmBooking(tripId, vType, vNumber, dest, deptTime);
-                    confirmBooking.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); 
-                    confirmBooking.setVisible(true);
+                    BookingController bc = new BookingController(userId, SearchController.this);
+                    bc.openConfirmBooking(tripId);
                 }
             }
         });
@@ -178,7 +179,7 @@ public class SearchController {
     
     
     // Add results in JTable from database
-    private void loadSearchTable(String destination) {
+    public void loadSearchTable(String destination) {
         
         ArrayList<SearchData> searchlist = searchdao.searchTrips(destination, currentVehicleType);
         DefaultTableModel tableModel = (DefaultTableModel) searchView.getResultTable().getModel();
@@ -204,9 +205,30 @@ public class SearchController {
                     s.getAvailableSeats(),
                     "Book Now"
                 };
-
                 tableModel.addRow(row);
             }
+        }
+    }
+    
+    // Open My Bookings
+    class BookingListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MyBooking mb = new MyBooking();  // Create view
+            BookingController mc = new BookingController(mb, userId);    // Create controller and passes logged-in user's ID
+            mc.openMyBooking();    // Open My Bookings page
+            closeSearchTrips();   // Close Search Trips page
+        }
+    }
+    
+    // Open Profile
+    class ProfileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Profile p = new Profile();  // Create view
+            ProfileController pc = new ProfileController(p, userId);    // Create controller and passes logged-in user's ID
+            pc.openProfile();    // Open Profile page
+            closeSearchTrips();   // Close Search Trips page
         }
     }
 }

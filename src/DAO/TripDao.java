@@ -144,12 +144,14 @@ public class TripDao {
     
     public void addTrip(TripData trip) {
         Connection conn = mysql.openConnection();
-        String sql = "Insert into trips (vehicle, route, departure, arrival) values (?,?,?,?)";
+        String sql = "Insert into trips (vehicle, route, departure, arrival, available_seats) " +
+                     "values (?,?,?,?, (select seat from vehicles where vehicle_id = ?))";
         try(PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setInt(1, trip.getVehicleId());
             pstm.setInt(2, trip.getRouteId());
             pstm.setTimestamp(3, Timestamp.valueOf(trip.getDepartureTime()));
             pstm.setTimestamp(4, Timestamp.valueOf(trip.getArrivalTime()));
+            pstm.setInt(5, trip.getVehicleId());    // For the subquery
             pstm.executeUpdate();
         }
         catch(SQLException e) {
@@ -266,7 +268,7 @@ public class TripDao {
     
     public void cancelTrip(int tripId) {
         Connection con = mysql.openConnection();
-        String sql = "Update trips set status = 'Cancelled', where trip_id = ?";
+        String sql = "Update trips set status = 'Cancelled' where trip_id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, tripId);
@@ -361,64 +363,4 @@ public class TripDao {
     }
     return null;
 }
-
-    public double getFareByTripId(int tripId) {
-        Connection conn = mysql.openConnection();
-        String sql = "SELECT fare FROM trips WHERE trip_id = ?";
-        
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setInt(1, tripId);
-            ResultSet rs = pstm.executeQuery();
-            
-            if (rs.next()) {
-                return rs.getDouble("fare");
-            }
-        }
-        catch (SQLException e) {
-            System.out.println("Error getting fare: " + e.getMessage());
-        }
-        finally {
-            mysql.closeConnection(conn);
-        }
-        return 0.0;
-    }
-
-    public boolean checkSeatAvailability(int tripId, int requestedSeats) {
-        Connection conn = mysql.openConnection();
-        String sql = "SELECT available_seats FROM trips WHERE trip_id = ?";
-        
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setInt(1, tripId);
-            ResultSet rs = pstm.executeQuery();
-            
-            if (rs.next()) {
-                int available = rs.getInt("available_seats");
-                return available >= requestedSeats;
-            }
-        }
-        catch (SQLException e) {
-            System.out.println("Error checking availability: " + e.getMessage());
-        }
-        finally {
-            mysql.closeConnection(conn);
-        }
-        return false;
-    }
-
-    public void updateAvailableSeats(int tripId, int seatsBooked) {
-        Connection conn = mysql.openConnection();
-        String sql = "UPDATE trips SET available_seats = available_seats - ? WHERE trip_id = ?";
-        
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setInt(1, seatsBooked);
-            pstm.setInt(2, tripId);
-            pstm.executeUpdate();
-        }
-        catch (SQLException e) {
-            System.out.println("Error updating seats: " + e.getMessage());
-        }
-        finally {
-            mysql.closeConnection(conn);
-        }
-    }
 }

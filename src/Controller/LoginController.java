@@ -6,8 +6,10 @@ package Controller;
 
 import DAO.LoginDao;
 import Model.userData;
+import View.DriverScheduled;
 import View.Email;
 import View.Login;
+import View.SearchTrips;
 import View.Signup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +20,8 @@ import javax.swing.JOptionPane;
  * @author user
  */
 class LoginController {
-     private final LoginDao logindao = new LoginDao();
-     private final Login loginView;
+    private final LoginDao logindao = new LoginDao();
+    private final Login loginView;
 
     public LoginController(Login loginView) {
         this.loginView = loginView;
@@ -54,19 +56,21 @@ class LoginListner implements ActionListener {
             
             if (role != null) {
                 JOptionPane.showMessageDialog(loginView, "Login successful!");
-                
                 close();
                 
                 if (role.equals("Passenger")) {
-                    // passengerDashboard_SearchTrips passengerView = new passengerDashboard_SearchTrips();
-                    // PassengerController passengerController = new PassengerController(passengerView);
-                    // passengerController.open();
                     System.out.println("Redirecting to Passenger Dashboard...");
+                    int userID = logindao.getUserIdByEmail(email);
+                    SearchTrips view = new SearchTrips();
+                    SearchController controller = new SearchController(view, userID);
+                    controller.openSearchTrips();
                 } else if (role.equals("Driver")) {
-                    // DriverScheduled driverView = new DriverScheduled();
+                    System.out.println("Redirecting to Driver Dashboard...");
+                    
+                    DriverScheduled driverView = new DriverScheduled();
                     // DriverController driverController = new DriverController(driverView);
                     // driverController.open();
-                    System.out.println("Redirecting to Driver Dashboard...");
+                    driverView.setVisible(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(loginView, "Invalid credentials");
@@ -100,4 +104,3 @@ class LoginListner implements ActionListener {
         }
     }
 }
-

@@ -26,7 +26,7 @@ public class SearchDao {
                    + "from trips t "
                    + "join vehicles v on t.vehicle = v.vehicle_id "
                    + "join routes r on t.route = r.route_id "
-                   + "left join (SELECT trip_id, COUNT(*) as booked_seats from bookings group by trip_id) b "
+                   + "left join (select trip_id, sum(number_of_seats) as booked_seats from bookings group by trip_id) b "
                    + "on t.trip_id = b.trip_id "
                    + "where (r.destination like ? or r.origin like ?) "
                    + "and (v.seat - IFNULL(b.booked_seats, 0)) > 0 and t.status in ('Scheduled', 'Ongoing')";
@@ -81,7 +81,7 @@ public class SearchDao {
                    + "from trips t "
                    + "join vehicles v on t.vehicle = v.vehicle_id "
                    + "join routes r on t.route = r.route_id "
-                   + "left join (select trip_id, COUNT(*) as booked_seats from bookings group by trip_id) b "
+                   + "left join (select trip_id, sum(number_of_seats) as booked_seats from bookings group by trip_id) b "
                    + "on t.trip_id = b.trip_id "
                    + "where t.trip_id = ? "
                    + "and (v.seat - IFNULL(b.booked_seats, 0)) > 0 and t.status IN ('Scheduled', 'Ongoing')";
@@ -116,7 +116,7 @@ public class SearchDao {
     // Insert booking
     public boolean bookTrip(int tripId, int passengerId) {
         Connection conn = mysql.openConnection();
-        String sql = "Insert into bookings (trip_id, passenger_id) values (?, ?)";
+        String sql = "Insert into bookings (trip_id, user_id) values (?, ?)";
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setInt(1, tripId);
@@ -140,7 +140,7 @@ public class SearchDao {
         String sql = "Select v.seat - IFNULL(b.booked_seats,0) as available_seats "
                    + "from trips t "
                    + "join vehicles v on t.vehicle = v.vehicle_id "
-                   + "left join (Select trip_id, count(*) as booked_seats from bookings group by trip_id) b "
+                   + "left join (Select trip_id, sum(number_of_seats) as booked_seats from bookings group by trip_id) b "
                    + "on t.trip_id = b.trip_id "
                    + "where t.trip_id = ?";
         
@@ -158,5 +158,22 @@ public class SearchDao {
             mysql.closeConnection(conn);
         }
         return 0;
+    }
+
+    public void updateAvailableSeats(int tripId, int seatsBooked) {
+        Connection conn = mysql.openConnection();
+        String sql = "Update trips set available_seats = available_seats = ? where trip_id = ?";
+        
+        try (PreparedStatement pstm = conn. prepareStatement(sql)) {
+            pstm.setInt(1, seatsBooked);
+            pstm.setInt(2, tripId);
+            pstm.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            mysql.closeConnection(conn);
+        }
     }
 }

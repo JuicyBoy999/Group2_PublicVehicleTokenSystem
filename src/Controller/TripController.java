@@ -279,8 +279,6 @@ public class TripController {
             tripdao.cancelTrip(tripId);
             JOptionPane.showMessageDialog(tripView, "Trip cancelled successfully.");
             loadTripTable();
-            
-            // Next: API
         }
     }
     

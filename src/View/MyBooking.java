@@ -4,14 +4,10 @@
  */
 package View;
 
-import DAO.BookingDAO;
-import Model.Booking;
-import java.util.List; 
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +17,6 @@ public class MyBooking extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MyBooking.class.getName());
     private int userId;
-    private BookingDAO bookingDAO;
 
     /**
      * Creates new form Driver_Ongoing
@@ -162,21 +157,21 @@ public class MyBooking extends javax.swing.JFrame {
         searchtrips.setText("Search Trips");
         searchtrips.addActionListener(this::searchtripsActionPerformed);
         getContentPane().add(searchtrips);
-        searchtrips.setBounds(50, 190, 150, 32);
+        searchtrips.setBounds(50, 190, 150, 36);
 
         all.setBackground(new java.awt.Color(51, 102, 255));
         all.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         all.setForeground(new java.awt.Color(255, 255, 255));
         all.setText("All");
         getContentPane().add(all);
-        all.setBounds(50, 270, 70, 32);
+        all.setBounds(50, 270, 70, 36);
 
         pending.setBackground(new java.awt.Color(204, 204, 204));
         pending.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         pending.setForeground(new java.awt.Color(102, 102, 102));
         pending.setText("Pending");
         getContentPane().add(pending);
-        pending.setBounds(150, 270, 100, 32);
+        pending.setBounds(150, 270, 100, 36);
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -184,21 +179,21 @@ public class MyBooking extends javax.swing.JFrame {
         completed.setText("Completed");
         completed.addActionListener(this::completedActionPerformed);
         getContentPane().add(completed);
-        completed.setBounds(410, 270, 120, 32);
+        completed.setBounds(410, 270, 122, 36);
 
         boarded.setBackground(new java.awt.Color(204, 204, 204));
         boarded.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         boarded.setForeground(new java.awt.Color(102, 102, 102));
         boarded.setText("Boarded");
         getContentPane().add(boarded);
-        boarded.setBounds(280, 270, 100, 32);
+        boarded.setBounds(280, 270, 101, 36);
 
         Mybookings.setBackground(new java.awt.Color(51, 102, 255));
         Mybookings.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Mybookings.setForeground(new java.awt.Color(255, 255, 255));
         Mybookings.setText("My Bookings");
         getContentPane().add(Mybookings);
-        Mybookings.setBounds(230, 190, 150, 30);
+        Mybookings.setBounds(230, 190, 150, 36);
 
         noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         noData.setForeground(new java.awt.Color(153, 153, 153));

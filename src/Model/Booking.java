@@ -6,13 +6,12 @@ package Model;
 
 import java.time.LocalDateTime;
 
-
 /**
  *
  * @author Nitro V 16
  */
 public class Booking {
-        private int bookingId;
+    private int bookingId;
     private int userId;
     private int tripId;
     private int numberOfSeats;
