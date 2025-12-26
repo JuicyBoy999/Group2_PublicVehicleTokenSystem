@@ -4,6 +4,9 @@
  */
 package group2_publicvehicletokensystem;
 
+import Controller.UserController;
+import View.Signup;
+
 /**
  *
  * @author Nitro V 16
@@ -14,7 +17,9 @@ public class Group2_PublicVehicleTokenSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Signup signup = new Signup();
+        UserController usercontroller = new UserController(signup);
+        usercontroller.open();
     }
     
 }

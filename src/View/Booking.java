@@ -4,13 +4,19 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author Nitro V 16
  */
 public class Booking extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Booking.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MyBooking.class.getName());
+    private int userId;
 
     /**
      * Creates new form Driver_Ongoing
@@ -113,21 +119,21 @@ public class Booking extends javax.swing.JFrame {
         searchtrips.setText("Search Trips");
         searchtrips.addActionListener(this::searchtripsActionPerformed);
         getContentPane().add(searchtrips);
-        searchtrips.setBounds(50, 190, 150, 32);
+        searchtrips.setBounds(50, 190, 150, 36);
 
-        Mybookings.setBackground(new java.awt.Color(51, 102, 255));
-        Mybookings.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Mybookings.setForeground(new java.awt.Color(255, 255, 255));
-        Mybookings.setText("All");
-        getContentPane().add(Mybookings);
-        Mybookings.setBounds(50, 270, 70, 32);
+        all.setBackground(new java.awt.Color(51, 102, 255));
+        all.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        all.setForeground(new java.awt.Color(255, 255, 255));
+        all.setText("All");
+        getContentPane().add(all);
+        all.setBounds(50, 270, 70, 36);
 
-        ongoing.setBackground(new java.awt.Color(204, 204, 204));
-        ongoing.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ongoing.setForeground(new java.awt.Color(102, 102, 102));
-        ongoing.setText("Pending");
-        getContentPane().add(ongoing);
-        ongoing.setBounds(150, 270, 100, 32);
+        pending.setBackground(new java.awt.Color(204, 204, 204));
+        pending.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pending.setForeground(new java.awt.Color(102, 102, 102));
+        pending.setText("Pending");
+        getContentPane().add(pending);
+        pending.setBounds(150, 270, 100, 36);
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -135,21 +141,21 @@ public class Booking extends javax.swing.JFrame {
         completed.setText("Completed");
         completed.addActionListener(this::completedActionPerformed);
         getContentPane().add(completed);
-        completed.setBounds(410, 270, 120, 32);
+        completed.setBounds(410, 270, 122, 36);
 
-        ongoing1.setBackground(new java.awt.Color(204, 204, 204));
-        ongoing1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ongoing1.setForeground(new java.awt.Color(102, 102, 102));
-        ongoing1.setText("Boarded");
-        getContentPane().add(ongoing1);
-        ongoing1.setBounds(280, 270, 97, 32);
+        boarded.setBackground(new java.awt.Color(204, 204, 204));
+        boarded.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        boarded.setForeground(new java.awt.Color(102, 102, 102));
+        boarded.setText("Boarded");
+        getContentPane().add(boarded);
+        boarded.setBounds(280, 270, 101, 36);
 
-        Mybookings1.setBackground(new java.awt.Color(51, 102, 255));
-        Mybookings1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Mybookings1.setForeground(new java.awt.Color(255, 255, 255));
-        Mybookings1.setText("My Bookings");
-        getContentPane().add(Mybookings1);
-        Mybookings1.setBounds(230, 190, 150, 30);
+        Mybookings.setBackground(new java.awt.Color(51, 102, 255));
+        Mybookings.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Mybookings.setForeground(new java.awt.Color(255, 255, 255));
+        Mybookings.setText("My Bookings");
+        getContentPane().add(Mybookings);
+        Mybookings.setBounds(230, 190, 150, 36);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -233,4 +239,63 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JButton profile;
     private javax.swing.JButton searchtrips;
     // End of variables declaration//GEN-END:variables
+    public void AllListener(ActionListener listener) {
+        all.addActionListener(listener);
+    }
+    
+    public void PendingListener(ActionListener listener) {
+        pending.addActionListener(listener);
+    }
+    
+    public void BoardedListener(ActionListener listener) {
+        boarded.addActionListener(listener);
+    }
+    
+    public void CompletedListener(ActionListener listener) {
+        completed.addActionListener(listener);
+    }
+    
+    public void SearchTripsListener(ActionListener listener) {
+        searchtrips.addActionListener(listener);
+    }
+    
+    public void ProfileListener(ActionListener listener) {
+        profile.addActionListener(listener);
+    }
+    
+    public javax.swing.JButton getAllButton() {
+        return all;
+    }
+    
+    public javax.swing.JButton getPendingButton() {
+        return pending;
+    }
+    
+    public javax.swing.JButton getCompletedButton() {
+        return completed;
+    }
+    
+    public javax.swing.JButton getBoardedButton() {
+        return boarded;
+    }
+    
+    public javax.swing.JButton getSearchTripsButton() {
+        return searchtrips;
+    }
+    
+    public javax.swing.JButton getProfileButton() {
+        return profile;
+    }
+    
+    public JScrollPane getScrollPane() {
+        return scroll;
+    }
+    
+    public JTable getResultTable() {
+        return MyBookingTable;
+    }
+    
+    public JLabel getNoData() {
+        return noData;
+    }
 }
