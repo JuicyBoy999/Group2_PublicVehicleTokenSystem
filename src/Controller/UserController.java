@@ -37,11 +37,12 @@ public class UserController {
 
 
      class LoginListener implements ActionListener {
-@Override
-      public void actionPerformed(ActionEvent ex) {
-              Login log = new Login();
-        LoginController login = new LoginController(log);
-        login.open();
+        @Override
+        public void actionPerformed(ActionEvent ex) {
+            Login log = new Login();
+            LoginController login = new LoginController(log);
+            login.open();
+            close();
         }
     }
 

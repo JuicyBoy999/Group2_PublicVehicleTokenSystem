@@ -24,43 +24,6 @@ public class MyBooking extends javax.swing.JFrame {
     public MyBooking() {
         initComponents();
         setSize(1280, 740);
-        bookingDAO = new BookingDAO();
-        // Default userId to 1 for testing if not set, or leave it and wait for setter
-         this.userId = 1; 
-         loadBookings(); 
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-        loadBookings();
-    }
-    
-    public void loadBookings() {
-        if (userId == 0) {
-            // Try to load for user 1 just in case it's a test run
-            // Or just return
-            // System.out.println("User ID not set for MyBooking");
-             this.userId = 1; // Fallback for testing as per user request context "I have booked..."
-        }
-        
-        List<Booking> bookings = bookingDAO.getUserBookings(userId);
-        DefaultTableModel model = (DefaultTableModel) MyBookingTable.getModel();
-        model.setRowCount(0); // Clear existing data
-        
-        if (bookings.isEmpty()) {
-            noData.setVisible(true);
-        } else {
-            noData.setVisible(false);
-            for (Booking b : bookings) {
-                model.addRow(new Object[]{
-                    b.getOrigin(),
-                    b.getDestination(),
-                    b.getTotalFare(),
-                    b.getBookingToken(),
-                    b.getStatus()
-                });
-            }
-        }
     }
 
     /**
