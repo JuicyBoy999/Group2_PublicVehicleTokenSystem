@@ -56,6 +56,8 @@ public class RouteManagement extends javax.swing.JFrame {
                 }
             }
         });
+        form.setVisible(false);
+        scroll.setBounds(60, 310, 1150, 350);
     }
 
     /**
@@ -236,15 +238,33 @@ public class RouteManagement extends javax.swing.JFrame {
         RouteName.setText("Route Name");
 
         RouteNameText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RouteNameText.setText("Route");
         RouteNameText.setToolTipText("");
         RouteNameText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        RouteNameText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RouteNameTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                RouteNameTextFocusLost(evt);
+            }
+        });
         RouteNameText.addActionListener(this::RouteNameTextActionPerformed);
 
         Destination.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Destination.setText("Destination");
 
         DestinationText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DestinationText.setText("Destination");
         DestinationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DestinationText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                DestinationTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DestinationTextFocusLost(evt);
+            }
+        });
 
         Origin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Origin.setText("Origin");
@@ -265,18 +285,45 @@ public class RouteManagement extends javax.swing.JFrame {
         cancel.addActionListener(this::cancelActionPerformed);
 
         FareText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        FareText.setText("0");
         FareText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        FareText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FareTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FareTextFocusLost(evt);
+            }
+        });
         FareText.addActionListener(this::FareTextActionPerformed);
 
         OriginText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        OriginText.setText("Origin");
         OriginText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        OriginText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                OriginTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                OriginTextFocusLost(evt);
+            }
+        });
         OriginText.addActionListener(this::OriginTextActionPerformed);
 
         Duration.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Duration.setText("Duration (in minutes)");
 
         DurationText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DurationText.setText("0");
         DurationText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DurationText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                DurationTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DurationTextFocusLost(evt);
+            }
+        });
         DurationText.addActionListener(this::DurationTextActionPerformed);
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
@@ -380,6 +427,7 @@ public class RouteManagement extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
+        resetForm();
         form.setVisible(false);
         scroll.setBounds(60, 310, 1150, 350);
     }//GEN-LAST:event_cancelActionPerformed
@@ -417,20 +465,20 @@ public class RouteManagement extends javax.swing.JFrame {
         double fare = Double.parseDouble(fareStr);
         
         RouteController controller = new RouteController();
-        controller.addRoute(routename, origin, destination, duration, fare);
         
+        if (editingRouteId != -1) {
+            controller.updateRoute(editingRouteId, routename, origin, destination, duration, fare);
+            JOptionPane.showMessageDialog(this, "Route updated successfully!");
+            editingRouteId = -1; 
+            SubmitRoute.setText("Add Route"); 
+        } else {
+            controller.addRoute(routename, origin, destination, duration, fare);
+            JOptionPane.showMessageDialog(this, "Route added successfully!");
+        }
         loadRouteTable();
-        
-        RouteNameText.setText("");
-        OriginText.setText("");
-        DestinationText.setText("");
-        DurationText.setText("");
-        FareText.setText("");
-        
+        resetForm();
         form.setVisible(false);
-        scroll.setBounds(60, 310, 1150, 70);
-        
-        JOptionPane.showMessageDialog(this, "Route added successfully!");   
+        scroll.setBounds(60, 310, 1150, 350);
     }//GEN-LAST:event_SubmitRouteActionPerformed
 
     private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
@@ -442,6 +490,7 @@ public class RouteManagement extends javax.swing.JFrame {
 
     private void AddRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouteActionPerformed
         // TODO add your handling code here:
+        resetForm();
         form.setVisible(true);
         scroll.setBounds(60, 640, 1150, 70);
     }//GEN-LAST:event_AddRouteActionPerformed
@@ -466,6 +515,76 @@ public class RouteManagement extends javax.swing.JFrame {
         controller.closeRouteManagement(this);
         controller.openNotification();
     }//GEN-LAST:event_notificationsActionPerformed
+
+    private void RouteNameTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RouteNameTextFocusGained
+        // Removes placeholder
+        if (RouteNameText.getText().equals("Route")) {
+            RouteNameText.setText("");
+        }
+    }//GEN-LAST:event_RouteNameTextFocusGained
+
+    private void RouteNameTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RouteNameTextFocusLost
+        // Adds placeholder
+        if (RouteNameText.getText().equals("")) {
+            RouteNameText.setText("Route");
+        }
+    }//GEN-LAST:event_RouteNameTextFocusLost
+
+    private void OriginTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OriginTextFocusGained
+        // Removes placeholder
+        if (OriginText.getText().equals("Origin")) {
+            OriginText.setText("");
+        }
+    }//GEN-LAST:event_OriginTextFocusGained
+
+    private void OriginTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OriginTextFocusLost
+        // Adds placeholder
+        if (OriginText.getText().equals("")) {
+            OriginText.setText("Origin");
+        }
+    }//GEN-LAST:event_OriginTextFocusLost
+
+    private void DestinationTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DestinationTextFocusGained
+        // Removes placeholder
+        if (DestinationText.getText().equals("Destination")) {
+            DestinationText.setText("");
+        }
+    }//GEN-LAST:event_DestinationTextFocusGained
+
+    private void DestinationTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DestinationTextFocusLost
+        // Adds placeholder
+        if (DestinationText.getText().equals("")) {
+            DestinationText.setText("Destination");
+        }
+    }//GEN-LAST:event_DestinationTextFocusLost
+
+    private void FareTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FareTextFocusGained
+        // Removes placeholder
+        if (FareText.getText().equals("0")) {
+            FareText.setText("");
+        }
+    }//GEN-LAST:event_FareTextFocusGained
+
+    private void FareTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FareTextFocusLost
+        // Adds placeholder
+        if (FareText.getText().equals("")) {
+            FareText.setText("0");
+        }
+    }//GEN-LAST:event_FareTextFocusLost
+
+    private void DurationTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DurationTextFocusGained
+        // Removes placeholder
+        if (DurationText.getText().equals("0")) {
+            DurationText.setText("");
+        }
+    }//GEN-LAST:event_DurationTextFocusGained
+
+    private void DurationTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DurationTextFocusLost
+        // Adds placeholder
+        if (DurationText.getText().equals("")) {
+            DurationText.setText("0");
+        }
+    }//GEN-LAST:event_DurationTextFocusLost
 
     /**
      * @param args the command line arguments
@@ -591,4 +710,16 @@ private void deleteRoute(int row) {
         loadRouteTable();
     }
 }
+
+    private void resetForm() {
+        int editingRouteId = -1;
+        
+        RouteNameText.setText("Route");
+        OriginText.setText("Origin");
+        DestinationText.setText("Destination");
+        DurationText.setText("0");
+        FareText.setText("0");
+        
+        SubmitRoute.setText("Add Route");
+    }
 }
