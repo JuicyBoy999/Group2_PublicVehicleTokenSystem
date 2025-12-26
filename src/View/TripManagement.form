@@ -590,20 +590,12 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-<<<<<<< Updated upstream
-              <Table columnCount="6" rowCount="0">
-                <Column editable="true" title="Vehicle" type="java.lang.String"/>
-                <Column editable="true" title="Routes" type="java.lang.String"/>
-                <Column editable="true" title="Destination" type="java.lang.String"/>
-                <Column editable="true" title="Arrival" type="java.lang.Integer"/>
-=======
               <Table columnCount="7" rowCount="0">
                 <Column editable="true" title="Id" type="java.lang.Object"/>
                 <Column editable="true" title="Vehicle" type="java.lang.Object"/>
                 <Column editable="true" title="Routes" type="java.lang.Object"/>
                 <Column editable="true" title="Departure" type="java.lang.Object"/>
                 <Column editable="true" title="Arrival" type="java.lang.Object"/>
->>>>>>> Stashed changes
                 <Column editable="true" title="Status" type="java.lang.Object"/>
                 <Column editable="true" title="Actions" type="java.lang.Object"/>
               </Table>

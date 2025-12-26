@@ -320,23 +320,17 @@ public class TripManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-<<<<<<< Updated upstream
-                "Vehicle", "Routes", "Destination", "Arrival", "Status", "Actions"
+                "Id", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
         });
-=======
-                "Id", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
-            }
-        ));
->>>>>>> Stashed changes
         scroll.setViewportView(tripTable);
 
         getContentPane().add(scroll);

@@ -306,14 +306,9 @@ public class VehicleManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 260);
 
-<<<<<<< Updated upstream
         vehicleTable.setBackground(new java.awt.Color(255, 255, 255));
         vehicleTable.setForeground(new java.awt.Color(51, 51, 51));
         vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
-=======
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> Stashed changes
             new Object [][] {
 
             },

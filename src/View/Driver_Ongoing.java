@@ -305,7 +305,12 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Driver_Ongoing().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            Driver_Ongoing view = new Driver_Ongoing();
+            Controller.DriverController controller = new Controller.DriverController(view);
+            // For testing/demo: attempt to open trip id 1. Change as needed in real app when user logs in.
+            controller.openDriverOngoing(1);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,4 +338,36 @@ public class Driver_Ongoing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    // ---- Helper accessors for controller ----
+    private int currentTripId = -1;
+
+    public void setCurrentTripId(int tripId) {
+        this.currentTripId = tripId;
+    }
+
+    public int getCurrentTripId() {
+        return currentTripId;
+    }
+
+    // The button used to start/end the trip
+    public javax.swing.JButton getToggleTripButton() {
+        return jButton5;
+    }
+
+    // Label that shows the started time
+    public javax.swing.JLabel getStartedLabel() {
+        return jLabel11;
+    }
+
+    // Update the toggle button label (Start Trip / End Trip)
+    public void setToggleButtonText(String text) {
+        jButton5.setText(text);
+    }
+
+    // Set started time text
+    public void setStartedTimeText(String text) {
+        jLabel11.setText(text);
+    }
 }
+

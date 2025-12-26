@@ -278,8 +278,17 @@ public class TripController {
             tripdao.cancelTrip(tripId);
             JOptionPane.showMessageDialog(tripView, "Trip cancelled successfully.");
             loadTripTable();
-            
-            // Next: API
+
+            // Create a notification so passengers are informed (best-effort)
+            try {
+                TripData t = tripdao.getTripById(tripId);
+                if (t != null) {
+                    DAO.NotificationDao nd = new DAO.NotificationDao();
+                    nd.createNotification(new Model.Notification(tripId, "Trip for vehicle " + t.getVehicleNum() + " has been cancelled."));
+                }
+            } catch (Exception ex) {
+                System.out.println("Notification on cancel failed: " + ex.getMessage());
+            }
         }
     }
     
@@ -298,26 +307,11 @@ public class TripController {
                 t.getDepartureTime(),
                 t.getArrivalTime(),
                 t.getStatus(),
-                "Edit | Delete"
+                "Edit | Delete | Cancel"
             };
-            
-<<<<<<< Updated upstream
-            tableModel.addRow(row);
-=======
-            for (TripData t : triplist) {
-                Object[] row = {
-                    t.getTripID(),     // Hidden ID column
-                    t.getVehicleNum(),
-                    t.getRouteName(),
-                    t.getDepartureTime(),
-                    t.getArrivalTime(),
-                    t.getStatus(),
-                    "Edit | Delete | Cancel"
-                };
 
-                tableModel.addRow(row);
-            }
->>>>>>> Stashed changes
+            tableModel.addRow(row);
+        }
         }
     }
     

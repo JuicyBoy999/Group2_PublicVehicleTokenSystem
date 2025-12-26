@@ -108,43 +108,50 @@ public class TripDao {
         return -1;  // not found
     }
     
-    public int startTrip(int tripId) {
+    /**
+     * Mark a trip as started (ONGOING) and set started_at to current time.
+     * @return true if update affected a row, false otherwise.
+     */
+    public boolean startTrip(int tripId) {
         Connection con = mysql.openConnection();
         String sql = "UPDATE trips SET status = ?, started_at = CURRENT_TIME WHERE trip_id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "ONGOING");
             ps.setInt(2, tripId);
-            ps.executeUpdate();
-
+            int affected = ps.executeUpdate();
+            return affected > 0;
         }
-        catch (Exception e) {
-            System.out.println("No trips found");
+        catch (SQLException e) {
+            System.out.println("Error starting trip: " + e.getMessage());
         }
         finally {
             mysql.closeConnection(con);
         }
-        return -1;
+        return false;
 }
 
-    public void EndTrip(int tripId) {
+    /**
+     * Mark a trip as completed (COMPLETED) and set ended_at to current time.
+     * @return true if update affected a row, false otherwise.
+     */
+    public boolean endTrip(int tripId) {
         Connection con = mysql.openConnection();
         String sql = "UPDATE trips SET status = ?, ended_at = CURRENT_TIME WHERE trip_id = ?";
 
-        try (
-            PreparedStatement ps = con.prepareStatement(sql)) {
-
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "COMPLETED");
             ps.setInt(2, tripId);
-            ps.executeUpdate();
-
+            int affected = ps.executeUpdate();
+            return affected > 0;
         }
-        catch (Exception e) {
-            System.out.println("No trips found");
+        catch (SQLException e) {
+            System.out.println("Error ending trip: " + e.getMessage());
         }
         finally {
             mysql.closeConnection(con);
         }
+        return false;
     }
 
     
@@ -282,14 +289,14 @@ public class TripDao {
     
     public void cancelTrip(int tripId) {
         Connection con = mysql.openConnection();
-        String sql = "Update trips set status = 'Cancelled', where trip_id = ?";
+        String sql = "Update trips set status = 'Cancelled' where trip_id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, tripId);
             ps.executeUpdate();
 
         }
-        catch (Exception e) {
+        catch (SQLException e) {
             System.out.println("Cancel trip error: " + e.getMessage());
         }
         finally {
