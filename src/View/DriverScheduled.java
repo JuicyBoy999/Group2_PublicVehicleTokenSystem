@@ -38,7 +38,6 @@ public class DriverScheduled extends javax.swing.JFrame {
         profile = new javax.swing.JButton();
         DriverDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
-        all = new javax.swing.JButton();
         scheduled = new javax.swing.JButton();
         ongoing = new javax.swing.JButton();
         completed = new javax.swing.JButton();
@@ -57,6 +56,9 @@ public class DriverScheduled extends javax.swing.JFrame {
         Seats = new javax.swing.JLabel();
         seats = new javax.swing.JLabel();
         passengers = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,6 +124,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         getContentPane().add(intro);
         intro.setBounds(50, 130, 210, 20);
 
+<<<<<<< HEAD
         all.setBackground(new java.awt.Color(204, 204, 204));
         all.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         all.setForeground(new java.awt.Color(102, 102, 102));
@@ -130,26 +133,40 @@ public class DriverScheduled extends javax.swing.JFrame {
         getContentPane().add(all);
         all.setBounds(50, 170, 72, 27);
 
+=======
+>>>>>>> overall
         scheduled.setBackground(new java.awt.Color(51, 102, 255));
         scheduled.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         scheduled.setForeground(new java.awt.Color(255, 255, 255));
         scheduled.setText("Scheduled");
         getContentPane().add(scheduled);
+<<<<<<< HEAD
         scheduled.setBounds(132, 170, 100, 27);
+=======
+        scheduled.setBounds(50, 170, 100, 31);
+>>>>>>> overall
 
         ongoing.setBackground(new java.awt.Color(204, 204, 204));
         ongoing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ongoing.setForeground(new java.awt.Color(102, 102, 102));
         ongoing.setText("Ongoing");
         getContentPane().add(ongoing);
+<<<<<<< HEAD
         ongoing.setBounds(240, 170, 87, 27);
+=======
+        ongoing.setBounds(160, 170, 90, 31);
+>>>>>>> overall
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         completed.setForeground(new java.awt.Color(102, 102, 102));
         completed.setText("Completed");
         getContentPane().add(completed);
+<<<<<<< HEAD
         completed.setBounds(336, 170, 100, 27);
+=======
+        completed.setBounds(260, 170, 100, 31);
+>>>>>>> overall
 
         schedule.setBackground(new java.awt.Color(255, 255, 255));
         schedule.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -207,6 +224,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         start.setForeground(new java.awt.Color(255, 255, 255));
         start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/startIcon.png"))); // NOI18N
         start.setText("Start Trip");
+        start.addActionListener(this::startActionPerformed);
 
         delay.setBackground(new java.awt.Color(237, 102, 10));
         delay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -261,10 +279,10 @@ public class DriverScheduled extends javax.swing.JFrame {
                                 .addComponent(route)
                                 .addGap(402, 402, 402)
                                 .addComponent(time)
-                                .addGap(0, 85, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(scheduleLayout.createSequentialGroup()
                                 .addComponent(Route)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 457, Short.MAX_VALUE)
                                 .addComponent(Time)
                                 .addGap(70, 70, 70)))
                         .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,19 +343,33 @@ public class DriverScheduled extends javax.swing.JFrame {
         );
 
         getContentPane().add(schedule);
-        schedule.setBounds(20, 250, 1240, 240);
+        schedule.setBounds(20, 210, 1240, 240);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Trip ID", "Vehicle Number", "Origin", "Destination", "Arrival", "Departure", "Action", "Report"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jScrollPane2.setViewportView(jScrollPane1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 480, 1240, 210);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/DashboardBackground.png"))); // NOI18N
         getContentPane().add(background);
-        background.setBounds(0, 0, 1280, 740);
+        background.setBounds(0, 0, 1270, 730);
 
         setSize(new java.awt.Dimension(1280, 740));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_allActionPerformed
 
     private void delayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delayActionPerformed
         // TODO add your handling code here:
@@ -352,11 +384,19 @@ public class DriverScheduled extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
 Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
 Driver_Ongoing.setVisible(true);
+<<<<<<< HEAD
 int trip_id = this.trip_id; // pass tripId when opening this frame
     TripDao dao = new TripDao();
     dao.startTrip(trip_id);
      Driver_Ongoing ongoing = new Driver_Ongoing();
     ongoing.setVisible(true);
+=======
+int Trip_id = this.trip_id; // pass tripId when opening this frame
+    TripDao dao = new TripDao();
+    dao.startTrip(Trip_id);
+     Driver_Ongoing Ongoing = new Driver_Ongoing();
+    Ongoing.setVisible(true);
+>>>>>>> overall
 this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_startActionPerformed
 
@@ -393,13 +433,15 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JLabel Seats;
     private javax.swing.JPanel Status;
     private javax.swing.JLabel Time;
-    private javax.swing.JButton all;
     private javax.swing.JLabel background;
     private javax.swing.JButton completed;
     private javax.swing.JButton delay;
     private javax.swing.JPanel header;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel intro;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton ongoing;
     private javax.swing.JButton passengers;
