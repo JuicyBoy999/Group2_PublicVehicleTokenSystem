@@ -30,6 +30,8 @@ public class NotificationData {
         this.message = message;
     }
     
+
+    
     public void setTripId(int tripId) {
         this.tripId = tripId;
     }

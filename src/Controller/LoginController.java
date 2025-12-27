@@ -66,8 +66,8 @@ class LoginListner implements ActionListener {
                     controller.openSearchTrips();
                 } else if (role.equals("Driver")) {
                     System.out.println("Redirecting to Driver Dashboard...");
-                    
-                    DriverScheduled driverView = new DriverScheduled();
+                    int userID = logindao.getUserIdByEmail(email);
+                    DriverScheduled driverView = new DriverScheduled(userID);
                     // DriverController driverController = new DriverController(driverView);
                     // driverController.open();
                     driverView.setVisible(true);

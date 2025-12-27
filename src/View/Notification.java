@@ -4,8 +4,10 @@
  */
 package View;
 
-import java.awt.event.ActionListener;
-
+import javax.swing.*;
+import java.awt.event.*;
+import DAO.VehicleReportDao;
+import Model.VehicleReport;
 /**
  *
  * @author Nitro V 16
@@ -14,11 +16,47 @@ public class Notification extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Notification.class.getName());
 
-    /**
-     * Creates new form Notification
-     */
+    private Timer reportPollTimer; // Polling timer for vehicle reports
+    private final VehicleReportDao vehicleReportDao = new VehicleReportDao();
+
     public Notification() {
         initComponents();
+
+        // Start polling for vehicle reports every 5 seconds
+        reportPollTimer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<VehicleReport> unreadReports = vehicleReportDao.getUnreadReports();
+                    for (VehicleReport vr : unreadReports) {
+                        String title = "Vehicle Problem Report";
+                        String content = "Trip ID: " + (vr.getTripId() != null ? vr.getTripId() : "N/A") +
+                                "\nTime: " + vr.getCreatedAt() +
+                                "\n\n" + vr.getDescription();
+
+                        // Show modal popup to admin
+                        JOptionPane.showMessageDialog(Notification.this, content, title, JOptionPane.INFORMATION_MESSAGE);
+
+                        // Mark report as read so it doesn't pop up again
+                        vehicleReportDao.markAsRead(vr.getReportId());
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        reportPollTimer.setInitialDelay(2000); // small initial delay before first check
+        reportPollTimer.start();
+    }
+
+    @Override
+    public void dispose() {
+        // Stop timer when Notification window is closed
+        if (reportPollTimer != null && reportPollTimer.isRunning()) {
+            reportPollTimer.stop();
+        }
+        super.dispose();
     }
 
     /**

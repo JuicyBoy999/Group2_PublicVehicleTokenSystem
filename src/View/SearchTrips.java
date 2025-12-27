@@ -4,6 +4,7 @@
  */
 package View;
 
+import Model.userData;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -71,6 +72,7 @@ public class SearchTrips extends javax.swing.JFrame {
 
         profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
         profile.setBorder(null);
+        profile.addActionListener(this::profileActionPerformed);
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -298,6 +300,10 @@ public class SearchTrips extends javax.swing.JFrame {
     private void bookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bookingActionPerformed
+
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileActionPerformed
 
     /**
      * @param args the command line arguments

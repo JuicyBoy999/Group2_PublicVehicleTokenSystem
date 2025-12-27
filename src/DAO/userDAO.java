@@ -98,4 +98,30 @@ public class userDAO {
             return null;
         }
     }
+
+    public userData getUserById(int userId) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, userId);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                userData user = new userData(
+                    rs.getString("phone"),
+                    rs.getString("email"),
+                    rs.getString("username"), // mapped to name
+                    rs.getString("password"),
+                    rs.getString("address"),
+                    rs.getString("role")
+                );
+                user.setId(rs.getInt("user_id"));
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching user by ID: " + e);
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return null;
+    }
 }

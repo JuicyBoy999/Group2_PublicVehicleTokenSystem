@@ -4,6 +4,10 @@
  */
 package View;
 
+import DAO.VehicleReportDao;
+import Model.VehicleReport;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Asus
@@ -12,13 +16,45 @@ public class ReportVehical_Problem extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReportVehical_Problem.class.getName());
 
-    /**
-     * Creates new form ReportVehical_Problem
-     */
+    private int tripId = 0; // default 0 = unknown / null
+
     public ReportVehical_Problem() {
         initComponents();
         report.addActionListener(evt -> javax.swing.JOptionPane.showMessageDialog(this, "Reported to admin"));
+
+        // Attach behavior to report button
+        report.addActionListener(evt -> onReportClicked());
     }
+
+    /**
+     * Set trip id before showing this window.
+     * Pass 0 or negative if trip is not known.
+     */
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
+    private void onReportClicked() {
+        String desc = problemtxt.getText();
+        if (desc == null || desc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a description of the problem.", "Validation", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Integer trip = (this.tripId > 0) ? this.tripId : null;
+        VehicleReport reportModel = new VehicleReport(trip, desc.trim());
+        VehicleReportDao dao = new VehicleReportDao();
+
+        boolean ok = dao.saveReport(reportModel);
+
+        if (ok) {
+            JOptionPane.showMessageDialog(this, "Reported to admin.", "Sent", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to report. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

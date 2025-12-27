@@ -4,7 +4,9 @@
  */
 package View;
 
+import Controller.ProfileController;
 import DAO.TripDao;
+import Model.userData;
 
 /**
  *
@@ -14,11 +16,19 @@ public class DriverScheduled extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DriverScheduled.class.getName());
     private int trip_id;
+    private int userId;
+    
 
     /**
      * Creates new form Driver_Ongoing
      */
     public DriverScheduled() {
+        initComponents();
+        setSize(1280, 740);
+    }
+    
+    public DriverScheduled(int userId) {
+        this.userId = userId;
         initComponents();
         setSize(1280, 740);
     }
@@ -85,6 +95,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         profile.setBorder(null);
         profile.setBorderPainted(false);
         profile.setContentAreaFilled(false);
+        profile.addActionListener(this::profileActionPerformed);
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -124,50 +135,40 @@ public class DriverScheduled extends javax.swing.JFrame {
         getContentPane().add(intro);
         intro.setBounds(50, 130, 210, 20);
 
-<<<<<<< HEAD
-        all.setBackground(new java.awt.Color(204, 204, 204));
-        all.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        all.setForeground(new java.awt.Color(102, 102, 102));
-        all.setText("All");
-        all.addActionListener(this::allActionPerformed);
-        getContentPane().add(all);
-        all.setBounds(50, 170, 72, 27);
-
-=======
->>>>>>> overall
         scheduled.setBackground(new java.awt.Color(51, 102, 255));
         scheduled.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         scheduled.setForeground(new java.awt.Color(255, 255, 255));
         scheduled.setText("Scheduled");
         getContentPane().add(scheduled);
-<<<<<<< HEAD
         scheduled.setBounds(132, 170, 100, 27);
-=======
         scheduled.setBounds(50, 170, 100, 31);
->>>>>>> overall
+        scheduled.setBounds(50, 170, 100, 31);
+        scheduled.setBounds(50, 170, 100, 27);
 
         ongoing.setBackground(new java.awt.Color(204, 204, 204));
         ongoing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ongoing.setForeground(new java.awt.Color(102, 102, 102));
         ongoing.setText("Ongoing");
+        ongoing.addActionListener(evt -> {
+            Driver_Ongoing driverOngoing = new Driver_Ongoing(this.userId);
+            driverOngoing.setVisible(true);
+            this.dispose();
+        });
         getContentPane().add(ongoing);
-<<<<<<< HEAD
         ongoing.setBounds(240, 170, 87, 27);
-=======
         ongoing.setBounds(160, 170, 90, 31);
->>>>>>> overall
+        ongoing.setBounds(160, 170, 90, 31);
+        ongoing.setBounds(160, 170, 90, 27);
 
         completed.setBackground(new java.awt.Color(204, 204, 204));
         completed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         completed.setForeground(new java.awt.Color(102, 102, 102));
         completed.setText("Completed");
         getContentPane().add(completed);
-<<<<<<< HEAD
         completed.setBounds(336, 170, 100, 27);
-=======
         completed.setBounds(260, 170, 100, 31);
->>>>>>> overall
-
+        completed.setBounds(260, 170, 100, 31);
+        completed.setBounds(260, 170, 100, 27);
         schedule.setBackground(new java.awt.Color(255, 255, 255));
         schedule.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
@@ -373,8 +374,26 @@ public class DriverScheduled extends javax.swing.JFrame {
 
     private void delayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delayActionPerformed
         // TODO add your handling code here:
-        ReportdelayPassenger reportDelay = new ReportdelayPassenger();
-        reportDelay.setVisible(true);
+ int selectedRow = jTable1.getSelectedRow();
+
+    if (selectedRow == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select a trip first.");
+        return;
+    }
+
+    // Trip ID is column 0 in your table
+    int selectedTripId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+
+    ReportdelayPassenger reportDelay = new ReportdelayPassenger();
+    reportDelay.setTripId(selectedTripId); 
+    reportDelay.setVisible(true);
+    
+    //Test code
+//    int testTripId = 1; // <-- use a REAL trip_id that exists in DB
+//
+//    ReportdelayPassenger reportDelay = new ReportdelayPassenger();
+//    reportDelay.setTripId(testTripId);
+//    reportDelay.setVisible(true);
     }//GEN-LAST:event_delayActionPerformed
 
     private void passengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersActionPerformed
@@ -384,21 +403,33 @@ public class DriverScheduled extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
 Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
 Driver_Ongoing.setVisible(true);
-<<<<<<< HEAD
 int trip_id = this.trip_id; // pass tripId when opening this frame
     TripDao dao = new TripDao();
     dao.startTrip(trip_id);
      Driver_Ongoing ongoing = new Driver_Ongoing();
     ongoing.setVisible(true);
-=======
 int Trip_id = this.trip_id; // pass tripId when opening this frame
     TripDao dao = new TripDao();
     dao.startTrip(Trip_id);
      Driver_Ongoing Ongoing = new Driver_Ongoing();
     Ongoing.setVisible(true);
->>>>>>> overall
 this.dispose();// TODO add your handling code here:
+        int Trip_id = this.trip_id;
+        
+        TripDao dao = new TripDao();
+        dao.startTrip(Trip_id);
+        
+        Driver_Ongoing driverOngoing = new Driver_Ongoing(this.userId);
+        driverOngoing.setTripId(Trip_id);
+        driverOngoing.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_startActionPerformed
+
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+        View.Profile p = new View.Profile();
+        ProfileController pc = new ProfileController(p, userId);
+        pc.openProfile();
+    }//GEN-LAST:event_profileActionPerformed
 
     /**
      * @param args the command line arguments

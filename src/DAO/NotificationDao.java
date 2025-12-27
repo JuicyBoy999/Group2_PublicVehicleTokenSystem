@@ -75,7 +75,7 @@ public class NotificationDao {
 
         String sql = "Select u.email from bookings b " +
                      "join users u on b.user_id = u.user_id " +
-                     "where b.trip_id = ? and b.status = 'Confirmed'";
+                     "where b.trip_id = ? and b.status in ('PENDING', 'CONFIRMED')";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, tripId);

@@ -4,6 +4,10 @@
  */
 package View;
 
+import Controller.DriverNotificationController;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+
 /**
  *
  * @author Asus
@@ -11,13 +15,67 @@ package View;
 public class ReportdelayPassenger extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReportdelayPassenger.class.getName());
+    private final DriverNotificationController controller = new DriverNotificationController();
+    private int tripId = 0;
 
-    /**
-     * Creates new form ReportdelayPassenger
-     */
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
     public ReportdelayPassenger() {
         initComponents();
         NotifyBtn.addActionListener(evt -> javax.swing.JOptionPane.showMessageDialog(this, "Notified to passenger"));
+
+        NotifyBtn.addActionListener(evt -> {
+            String delay = EstimatedDelay.getText();
+            String reason = jTextArea1.getText();
+
+            // Basic validation
+            if (delay == null || delay.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter estimated delay (in minutes).");
+                return;
+            }
+
+            // Disable UI while working
+            setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+            NotifyBtn.setEnabled(false);
+            CancelBtn.setEnabled(false);
+
+            // Use SwingWorker to avoid blocking the Event Dispatch Thread
+            new SwingWorker<Boolean, Void>() {
+                @Override
+                protected Boolean doInBackground() throws Exception {
+                    try {
+                        return controller.reportDelay(tripId, delay.trim(), reason != null ? reason.trim() : "");
+                    } catch (Exception ex) {
+                        System.out.println("Error in doInBackground reportDelay: " + ex.getMessage());
+                        ex.printStackTrace();
+                        return false;
+                    }
+                }
+
+                @Override
+                protected void done() {
+                    try {
+                        boolean success = get();
+                        if (success) {
+                            JOptionPane.showMessageDialog(ReportdelayPassenger.this, "Delay notification sent to passengers!");
+                            ReportdelayPassenger.this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(ReportdelayPassenger.this, "Failed to send notification. Please try again.");
+                            // keep the dialog open so driver can retry
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Error finishing reportDelay SwingWorker: " + ex.getMessage());
+                        JOptionPane.showMessageDialog(ReportdelayPassenger.this, "Unexpected error occurred.");
+                    } finally {
+                        setCursor(java.awt.Cursor.getDefaultCursor());
+                        NotifyBtn.setEnabled(true);
+                        CancelBtn.setEnabled(true);
+                    }
+                }
+            }.execute();
+        });
     }
 
     /**
