@@ -4,7 +4,11 @@
  */
 package group2_publicvehicletokensystem;
 
+import Controller.NotificationController;
 import Controller.UserController;
+import View.DriverScheduled;
+import View.Driver_Ongoing;
+import View.Notification;
 import View.Signup;
 
 /**
@@ -20,6 +24,17 @@ public class Group2_PublicVehicleTokenSystem {
         Signup signup = new Signup();
         UserController usercontroller = new UserController(signup);
         usercontroller.open();
+<<<<<<< Updated upstream
     }
     
+=======
+        
+        DriverScheduled view = new DriverScheduled();
+        view.setVisible(true);
+        
+//        Notification nview = new Notification();
+//        NotificationController controller = new NotificationController(nview);
+//        controller.openNotification();
+    }   
+>>>>>>> Stashed changes
 }

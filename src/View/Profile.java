@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.userData;
+
 /**
  *
  * @author Nitro V 16
@@ -11,12 +13,140 @@ package View;
 public class Profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Profile.class.getName());
+    private userData currentUser;
+    private boolean isDriver;
 
     /**
-     * Creates new form Profile
+     * Creates new form Profile for driver
+     */
+    
+public Profile(userData user, String userType) {
+    this.currentUser = user;
+    this.isDriver = "driver".equalsIgnoreCase(userType);
+    initComponents();
+    initializeProfile();
+}
+    
+    public Profile(userData user, boolean isDriver) {
+        this.currentUser = user;
+        this.isDriver = isDriver;
+        initComponents();
+        initializeProfile();
+    }
+    
+    /**
+     * Creates new form Profile for driver with driver-specific data
+     */
+    public Profile(userData user, boolean isDriver, String vehicle, String license, 
+                   String licenseExpiry, int totalTrips, double rating, String status, int tripsThisMonth) {
+        this.currentUser = user;
+        this.isDriver = isDriver;
+        initComponents();
+        initializeProfile();
+        
+        if (isDriver) {
+            setDriverSpecificData(vehicle, license, licenseExpiry, totalTrips, rating, status, tripsThisMonth);
+        }
+    }
+    
+    public void setUserData(userData user) {
+        this.currentUser = user;
+        if (user != null) {
+            this.isDriver = "driver".equalsIgnoreCase(user.getrole());
+        }
+        initializeProfile();
+    }
+    
+    /**
+     * Initialize profile with user data
+     */
+    private void initializeProfile() {
+        if (currentUser != null) {
+            // Set common user data
+            jLabel35.setText(currentUser.getname());
+            jLabel14.setText(currentUser.getemail());
+            jLabel17.setText(currentUser.getphone());
+            jLabel20.setText(currentUser.getaddress());
+            
+            // Set role label
+            if (isDriver) {
+                jLabel36.setText("DRIVER");
+                jLabel10.setText("Driver Information");
+                // Show driver-specific panels
+                jPanel6.setVisible(true);
+                jPanel7.setVisible(true);
+                jPanel8.setVisible(true);
+                jPanel2.setVisible(true);
+                jPanel9.setVisible(true);
+                jPanel10.setVisible(true);
+                jPanel11.setVisible(true);
+            } else {
+                jLabel36.setText("PASSENGER");
+                jLabel10.setText("Passenger Information");
+                // Hide driver-specific panels
+                jPanel6.setVisible(false);
+                jPanel7.setVisible(false);
+                jPanel8.setVisible(false);
+                jPanel2.setVisible(false);
+                jPanel9.setVisible(false);
+                jPanel10.setVisible(false);
+                jPanel11.setVisible(false);
+            }
+        }
+    }
+    
+    /**
+     * Set driver-specific data
+     */
+    private void setDriverSpecificData(String vehicle, String license, String licenseExpiry, 
+                                      int totalTrips, double rating, String status, int tripsThisMonth) {
+        jLabel1.setText(vehicle);
+        jLabel6.setText(license);
+        jLabel9.setText(licenseExpiry);
+        jLabel23.setText(String.valueOf(totalTrips));
+        jLabel26.setText(String.valueOf(rating));
+        jLabel29.setText(status);
+        jLabel32.setText(String.valueOf(tripsThisMonth));
+    }
+    
+    /**
+     * For backward compatibility
      */
     public Profile() {
         initComponents();
+    }
+
+    // ... [The rest of your existing code remains the same until the main method]
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            // Example usage for testing
+            userData testUser = new userData("1234567890", "test@example.com", 
+                                            "John Doe", "password", "Test Address", "driver");
+            new Profile(testUser, true, "Micro - BAE23891", "ACTIVE", 
+                       "February 25 2026", 200, 4.5, "Verified", 60).setVisible(true);
+        });
     }
 
     /**
@@ -488,6 +618,7 @@ public class Profile extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
         jButton2.setText("Log Out");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel35.setText("Banana");
@@ -609,7 +740,7 @@ public class Profile extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, Short.MAX_VALUE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -626,30 +757,14 @@ public class Profile extends javax.swing.JFrame {
         setBounds(0, 0, 1280, 740);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Profile().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
