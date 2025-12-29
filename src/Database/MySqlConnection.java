@@ -69,8 +69,4 @@ public class MySqlConnection implements Database {
             return -1;
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> overall

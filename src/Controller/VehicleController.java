@@ -222,6 +222,7 @@ public class VehicleController {
                 // Change Add button text to "Update"
                 vehicleView.getSubmitButton().setText("Update");
                 vehicleView.getFormPanel().setVisible(true); // show the form
+                vehicleView.getScrollPane().setBounds(60, 610, 1150, 100);  // Move the table down
                 break;
             }
         }

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import DAO.VehicleReportDao;
 import Model.VehicleReport;
+import java.util.List;
 /**
  *
  * @author Nitro V 16

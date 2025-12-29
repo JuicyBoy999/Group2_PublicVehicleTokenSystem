@@ -401,26 +401,15 @@ public class DriverScheduled extends javax.swing.JFrame {
     }//GEN-LAST:event_passengersActionPerformed
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
-Driver_Ongoing.setVisible(true);
-int trip_id = this.trip_id; // pass tripId when opening this frame
-    TripDao dao = new TripDao();
-    dao.startTrip(trip_id);
-     Driver_Ongoing ongoing = new Driver_Ongoing();
-    ongoing.setVisible(true);
-int Trip_id = this.trip_id; // pass tripId when opening this frame
-    TripDao dao = new TripDao();
-    dao.startTrip(Trip_id);
-     Driver_Ongoing Ongoing = new Driver_Ongoing();
-    Ongoing.setVisible(true);
-this.dispose();// TODO add your handling code here:
-        int Trip_id = this.trip_id;
+        Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
+        Driver_Ongoing.setVisible(true);
+        int trip_id = this.trip_id; // pass tripId when opening this frame
         
         TripDao dao = new TripDao();
-        dao.startTrip(Trip_id);
+        dao.startTrip(trip_id);
         
         Driver_Ongoing driverOngoing = new Driver_Ongoing(this.userId);
-        driverOngoing.setTripId(Trip_id);
+        driverOngoing.setTripId(trip_id);
         driverOngoing.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_startActionPerformed

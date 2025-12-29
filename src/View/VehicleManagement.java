@@ -24,7 +24,6 @@ public class VehicleManagement extends javax.swing.JFrame {
     public VehicleManagement() {
         initComponents();
         setSize(1280, 740);
-        new VehicleController(this).openVehicleManagement();
     }
 
     /**
@@ -329,7 +328,6 @@ public class VehicleManagement extends javax.swing.JFrame {
                 "Id", "Vehicle", "Type", "Seats", "Driver", "Actions"
             }
         ));
-        vehicleTable.setRowHeight(25);
         scroll.setViewportView(vehicleTable);
         if (vehicleTable.getColumnModel().getColumnCount() > 0) {
             vehicleTable.getColumnModel().getColumn(0).setMinWidth(0);
