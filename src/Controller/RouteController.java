@@ -20,6 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RouteController {
     RouteDAO dao = new RouteDAO();
+    private int adminId;
+    
+    public RouteController(int adminId) {
+        this.adminId = adminId;
+    }
+    
     public void addRoute(String name, String origin, String destination, int duration, double fare) {
         Route route = new Route(name, origin, destination, duration, fare);
         dao.addRoute(route);
@@ -27,24 +33,24 @@ public class RouteController {
 
     public void openVehicleManagement() {
         VehicleManagement vm = new VehicleManagement();
-        VehicleController vc = new VehicleController(vm);
+        VehicleController vc = new VehicleController(vm, adminId);
         vc.openVehicleManagement();
     }
 
     public void openTripManagement() {
         TripManagement tm = new TripManagement();
-        TripController tc = new TripController(tm);
+        TripController tc = new TripController(tm, adminId);
         tc.openTripManagement();
     }
     
     public void openUserList() {
-        UserManagement um = new UserManagement();
+        UserManagement um = new UserManagement(adminId);
         um.setVisible(true);
     }
     
     public void openNotification() {
         Notification n = new Notification();  // Create view
-        NotificationController nc = new NotificationController(n); // Create controller
+        NotificationController nc = new NotificationController(n, adminId); // Create controller
         nc.openNotification();  // Open Notification Management page
     }
     

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DriverNotificationController {
 
     private final NotificationDao notificationDao;
+    public Integer adminId = null;  // Integer to allow null
 
     public DriverNotificationController() {
         this.notificationDao = new NotificationDao();
@@ -40,7 +41,7 @@ public class DriverNotificationController {
 
         try {
             // Save notification to DB (notification_type will be 'DELAY')
-            NotificationData notif = new NotificationData(tripId, "DELAY", message);
+            NotificationData notif = new NotificationData(tripId, "DELAY", message, adminId);
             notificationDao.saveNotification(notif);
 
             // Fetch passenger emails (NotificationDao handles filtering by booking status)
@@ -84,7 +85,7 @@ public class DriverNotificationController {
         }
 
         try {
-            NotificationData notif = new NotificationData(0, "PROBLEM", problemDescription.trim());
+            NotificationData notif = new NotificationData(0, "PROBLEM", problemDescription.trim(), adminId);
             notificationDao.saveNotification(notif);
             return true;
         } catch (Exception ex) {

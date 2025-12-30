@@ -14,10 +14,12 @@ public class NotificationData {
     private String tripLabel;   // Human readable string for combo-box
     private String genre;
     private String message;
+    private int adminId;
     
     // Sending/Saving notification
-    public NotificationData(int tripId, String genre, String message) {
+    public NotificationData(int tripId, String genre, String message, int adminId) {
         this.tripId = tripId;
+        this.adminId = adminId; // Store which admin sent
         this.genre = genre;
         this.message = message;
     }
@@ -30,13 +32,19 @@ public class NotificationData {
         this.message = message;
     }
     
-
     
     public void setTripId(int tripId) {
         this.tripId = tripId;
     }
     public int getTripId() {
         return tripId;
+    }
+    
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
+    }
+    public int getAdminId() {
+        return adminId;
     }
     
     public void setTripLabel(String tripLabel) {

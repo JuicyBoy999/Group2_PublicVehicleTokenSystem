@@ -26,11 +26,14 @@ import utils.EmailService;
 public class NotificationController {
     public final NotificationDao notifdao = new NotificationDao();
     public final Notification notifView;
+  
+    private final int adminId;   // Tracks which admin is logged in    
     
     Map<String, Integer> tripMap = new HashMap<>();
         
-    public NotificationController(Notification notifView) { // Constructor
+    public NotificationController(Notification notifView, int adminId) { // Constructor
         this.notifView = notifView;
+        this.adminId = adminId;
         
         notifView.SendNotificationListener(new SendListener());
         notifView.VehicleManagementListener(new VehicleListener());
@@ -97,7 +100,7 @@ public class NotificationController {
                 int tripID = tripMap.get(trip);
                 
                 // Save notification
-                NotificationData notif = new NotificationData(tripID, type, message);
+                NotificationData notif = new NotificationData(tripID, type, message, adminId);
                 notifdao.saveNotification(notif);
                 
                 //Build email body
@@ -133,7 +136,7 @@ public class NotificationController {
         @Override
         public void actionPerformed(ActionEvent e) {
             VehicleManagement vm = new VehicleManagement();  // Create view
-            VehicleController vc = new VehicleController(vm); // Create controller
+            VehicleController vc = new VehicleController(vm, adminId); // Create controller
             vc.openVehicleManagement();  // Open Vehicle Management page  
             closeNotification();   // Close Notification page
         }
@@ -143,7 +146,7 @@ public class NotificationController {
     class RouteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            RouteManagement rm = new RouteManagement();  // Create view
+            RouteManagement rm = new RouteManagement(adminId);  // Create view
             rm.setVisible(true);    // Open Route Management page
             closeNotification();   // Close Notification page
         }
@@ -154,7 +157,7 @@ public class NotificationController {
         @Override
         public void actionPerformed(ActionEvent e) {
             TripManagement tm = new TripManagement();  // Create view
-            TripController tc = new TripController(tm); // Create controller
+            TripController tc = new TripController(tm, adminId); // Create controller
             tc.openTripManagement();  // Open Trip Management page
             closeNotification();   // Close Notification page
         }
@@ -164,7 +167,7 @@ public class NotificationController {
     class UserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            UserManagement um = new UserManagement();  // Create view
+            UserManagement um = new UserManagement(adminId);  // Create view
             um.setVisible(true);    // Open User Management page
             closeNotification();   // Close Notification page
         }

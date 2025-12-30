@@ -162,7 +162,7 @@ public class SearchDao {
 
     public void updateAvailableSeats(int tripId, int seatsBooked) {
         Connection conn = mysql.openConnection();
-        String sql = "Update trips set available_seats = available_seats = ? where trip_id = ?";
+        String sql = "Update trips set available_seats = ? where trip_id = ?";
         
         try (PreparedStatement pstm = conn. prepareStatement(sql)) {
             pstm.setInt(1, seatsBooked);

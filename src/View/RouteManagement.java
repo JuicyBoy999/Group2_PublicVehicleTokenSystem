@@ -13,21 +13,24 @@ import javax.swing.JOptionPane;
  */
 public class RouteManagement extends javax.swing.JFrame {
     private int editingRouteId = -1;
+    private int adminId;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RouteManagement.class.getName());
 
     /**
      * Creates new form VehicleManagement
      */
-    public RouteManagement() {
+    public RouteManagement(int adminId) {
         initComponents();
+        this.adminId = adminId;
+        
         RouteTable.getColumnModel().getColumn(0).setMinWidth(0);
         RouteTable.getColumnModel().getColumn(0).setMaxWidth(0);
         RouteTable.getColumnModel().getColumn(0).setWidth(0);
 
         setSize(1280, 740);
 
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.loadRoutes(this);
         RouteTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -464,7 +467,7 @@ public class RouteManagement extends javax.swing.JFrame {
         int duration = Integer.parseInt(durationStr);
         double fare = Double.parseDouble(fareStr);
         
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         
         if (editingRouteId != -1) {
             controller.updateRoute(editingRouteId, routename, origin, destination, duration, fare);
@@ -483,7 +486,7 @@ public class RouteManagement extends javax.swing.JFrame {
 
     private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
         // TODO add your handling code here:
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.closeRouteManagement(this);
         controller.openVehicleManagement();
     }//GEN-LAST:event_vehiclesActionPerformed
@@ -497,21 +500,21 @@ public class RouteManagement extends javax.swing.JFrame {
 
     private void usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersActionPerformed
         // TODO add your handling code here:
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.closeRouteManagement(this);
         controller.openUserList();
     }//GEN-LAST:event_usersActionPerformed
 
     private void tripsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tripsActionPerformed
         // TODO add your handling code here:
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.closeRouteManagement(this);
         controller.openTripManagement();
     }//GEN-LAST:event_tripsActionPerformed
 
     private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
         // TODO add your handling code here:
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.closeRouteManagement(this);
         controller.openNotification();
     }//GEN-LAST:event_notificationsActionPerformed
@@ -606,9 +609,6 @@ public class RouteManagement extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new RouteManagement().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -667,7 +667,7 @@ public javax.swing.JTable getRouteTable() {
 }
 
 private void loadRouteTable() {
-    RouteController controller = new RouteController();
+    RouteController controller = new RouteController(adminId);
     controller.loadRoutes(this);
 }
 
@@ -705,7 +705,7 @@ private void deleteRoute(int row) {
     );
 
     if (confirm == JOptionPane.YES_OPTION) {
-        RouteController controller = new RouteController();
+        RouteController controller = new RouteController(adminId);
         controller.deleteRoute(id);
         loadRouteTable();
     }

@@ -11,6 +11,7 @@ import View.Email;
 import View.Login;
 import View.SearchTrips;
 import View.Signup;
+import View.VehicleManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -55,7 +56,7 @@ class LoginListner implements ActionListener {
             String role = logindao.loginAndGetRole(userdata); 
             
             if (role != null) {
-                JOptionPane.showMessageDialog(loginView, "Login successful!");
+//                JOptionPane.showMessageDialog(null, "Login successful!");
                 close();
                 
                 if (role.equals("Passenger")) {
@@ -64,13 +65,21 @@ class LoginListner implements ActionListener {
                     SearchTrips view = new SearchTrips();
                     SearchController controller = new SearchController(view, userID);
                     controller.openSearchTrips();
-                } else if (role.equals("Driver")) {
+                }
+                else if (role.equals("Driver")) {
                     System.out.println("Redirecting to Driver Dashboard...");
                     int userID = logindao.getUserIdByEmail(email);
                     DriverScheduled driverView = new DriverScheduled(userID);
                     // DriverController driverController = new DriverController(driverView);
                     // driverController.open();
                     driverView.setVisible(true);
+                }
+                else if (role.equals("Admin")) {
+                    System.out.println("Redirecting to Admin Dashboard...");
+                    int userID = logindao.getUserIdByEmail(email);
+                    VehicleManagement vm = new VehicleManagement();
+                    VehicleController vc = new VehicleController(vm, userID);
+                    vc.openVehicleManagement();
                 }
             } else {
                 JOptionPane.showMessageDialog(loginView, "Invalid credentials");

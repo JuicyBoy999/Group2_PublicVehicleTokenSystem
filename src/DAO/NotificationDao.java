@@ -50,13 +50,14 @@ public class NotificationDao {
     // Save notification
     public void saveNotification(NotificationData notif) {
         Connection con = mysql.openConnection();
-        String sql = "INSERT INTO notifications(trip_id, notification_type, message, created_at) " +
-                     "VALUES (?, ?, ?, NOW())";
+        String sql = "INSERT INTO notifications(trip_id, notification_type, message, created_at, admin_id) " +
+                     "VALUES (?, ?, ?, NOW(), ?)";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, notif.getTripId());
             ps.setString(2, notif.getType());
             ps.setString(3, notif.getMessage());
+            ps.setInt(4, notif.getAdminId());
             
             ps.executeUpdate();
         }

@@ -417,11 +417,7 @@ public class VehicleManagement extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            VehicleManagement view = new VehicleManagement();
-            VehicleController controller = new VehicleController(view);
-            controller.openVehicleManagement();
-        });
+        java.awt.EventQueue.invokeLater(() -> new VehicleManagement().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

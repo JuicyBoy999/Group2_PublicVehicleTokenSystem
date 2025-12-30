@@ -4,7 +4,6 @@
  */
 package View;
 
-import Model.userData;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;

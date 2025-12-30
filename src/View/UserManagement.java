@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.AdminRegController;
 import Controller.NotificationController;
 import Controller.TripController;
 import Controller.VehicleController;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,11 +23,14 @@ public class UserManagement extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserManagement.class.getName());
     public userDAO userDao;
+    private final int adminId;
+    
     /**
      * Creates new form UserManagement2
      */
-    public UserManagement() {
+    public UserManagement(int adminId) {
         initComponents();
+        this.adminId = adminId;
         setSize(1280, 740);
         userDao = new userDAO(); 
         loadAllUsers();
@@ -56,8 +61,10 @@ public class UserManagement extends javax.swing.JFrame {
         all = new javax.swing.JButton();
         passenger = new javax.swing.JButton();
         driver = new javax.swing.JButton();
+        admin = new javax.swing.JButton();
         scroll = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
+        add = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -199,6 +206,12 @@ public class UserManagement extends javax.swing.JFrame {
         driver.setText("Driver");
         driver.addActionListener(this::driverActionPerformed);
 
+        admin.setBackground(new java.awt.Color(0, 0, 204));
+        admin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        admin.setForeground(new java.awt.Color(255, 255, 255));
+        admin.setText("Admin");
+        admin.addActionListener(this::adminActionPerformed);
+
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -222,24 +235,35 @@ public class UserManagement extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(passenger)
                         .addGap(18, 18, 18)
-                        .addComponent(driver)))
+                        .addComponent(driver)
+                        .addGap(18, 18, 18)
+                        .addComponent(admin)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passenger, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(driver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
         getContentPane().add(form);
         form.setBounds(50, 290, 1180, 420);
+
+        add.setBackground(new java.awt.Color(0, 0, 204));
+        add.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        add.setForeground(new java.awt.Color(255, 255, 255));
+        add.setText("+ Add Admin");
+        add.addActionListener(this::addActionPerformed);
+        getContentPane().add(add);
+        add.setBounds(1070, 245, 150, 40);
 
         setBounds(0, 0, 1280, 740);
     }// </editor-fold>//GEN-END:initComponents
@@ -248,14 +272,14 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         VehicleManagement vm = new VehicleManagement();
-        VehicleController vc = new VehicleController(vm);
+        VehicleController vc = new VehicleController(vm, adminId);
         vc.openVehicleManagement();
     }//GEN-LAST:event_vehiclesActionPerformed
 
     private void routesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        RouteManagement rm = new RouteManagement();
+        RouteManagement rm = new RouteManagement(adminId);
         rm.setVisible(true);
     }//GEN-LAST:event_routesActionPerformed
 
@@ -282,7 +306,7 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         TripManagement tm = new TripManagement();
-        TripController tc = new TripController(tm);
+        TripController tc = new TripController(tm, adminId);
         tc.openTripManagement();
     }//GEN-LAST:event_tripsActionPerformed
 
@@ -290,39 +314,35 @@ public class UserManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         Notification n = new Notification();
-        NotificationController nc = new NotificationController(n);
+        NotificationController nc = new NotificationController(n, adminId);
         nc.openNotification();
     }//GEN-LAST:event_notificationsActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        // TODO add your handling code here:
+        loadUsersByRole("Admin");
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // Open admin registration page
+        AdminRegistration ar = new AdminRegistration();
+        AdminRegController arc = new AdminRegController(ar, this);
+        arc.openAdminReg();
+    }//GEN-LAST:event_addActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new UserManagement().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel Bato;
     private javax.swing.JLabel RouteManagement;
+    private javax.swing.JButton add;
+    private javax.swing.JButton admin;
     private javax.swing.JButton all;
     private javax.swing.JButton driver;
     private javax.swing.JPanel form;
@@ -340,16 +360,15 @@ public class UserManagement extends javax.swing.JFrame {
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
 
-    private void loadAllUsers() {
+    public void loadAllUsers() {
         try {
             ResultSet rs = userDao.getAllUsers();
             populateTable(rs);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             logger.log(java.util.logging.Level.SEVERE, "Error loading users", e);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error loading users: " + e.getMessage(),
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error loading users: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -357,12 +376,11 @@ public class UserManagement extends javax.swing.JFrame {
         try {
             ResultSet rs = userDao.getUsersByRole(role);
             populateTable(rs);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             logger.log(java.util.logging.Level.SEVERE, "Error loading users by role", e);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error loading users: " + e.getMessage(),
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error loading users: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -371,10 +389,8 @@ public class UserManagement extends javax.swing.JFrame {
         model.setRowCount(0); // Clear existing rows
 
         if (rs == null) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "No data available",
-                    "Info",
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No data available",
+                    "Info", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -392,18 +408,17 @@ public class UserManagement extends javax.swing.JFrame {
                     if (timestamp != null) {
                         joined = dateFormat.format(timestamp);
                     }
-                } catch (SQLException e) {
+                }
+                catch (SQLException e) {
                     joined = "N/A";
                 }
-
                 model.addRow(new Object[]{name, email, phone, role, joined});
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log(java.util.logging.Level.SEVERE, "Error populating table", e);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error displaying users: " + e.getMessage(),
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error displaying users: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
