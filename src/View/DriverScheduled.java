@@ -5,6 +5,8 @@
 package View;
 
 import DAO.TripDao;
+import Model.TripData;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -59,7 +61,7 @@ public class DriverScheduled extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        background = new javax.swing.JLabel();
+        loadAssignedRoute = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -340,9 +342,10 @@ public class DriverScheduled extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 480, 1240, 210);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/DashboardBackground.png"))); // NOI18N
-        getContentPane().add(background);
-        background.setBounds(0, 0, 1270, 730);
+        loadAssignedRoute.setText("jButton1");
+        loadAssignedRoute.addActionListener(this::loadAssignedRouteActionPerformed);
+        getContentPane().add(loadAssignedRoute);
+        loadAssignedRoute.setBounds(1100, 170, 130, 40);
 
         setSize(new java.awt.Dimension(1280, 740));
         setLocationRelativeTo(null);
@@ -359,15 +362,49 @@ public class DriverScheduled extends javax.swing.JFrame {
     }//GEN-LAST:event_passengersActionPerformed
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
-Driver_Ongoing.setVisible(true);
-int Trip_id = this.trip_id; // pass tripId when opening this frame
-    TripDao dao = new TripDao();
-    dao.startTrip(Trip_id);
-     Driver_Ongoing Ongoing = new Driver_Ongoing();
-    Ongoing.setVisible(true);
-this.dispose();// TODO add your handling code here:
+        Driver_Ongoing Driver_Ongoing = new Driver_Ongoing();
+        Driver_Ongoing.setVisible(true);
+        int Trip_id = this.trip_id; // pass tripId when opening this frame
+        
+        TripDao dao = new TripDao();
+        dao.startTrip(Trip_id);
+        
+        Driver_Ongoing driverOngoing = new Driver_Ongoing(this.userId);
+        driverOngoing.setTripId(Trip_id);
+        driverOngoing.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_startActionPerformed
+
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+        View.Profile p = new View.Profile();
+        ProfileController pc = new ProfileController(p, userId);
+        pc.openProfile();
+    }//GEN-LAST:event_profileActionPerformed
+
+    private void loadAssignedRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAssignedRouteActionPerformed
+
+    TripDao tripDao = new TripDao();
+    List<TripData> trips = tripDao.getAssignedTrips(userId);
+
+    DefaultTableModel model =
+            (DefaultTableModel) jTable1.getModel();
+
+    model.setRowCount(0);
+
+    for (TripData t : trips) {
+        model.addRow(new Object[]{
+            t.getTripID(),
+            t.getVehicleNum(),
+            t.getOrigin(),
+            t.getDestination(),
+            t.getArrivalTime(),
+            t.getDepartureTime(),
+            t.getStatus()
+        });
+    }
+}
+   // TODO add your handling code here:
+    }//GEN-LAST:event_loadAssignedRouteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,8 +428,7 @@ this.dispose();// TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DriverScheduled().setVisible(true));
-    }
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Bato;
@@ -402,7 +438,6 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JLabel Seats;
     private javax.swing.JPanel Status;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel background;
     private javax.swing.JButton completed;
     private javax.swing.JButton delay;
     private javax.swing.JPanel header;
@@ -411,6 +446,7 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton loadAssignedRoute;
     private javax.swing.JLabel logo;
     private javax.swing.JButton ongoing;
     private javax.swing.JButton passengers;

@@ -8,6 +8,7 @@ import Database.MySqlConnection;
 import Model.TripData;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -213,6 +214,7 @@ public class TripDao {
                     rs.getInt("route_id"),
                     rs.getString("route_name"),
                     rs.getString("departure"),
+                    rs.getString("origin"),
                     rs.getString("arrival"),
                     rs.getString("status")
                 );
@@ -302,6 +304,7 @@ public class TripDao {
                         rs.getInt("route_id"),
                         rs.getString("route_name"),
                         rs.getString("departure"),
+                        rs.getString("origin"),
                         rs.getString("arrival"),
                         rs.getString("status")
                     );
@@ -363,4 +366,8 @@ public class TripDao {
     }
     return null;
 }
+
+    public List<TripData> getAssignedTrips(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

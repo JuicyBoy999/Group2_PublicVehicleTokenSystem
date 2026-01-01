@@ -17,22 +17,27 @@ public class TripData {
     private String departure;
     private String arrival;
     private String status;
+    private String vehicleType;
+    private String origin;
+    private String destination;
     
-    // Constructor for adding trip
-    public TripData(int vehicleId, int routeId, String departure, String arrival) {
+    public TripData(int vehicleId, int routeId, String departure, String origin, String arrival) {
         this.vehicleId = vehicleId;
         this.routeId = routeId;
         this.departure = departure;
+        this.origin = origin;
         this.arrival = arrival;
     }
     
     // Constructor for loading table
     public TripData(int vehicleId, String vehicleName, int routeId, String routeName, String departure, String arrival, String status) {
+    public TripData(int vehicleId, String vehicleName, int routeId, String routeName, String departure, String origin, String arrival, String status) {
         this.vehicleId = vehicleId;
         this.vehicleName = vehicleName;
         this.routeId = routeId;
         this.routeName = routeName;
         this.departure = departure;
+        this.origin = origin;
         this.arrival = arrival;
         this.status = status;
     }
@@ -92,4 +97,11 @@ public class TripData {
     public int getTripID() {
         return trip_id;
     }
+    public void setOrigin(String origin) {
+    this.origin = origin;
+}
+
+public String getOrigin() {
+    return origin;
+}
 }

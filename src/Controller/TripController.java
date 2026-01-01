@@ -143,6 +143,8 @@ public class TripController {
     
         
     class AddActionListener implements ActionListener {
+
+        private String origin;
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -184,7 +186,7 @@ public class TripController {
                     return;
                 }
                 
-                TripData tripdata = new TripData(vehicle, route, departure, arrival);
+                TripData tripdata = new TripData(vehicle, route, departure, origin, arrival);
 
                 // If editing, update the database
                 if (currentEditingId != -1) {
