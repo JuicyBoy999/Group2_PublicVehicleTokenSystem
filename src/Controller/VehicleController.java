@@ -27,9 +27,11 @@ public class VehicleController {
     public final VehicleManagement vehicleView;
     
     private int currentEditingId = -1; // tracks which vehicle is being edited
+    private final int adminId;   // Tracks which admin is logged in
     
-    public VehicleController(VehicleManagement vehicleView) {   // Constructor
+    public VehicleController(VehicleManagement vehicleView, int adminId) {   // Constructor
         this.vehicleView = vehicleView;
+        this.adminId = adminId;
         
         vehicleView.VehicleFormListener(new FormListener());
         vehicleView.AddVehicleListener(new AddActionListener());
@@ -222,6 +224,7 @@ public class VehicleController {
                 // Change Add button text to "Update"
                 vehicleView.getSubmitButton().setText("Update");
                 vehicleView.getFormPanel().setVisible(true); // show the form
+                vehicleView.getScrollPane().setBounds(60, 610, 1150, 100);  // Move the table down
                 break;
             }
         }
@@ -289,7 +292,7 @@ public class VehicleController {
     class RouteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            RouteManagement rm = new RouteManagement();  // Create view
+            RouteManagement rm = new RouteManagement(adminId);  // Create view
             rm.setVisible(true);    // Open Route Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
@@ -300,7 +303,7 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             TripManagement tm = new TripManagement();  // Create view
-            TripController tc = new TripController(tm); // Create controller
+            TripController tc = new TripController(tm, adminId); // Create controller
             tc.openTripManagement();  // Open Trip Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
@@ -310,7 +313,7 @@ public class VehicleController {
     class UserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            UserManagement um = new UserManagement();  // Create view
+            UserManagement um = new UserManagement(adminId);  // Create view
             um.setVisible(true);    // Open User Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }
@@ -321,7 +324,7 @@ public class VehicleController {
         @Override
         public void actionPerformed(ActionEvent e) {
             Notification n = new Notification();  // Create view
-            NotificationController nc = new NotificationController(n); // Create controller
+            NotificationController nc = new NotificationController(n, adminId); // Create controller
             nc.openNotification();  // Open Notification Management page
             closeVehicleManagement();   // Close Vehicle Management page
         }

@@ -20,6 +20,5 @@ public class Group2_PublicVehicleTokenSystem {
         Signup signup = new Signup();
         UserController usercontroller = new UserController(signup);
         usercontroller.open();
-    }
-    
+    } 
 }

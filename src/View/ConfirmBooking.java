@@ -256,30 +256,28 @@ public class ConfirmBooking extends javax.swing.JFrame {
     private javax.swing.JLabel vehicletype;
     // End of variables declaration//GEN-END:variables
 
-public void setTotalFare(double totalFare) {
-    fare.setText(String.valueOf(totalFare));
-}
+    public void setTotalFare(double totalFare) {
+        fare.setText(String.valueOf(totalFare));
+    }
 
-public javax.swing.JButton getConfirmButton() {
-    return book;
-}
+    public javax.swing.JButton getConfirmButton() {
+        return book;
+    }
 
-public javax.swing.JComboBox<String> getSeatComboBox() {
-    return seats;
-}
+    public javax.swing.JComboBox<String> getSeatComboBox() {
+        return seats;
+    }
 
-public javax.swing.JLabel getTotalFareLabel() {
-    return fare;
-}
+    public javax.swing.JLabel getTotalFareLabel() {
+        return fare;
+    }
 
-public int getSelectedSeats() {
-    String selected = (String) seats.getSelectedItem();
-    return Integer.parseInt(selected.split(" ")[0]);
-}
+    public int getSelectedSeats() {
+        String selected = (String) seats.getSelectedItem();
+        return Integer.parseInt(selected.split(" ")[0]);
+    }
 
-public int getTripId() {
-    return tripId;
-}
-
-
+    public int getTripId() {
+        return tripId;
+    }
 }

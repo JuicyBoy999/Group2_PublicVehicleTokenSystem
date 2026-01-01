@@ -4,22 +4,32 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author user
  */
 public class ResetPassword extends javax.swing.JFrame {
     
+    private String userEmail;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ResetPassword.class.getName());
 
     /**
      * Creates new form Login
      */
+    
     public ResetPassword() {
         initComponents();
         setSize(1000,564);
     }
-
+    
+    public ResetPassword(String email) {
+        this.userEmail = email;
+        initComponents();
+        setSize(1000,564);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,8 +57,15 @@ public class ResetPassword extends javax.swing.JFrame {
         ResetPasswordBTN.setText("Reset Password");
         getContentPane().add(ResetPasswordBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 120, -1));
 
-        password2.setBackground(new java.awt.Color(255, 255, 255));
         password2.setText("Enter Password");
+        password2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                password2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                password2FocusLost(evt);
+            }
+        });
         password2.addActionListener(this::password2ActionPerformed);
         getContentPane().add(password2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 190, -1));
 
@@ -60,9 +77,16 @@ public class ResetPassword extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, -1, -1));
 
-        password1.setBackground(new java.awt.Color(255, 255, 255));
         password1.setForeground(new java.awt.Color(102, 102, 102));
         password1.setText("Enter Password");
+        password1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                password1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                password1FocusLost(evt);
+            }
+        });
         password1.addActionListener(this::password1ActionPerformed);
         getContentPane().add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 190, -1));
 
@@ -99,6 +123,34 @@ public class ResetPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_password1ActionPerformed
 
+    private void password1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1FocusGained
+        // TODO add your handling code here:
+        if(password1.getText().equals("Enter Password")) {
+            password1.setText("");
+        }
+    }//GEN-LAST:event_password1FocusGained
+
+    private void password1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1FocusLost
+        // TODO add your handling code here:
+        if(password1.getText().equals("")) {
+            password1.setText("Enter Password");
+        }
+    }//GEN-LAST:event_password1FocusLost
+
+    private void password2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password2FocusGained
+        // TODO add your handling code here:
+        if(password2.getText().equals("Enter Password")) {
+            password2.setText("");
+        }
+    }//GEN-LAST:event_password2FocusGained
+
+    private void password2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password2FocusLost
+        // TODO add your handling code here:
+        if(password2.getText().equals("")) {
+            password2.setText("Enter Password");
+        }
+    }//GEN-LAST:event_password2FocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -121,6 +173,16 @@ public class ResetPassword extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+                try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(() -> new ResetPassword().setVisible(true));
     }
 
@@ -135,4 +197,20 @@ public class ResetPassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField password1;
     private javax.swing.JPasswordField password2;
     // End of variables declaration//GEN-END:variables
+
+    public String getNewPassword() {
+        return new String(password1.getPassword());
+    }
+    
+    public String getConfirmPassword() {
+        return new String(password2.getPassword());
+    }
+    
+    public String getEmail() {
+        return userEmail;
+    }
+    
+    public void addResetListener(ActionListener listener) {
+        ResetPasswordBTN.addActionListener(listener);
+    }
 }

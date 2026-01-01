@@ -4,14 +4,11 @@
  */
 package View;
 
-<<<<<<< Updated upstream
-=======
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
->>>>>>> Stashed changes
 /**
  *
  * @author hp
@@ -40,7 +37,6 @@ public class TripManagement extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Bato = new javax.swing.JLabel();
-        profile = new javax.swing.JButton();
         AdminDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         vehicles = new javax.swing.JButton();
@@ -49,28 +45,23 @@ public class TripManagement extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
-        RouteManagement = new javax.swing.JLabel();
-        AddRoute = new javax.swing.JButton();
+        TripManagement = new javax.swing.JLabel();
+        add = new javax.swing.JButton();
         form = new javax.swing.JPanel();
         ScheduleTrip = new javax.swing.JLabel();
         Vehicle = new javax.swing.JLabel();
-        VehicleText = new javax.swing.JTextField();
+        vehicle = new javax.swing.JComboBox<>();
         DepartureTime = new javax.swing.JLabel();
+        departure = new javax.swing.JTextField();
         Route = new javax.swing.JLabel();
+        route = new javax.swing.JComboBox<>();
         ArrivalTime = new javax.swing.JLabel();
-        ConfirmTrip = new javax.swing.JButton();
+        arrival = new javax.swing.JTextField();
+        confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-<<<<<<< Updated upstream
-        RouteSelect = new javax.swing.JComboBox<>();
-        ArrivalTimeSelect = new javax.swing.JComboBox<>();
-        DepartureTimeSelect = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-=======
         noData = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         tripTable = new javax.swing.JTable();
->>>>>>> Stashed changes
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,14 +76,6 @@ public class TripManagement extends javax.swing.JFrame {
         Bato.setMaximumSize(new java.awt.Dimension(117, 47));
         Bato.setMinimumSize(new java.awt.Dimension(117, 47));
 
-        profile.setBackground(new java.awt.Color(244, 244, 244));
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        profile.setForeground(new java.awt.Color(102, 102, 102));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile.png"))); // NOI18N
-        profile.setBorder(null);
-        profile.setBorderPainted(false);
-        profile.setContentAreaFilled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -102,23 +85,16 @@ public class TripManagement extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 979, Short.MAX_VALUE)
-                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(1065, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo)
-                            .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                    .addComponent(logo)
+                    .addComponent(Bato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(header);
@@ -199,18 +175,18 @@ public class TripManagement extends javax.swing.JFrame {
         getContentPane().add(separator);
         separator.setBounds(30, 230, 1205, 20);
 
-        RouteManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        RouteManagement.setText("Trip Management");
-        getContentPane().add(RouteManagement);
-        RouteManagement.setBounds(50, 240, 240, 54);
+        TripManagement.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        TripManagement.setText("Trip Management");
+        getContentPane().add(TripManagement);
+        TripManagement.setBounds(50, 240, 240, 54);
 
-        AddRoute.setBackground(new java.awt.Color(0, 0, 204));
-        AddRoute.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        AddRoute.setForeground(new java.awt.Color(255, 255, 255));
-        AddRoute.setText("+ Schedule Trips");
-        AddRoute.addActionListener(this::AddRouteActionPerformed);
-        getContentPane().add(AddRoute);
-        AddRoute.setBounds(1070, 240, 150, 40);
+        add.setBackground(new java.awt.Color(0, 0, 204));
+        add.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        add.setForeground(new java.awt.Color(255, 255, 255));
+        add.setText("+ Schedule Trips");
+        add.addActionListener(this::addActionPerformed);
+        getContentPane().add(add);
+        add.setBounds(1070, 240, 150, 40);
 
         form.setBackground(new java.awt.Color(255, 255, 255));
         form.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -222,24 +198,59 @@ public class TripManagement extends javax.swing.JFrame {
         Vehicle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Vehicle.setText("Vehicle");
 
-        VehicleText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        VehicleText.setToolTipText("");
-        VehicleText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        VehicleText.addActionListener(this::VehicleTextActionPerformed);
+        vehicle.setBackground(new java.awt.Color(255, 255, 255));
+        vehicle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        vehicle.setForeground(new java.awt.Color(51, 51, 51));
+        vehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Vehicle", " " }));
+        vehicle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         DepartureTime.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         DepartureTime.setText("Departure Time");
 
+        departure.setBackground(new java.awt.Color(255, 255, 255));
+        departure.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        departure.setText("yyyy-mm-dd hh:mm:ss");
+        departure.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        departure.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                departureFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                departureFocusLost(evt);
+            }
+        });
+
         Route.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Route.setText("Route");
+
+        route.setBackground(new java.awt.Color(255, 255, 255));
+        route.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        route.setForeground(new java.awt.Color(51, 51, 51));
+        route.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the Route", " " }));
+        route.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        route.addActionListener(this::routeActionPerformed);
 
         ArrivalTime.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         ArrivalTime.setText("Arrival Time");
 
-        ConfirmTrip.setBackground(new java.awt.Color(0, 0, 204));
-        ConfirmTrip.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        ConfirmTrip.setForeground(new java.awt.Color(255, 255, 255));
-        ConfirmTrip.setText("Schedule Trip");
+        arrival.setBackground(new java.awt.Color(255, 255, 255));
+        arrival.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        arrival.setText("yyyy-mm-dd hh:mm:ss");
+        arrival.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        arrival.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                arrivalFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                arrivalFocusLost(evt);
+            }
+        });
+        arrival.addActionListener(this::arrivalActionPerformed);
+
+        confirm.setBackground(new java.awt.Color(0, 0, 204));
+        confirm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        confirm.setForeground(new java.awt.Color(255, 255, 255));
+        confirm.setText("Schedule Trip");
 
         cancel.setBackground(new java.awt.Color(153, 153, 153));
         cancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -247,36 +258,28 @@ public class TripManagement extends javax.swing.JFrame {
         cancel.setText("Cancel");
         cancel.addActionListener(this::cancelActionPerformed);
 
-        RouteSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selected Route", " " }));
-
-        ArrivalTimeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm/dd/yy --:--:--", "Item 2", "Item 3", "Item 4" }));
-        ArrivalTimeSelect.addActionListener(this::ArrivalTimeSelectActionPerformed);
-
-        DepartureTimeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm/dd/yy --:--:--", "Item 2", "Item 3", "Item 4" }));
-        DepartureTimeSelect.addActionListener(this::DepartureTimeSelectActionPerformed);
-
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Vehicle)
                     .addComponent(ScheduleTrip)
                     .addComponent(DepartureTime)
-                    .addComponent(VehicleText, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                     .addGroup(formLayout.createSequentialGroup()
-                        .addComponent(ConfirmTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(DepartureTimeSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(vehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departure, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Route)
                     .addComponent(ArrivalTime)
-                    .addComponent(RouteSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ArrivalTimeSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(route, 0, 515, Short.MAX_VALUE)
+                    .addComponent(arrival))
                 .addGap(0, 38, Short.MAX_VALUE))
         );
         formLayout.setVerticalGroup(
@@ -288,10 +291,10 @@ public class TripManagement extends javax.swing.JFrame {
                         .addComponent(ScheduleTrip)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Vehicle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(RouteSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(VehicleText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(vehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(formLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(Route)))
@@ -300,12 +303,12 @@ public class TripManagement extends javax.swing.JFrame {
                     .addComponent(ArrivalTime)
                     .addComponent(DepartureTime))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ArrivalTimeSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(DepartureTimeSelect))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -313,10 +316,6 @@ public class TripManagement extends javax.swing.JFrame {
         getContentPane().add(form);
         form.setBounds(60, 310, 1150, 250);
 
-<<<<<<< Updated upstream
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-=======
         noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         noData.setText("No Records");
         getContentPane().add(noData);
@@ -324,25 +323,12 @@ public class TripManagement extends javax.swing.JFrame {
 
         tripTable.setForeground(new java.awt.Color(51, 51, 51));
         tripTable.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> Stashed changes
             new Object [][] {
 
             },
             new String [] {
-                "", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
+                "Id", "Vehicle", "Routes", "Departure", "Arrival", "Status", "Actions"
             }
-<<<<<<< Updated upstream
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-=======
         ));
         scroll.setViewportView(tripTable);
         if (tripTable.getColumnModel().getColumnCount() > 0) {
@@ -350,10 +336,9 @@ public class TripManagement extends javax.swing.JFrame {
             tripTable.getColumnModel().getColumn(0).setPreferredWidth(0);
             tripTable.getColumnModel().getColumn(0).setMaxWidth(0);
         }
->>>>>>> Stashed changes
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 610, 1150, 100);
+        getContentPane().add(scroll);
+        scroll.setBounds(60, 610, 1150, 100);
 
         background.setBackground(new java.awt.Color(0, 0, 0));
         background.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,10 +353,6 @@ public class TripManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VehicleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VehicleTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VehicleTextActionPerformed
-
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
@@ -380,17 +361,45 @@ public class TripManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routesActionPerformed
 
-    private void AddRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouteActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AddRouteActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
-    private void ArrivalTimeSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArrivalTimeSelectActionPerformed
+    private void routeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ArrivalTimeSelectActionPerformed
+    }//GEN-LAST:event_routeActionPerformed
 
-    private void DepartureTimeSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureTimeSelectActionPerformed
+    private void departureFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departureFocusGained
+        // Removes placeholder
+        if (departure.getText().equals("yyyy-mm-dd hh:mm:ss")) {
+            departure.setText("");
+        }
+    }//GEN-LAST:event_departureFocusGained
+
+    private void departureFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departureFocusLost
+        // Adds placeholder if empty
+        if (departure.getText().equals("")) {
+            departure.setText("yyyy-mm-dd hh:mm:ss");
+        }
+    }//GEN-LAST:event_departureFocusLost
+
+    private void arrivalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_arrivalFocusGained
+        // Removes placeholder
+        if (arrival.getText().equals("yyyy-mm-dd hh:mm:ss")) {
+            arrival.setText("");
+        }
+    }//GEN-LAST:event_arrivalFocusGained
+
+    private void arrivalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_arrivalFocusLost
+        // Adds placeholder if empty
+        if (arrival.getText().equals("")) {
+            arrival.setText("yyyy-mm-dd hh:mm:ss");
+        }
+    }//GEN-LAST:event_arrivalFocusLost
+
+    private void arrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrivalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DepartureTimeSelectActionPerformed
+    }//GEN-LAST:event_arrivalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,41 +427,38 @@ public class TripManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddRoute;
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JLabel ArrivalTime;
-    private javax.swing.JComboBox<String> ArrivalTimeSelect;
     private javax.swing.JLabel Bato;
-    private javax.swing.JButton ConfirmTrip;
     private javax.swing.JLabel DepartureTime;
-    private javax.swing.JComboBox<String> DepartureTimeSelect;
     private javax.swing.JLabel Route;
-    private javax.swing.JLabel RouteManagement;
-    private javax.swing.JComboBox<String> RouteSelect;
     private javax.swing.JLabel ScheduleTrip;
+    private javax.swing.JLabel TripManagement;
     private javax.swing.JLabel Vehicle;
-    private javax.swing.JTextField VehicleText;
+    private javax.swing.JButton add;
+    private javax.swing.JTextField arrival;
     private javax.swing.JLabel background;
     private javax.swing.JButton cancel;
+    private javax.swing.JButton confirm;
+    private javax.swing.JTextField departure;
     private javax.swing.JPanel form;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel noData;
     private javax.swing.JButton notifications;
-    private javax.swing.JButton profile;
+    private javax.swing.JComboBox<String> route;
     private javax.swing.JButton routes;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JSeparator separator;
+    private javax.swing.JTable tripTable;
     private javax.swing.JButton trips;
     private javax.swing.JButton users;
+    private javax.swing.JComboBox<String> vehicle;
     private javax.swing.JButton vehicles;
     // End of variables declaration//GEN-END:variables
-<<<<<<< Updated upstream
-}
-=======
-     
+
+    
     // What happens when user clicks button
     public void TripFormListener(ActionListener listener) {
         add.addActionListener(listener);
@@ -538,4 +544,3 @@ public class TripManagement extends javax.swing.JFrame {
         return noData;
     }
 }
->>>>>>> Stashed changes

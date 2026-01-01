@@ -4,7 +4,9 @@
  */
 package View;
 
+import Controller.ProfileController;
 import DAO.TripDao;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,12 +16,24 @@ public class Driver_Ongoing extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Driver_Ongoing.class.getName());
     private int trip_id;
+    private int userId;
 
     /**
      * Creates new form Driver_Ongoing
      */
     public Driver_Ongoing() {
         initComponents();
+        setSize(1280, 740);
+    }
+
+    public Driver_Ongoing(int userId) {
+        this.userId = userId;
+        initComponents();
+        setSize(1280, 740);
+    }
+
+    public void setTripId(int tripId) {
+        this.trip_id = tripId;
     }
 
     /**
@@ -285,10 +299,19 @@ public class Driver_Ongoing extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {
+        View.Profile p = new View.Profile();
+        ProfileController pc = new ProfileController(p, userId);
+        pc.openProfile();
+    }
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        ReportVehical_Problem problem = new ReportVehical_Problem();
-        problem.setVisible(true);
+    ReportVehical_Problem reportWindow = new ReportVehical_Problem();
+    reportWindow.setTripId(this.trip_id); // ensure this.trip_id is set when this frame opens
+    reportWindow.setLocationRelativeTo(this); // center over driver window
+    reportWindow.setVisible(true);
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void EndTripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndTripActionPerformed

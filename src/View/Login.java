@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author user
@@ -29,39 +31,45 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Login = new javax.swing.JButton();
         forgotPassword = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        Account = new javax.swing.JLabel();
+        signupBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(420, 160, 40, 30);
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField7.setText("Enter Your Email");
-        jTextField7.addActionListener(this::jTextField7ActionPerformed);
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(360, 220, 230, 26);
+        email.setForeground(new java.awt.Color(102, 102, 102));
+        email.setText("Enter Your Email");
+        email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFocusLost(evt);
+            }
+        });
+        email.addActionListener(this::emailActionPerformed);
+        getContentPane().add(email);
+        email.setBounds(360, 220, 230, 22);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Sign In");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(450, 150, 90, 36);
+        jLabel4.setBounds(450, 140, 90, 36);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginIcon.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(400, 150, 40, 40);
+        jLabel7.setBounds(400, 140, 40, 40);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(95, 95, 95));
@@ -69,10 +77,10 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(360, 260, 60, 16);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 204));
-        jButton1.setText("SIGN IN");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(430, 350, 80, 27);
+        Login.setBackground(new java.awt.Color(0, 0, 204));
+        Login.setText("SIGN IN");
+        getContentPane().add(Login);
+        Login.setBounds(440, 350, 80, 23);
 
         forgotPassword.setBackground(new java.awt.Color(244, 244, 244));
         forgotPassword.setForeground(new java.awt.Color(0, 0, 204));
@@ -83,13 +91,20 @@ public class Login extends javax.swing.JFrame {
         forgotPassword.setContentAreaFilled(false);
         forgotPassword.addActionListener(this::forgotPasswordActionPerformed);
         getContentPane().add(forgotPassword);
-        forgotPassword.setBounds(490, 310, 100, 16);
+        forgotPassword.setBounds(480, 310, 110, 16);
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(360, 280, 230, 26);
+        password.setForeground(new java.awt.Color(102, 102, 102));
+        password.setText("Enter Password");
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordFocusLost(evt);
+            }
+        });
+        getContentPane().add(password);
+        password.setBounds(360, 280, 230, 22);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(95, 95, 95));
@@ -97,12 +112,24 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(360, 200, 40, 16);
 
+        Account.setForeground(new java.awt.Color(95, 95, 95));
+        Account.setText("Don't have an account?");
+        getContentPane().add(Account);
+        Account.setBounds(390, 390, 140, 16);
+
+        signupBtn.setBackground(new java.awt.Color(244, 244, 244));
+        signupBtn.setForeground(new java.awt.Color(0, 0, 204));
+        signupBtn.setText("Sign up");
+        signupBtn.setBorder(null);
+        signupBtn.setBorderPainted(false);
+        signupBtn.setContentAreaFilled(false);
+        signupBtn.addActionListener(this::signupBtnActionPerformed);
+        getContentPane().add(signupBtn);
+        signupBtn.setBounds(520, 390, 50, 16);
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginBackground.jpg"))); // NOI18N
-        jLabel3.setMaximumSize(new java.awt.Dimension(259, 259));
-        jLabel3.setMinimumSize(new java.awt.Dimension(259, 259));
-        jLabel3.setPreferredSize(new java.awt.Dimension(259, 259));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(350, 130, 259, 259);
+        jLabel3.setBounds(350, 190, 259, 240);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SignBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -111,14 +138,39 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
     private void forgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPasswordActionPerformed
 
         // TODO add your handling code here:
     }//GEN-LAST:event_forgotPasswordActionPerformed
+
+    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
+if(email.getText().equals("Enter Your Email")){
+            email.setText("");}        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFocusGained
+
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+        if(email.getText().trim().equals("")){
+            email.setText("Enter Email");}// TODO add your handling code here:
+    }//GEN-LAST:event_emailFocusLost
+
+    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+            if(password.getText().equals("")){
+                password.setText("Enter Password");}        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFocusLost
+
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
+            if(password.getText().equals("Enter Password")){
+                password.setText("");}        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFocusGained
+
+    private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signupBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,16 +198,32 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Account;
+    private javax.swing.JButton Login;
+    private javax.swing.JTextField email;
     private javax.swing.JButton forgotPassword;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JButton signupBtn;
     // End of variables declaration//GEN-END:variables
+public void AddLoginListener(ActionListener listener){
+    Login.addActionListener(listener);
+}
+public void AddRegisterListener(ActionListener listener) {
+    signupBtn.addActionListener(listener);
+}
+public javax.swing.JPasswordField getpassword(){
+    return password;
+}
+public javax.swing.JTextField getemail(){
+    return email;
+}
+public void addForgotPasswordListener(ActionListener listener) {
+    forgotPassword.addActionListener(listener);
+}
 }

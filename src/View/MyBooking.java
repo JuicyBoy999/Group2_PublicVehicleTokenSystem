@@ -13,7 +13,7 @@ import javax.swing.JTable;
  *
  * @author Nitro V 16
  */
-public class Booking extends javax.swing.JFrame {
+public class MyBooking extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MyBooking.class.getName());
     private int userId;
@@ -21,7 +21,7 @@ public class Booking extends javax.swing.JFrame {
     /**
      * Creates new form Driver_Ongoing
      */
-    public Booking() {
+    public MyBooking() {
         initComponents();
         setSize(1280, 740);
     }
@@ -42,13 +42,14 @@ public class Booking extends javax.swing.JFrame {
         PassengerDashboard = new javax.swing.JLabel();
         intro = new javax.swing.JLabel();
         searchtrips = new javax.swing.JButton();
-        Mybookings = new javax.swing.JButton();
-        ongoing = new javax.swing.JButton();
+        all = new javax.swing.JButton();
+        pending = new javax.swing.JButton();
         completed = new javax.swing.JButton();
-        ongoing1 = new javax.swing.JButton();
-        Mybookings1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        boarded = new javax.swing.JButton();
+        Mybookings = new javax.swing.JButton();
+        noData = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        MyBookingTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -157,34 +158,27 @@ public class Booking extends javax.swing.JFrame {
         getContentPane().add(Mybookings);
         Mybookings.setBounds(230, 190, 150, 36);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        noData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        noData.setForeground(new java.awt.Color(153, 153, 153));
+        noData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/nobookingfound.png"))); // NOI18N
+        noData.setText("No Bookings Found.");
+        noData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        noData.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        getContentPane().add(noData);
+        noData.setBounds(520, 520, 147, 87);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/nobookingfound.png"))); // NOI18N
-        jLabel1.setText("No Bookings Found.");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        MyBookingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(484, 484, 484)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-        );
+            },
+            new String [] {
+                "Origin", "Destination", "Fare", "Token Number", "Status"
+            }
+        ));
+        scroll.setViewportView(MyBookingTable);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(50, 370, 1180, 230);
+        getContentPane().add(scroll);
+        scroll.setBounds(40, 350, 1180, 340);
 
         setSize(new java.awt.Dimension(1280, 740));
         setLocationRelativeTo(null);
@@ -220,23 +214,24 @@ public class Booking extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Booking().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new MyBooking().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Bato;
+    private javax.swing.JTable MyBookingTable;
     private javax.swing.JButton Mybookings;
-    private javax.swing.JButton Mybookings1;
     private javax.swing.JLabel PassengerDashboard;
+    private javax.swing.JButton all;
+    private javax.swing.JButton boarded;
     private javax.swing.JButton completed;
     private javax.swing.JPanel header;
     private javax.swing.JLabel intro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
-    private javax.swing.JButton ongoing;
-    private javax.swing.JButton ongoing1;
+    private javax.swing.JLabel noData;
+    private javax.swing.JButton pending;
     private javax.swing.JButton profile;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JButton searchtrips;
     // End of variables declaration//GEN-END:variables
     public void AllListener(ActionListener listener) {

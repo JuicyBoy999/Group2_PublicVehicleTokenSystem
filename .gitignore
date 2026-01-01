@@ -1,7 +1,4 @@
 /build/
-<<<<<<< Updated upstream
-nbproject/private
-=======
 /nbproject/private/
 /src/Database/
->>>>>>> Stashed changes
+/dist/

@@ -27,9 +27,12 @@ public class TripController {
     public final TripManagement tripView;
     
     private int currentEditingId = -1; // tracks which trip is being edited
+    private final int adminId;   // Tracks which admin is logged in
+
     
-    public TripController(TripManagement tripView) {   // Constructor
+    public TripController(TripManagement tripView, int adminId) {   // Constructor
         this.tripView = tripView;
+        this.adminId = adminId;
         
         tripView.TripFormListener(new FormListener());
         tripView.AddTripListener(new AddActionListener());
@@ -339,7 +342,7 @@ public class TripController {
         @Override
         public void actionPerformed(ActionEvent e) {
             VehicleManagement vm = new VehicleManagement();  // Create view
-            VehicleController vc = new VehicleController(vm); // Create controller
+            VehicleController vc = new VehicleController(vm, adminId); // Create controller
             vc.openVehicleManagement();  // Open Vehicle Management page  
             closeTripManagement();   // Close Trip Management page
         }
@@ -349,7 +352,7 @@ public class TripController {
     class RouteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            RouteManagement rm = new RouteManagement();  // Create view
+            RouteManagement rm = new RouteManagement(adminId);  // Create view
             rm.setVisible(true);    // Open Route Management page
             closeTripManagement();   // Close Trip Management page
         }
@@ -359,7 +362,7 @@ public class TripController {
     class UserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            UserManagement um = new UserManagement();  // Create view
+            UserManagement um = new UserManagement(adminId);  // Create view
             um.setVisible(true);    // Open User Management page
             closeTripManagement();   // Close Trip Management page
         }
@@ -370,7 +373,7 @@ public class TripController {
         @Override
         public void actionPerformed(ActionEvent e) {
             Notification n = new Notification();  // Create view
-            NotificationController nc = new NotificationController(n); // Create controller
+            NotificationController nc = new NotificationController(n, adminId); // Create controller
             nc.openNotification();  // Open Notification Management page
             closeTripManagement();   // Close Trip Management page
         }

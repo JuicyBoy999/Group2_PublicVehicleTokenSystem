@@ -4,17 +4,27 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author user
  */
 public class EmailOTP extends javax.swing.JFrame {
     
+    private String userEmail;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EmailOTP.class.getName());
 
     /**
      * Creates new form Login
      */
+    
+    public EmailOTP(String email) {
+        this.userEmail = email;
+        initComponents();
+    }
+    
     public EmailOTP() {
         initComponents();
         setSize(1000,564);
@@ -34,6 +44,7 @@ public class EmailOTP extends javax.swing.JFrame {
         OTP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        resend = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -48,9 +59,16 @@ public class EmailOTP extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AccountRecovery.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
-        OTP.setBackground(new java.awt.Color(255, 255, 255));
         OTP.setForeground(new java.awt.Color(102, 102, 102));
         OTP.setText("Enter OTP");
+        OTP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                OTPFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                OTPFocusLost(evt);
+            }
+        });
         getContentPane().add(OTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 230, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -64,6 +82,15 @@ public class EmailOTP extends javax.swing.JFrame {
         jLabel2.setText("Account Recovery");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
+        resend.setBackground(new java.awt.Color(244, 244, 244));
+        resend.setForeground(new java.awt.Color(0, 0, 204));
+        resend.setText("Resend");
+        resend.setBorder(null);
+        resend.setBorderPainted(false);
+        resend.setContentAreaFilled(false);
+        resend.addActionListener(this::resendActionPerformed);
+        getContentPane().add(resend, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LoginBackground.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
@@ -72,6 +99,25 @@ public class EmailOTP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resendActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resendActionPerformed
+
+    private void OTPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OTPFocusGained
+        // TODO add your handling code here:
+        if(OTP.getText().equals("Enter OTP")){
+            OTP.setText("");
+        }
+    }//GEN-LAST:event_OTPFocusGained
+
+    private void OTPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OTPFocusLost
+        // TODO add your handling code here:
+        if(OTP.getText().equals("")) {
+            OTP.setText("ENter OTP");
+        }
+    }//GEN-LAST:event_OTPFocusLost
 
     /**
      * @param args the command line arguments
@@ -106,5 +152,21 @@ public class EmailOTP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton resend;
     // End of variables declaration//GEN-END:variables
+    public String getOTP() {
+        return OTP.getText().trim();
+    }
+    
+    public String getEmail() {
+        return userEmail;
+    }
+    
+    public void addVerifyListener(ActionListener listener) {
+        ResetPasswordBTN.addActionListener(listener);
+    }
+    
+    public void addResendListener(ActionListener listener) {
+        resend.addActionListener(listener);
+    }
 }

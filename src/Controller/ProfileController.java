@@ -4,11 +4,13 @@
  */
 package Controller;
 
+import DAO.userDAO;
+import Model.userData;
 import View.Profile;
 
 /**
  *
- * @author hp
+ * @author Nitro V 16
  */
 public class ProfileController {
     private final Profile profileView;
@@ -20,6 +22,13 @@ public class ProfileController {
     }
     
     public void openProfile() {    // Open UI
+        userDAO dao = new userDAO();
+        userData user = dao.getUserById(userId);
+        
+        if (user != null) {
+            profileView.setUserData(user);
+        }
+        
         this.profileView.setVisible(true);
     }
     
